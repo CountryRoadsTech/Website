@@ -53,7 +53,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   # Better Errors replaces Rail's default error page with an improved, interactive one.
-  gem 'better_errors', '~> 2.8'
+  # Lock to version 2.8.1 as there is a fatal error with version 2.8.2.
+  gem 'better_errors', '2.8.1'
   # Binding of Caller is used by Better Errors to enable some of its more advanced features.
   gem 'binding_of_caller', '~> 0.8'
 end
