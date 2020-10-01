@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Sidekiq is used as an Active Job backend, to perform async tasks.
+gem 'sidekiq', '~> 6.1'
+
 # Dotenv is used to load in variables from .env files.
 gem 'dotenv-rails', '~> 2.7'
 

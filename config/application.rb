@@ -41,5 +41,10 @@ module CountryRoadsTech
       # Report all exceptions. Ignore Sentry's excluded defaults.
       config.excluded_exceptions = []
     end
+
+    # Use Sidekiq as Active Job backend, for performing async tasks.
+    config.active_job.queue_adapter = :sidekiq
+    # Use separate queue prefixes per environment.
+    config.active_job.queue_name_prefix = Rails.env
   end
 end
