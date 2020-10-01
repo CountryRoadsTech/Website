@@ -42,3 +42,6 @@ yarn-debug.log*
 # Ignore compiled Webpack assets
 /public/packs
 /public/packs-test
+
+# Ignore RubyMine configuration files
+.idea/
