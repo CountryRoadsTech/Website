@@ -74,6 +74,7 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hiredis (0.6.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.0)
@@ -188,12 +189,14 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   dotenv-rails (~> 2.7)
+  hiredis (~> 0.6)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)
+  redis (~> 4.2)
   sentry-raven (~> 3.1)
   sidekiq (~> 6.1)
   spring

@@ -38,6 +38,9 @@ module CountryRoadsTech
     # Use separate queue prefixes per environment.
     config.active_job.queue_name_prefix = Rails.env
 
+    # Use Redis as a cache store.
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+
     # Send exceptions to sentry.io.
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_RAVEN_INGEST_URL']
