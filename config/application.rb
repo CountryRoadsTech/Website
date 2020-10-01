@@ -35,16 +35,20 @@ module CountryRoadsTech
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Use Sidekiq as Active Job backend, for performing async tasks.
+    config.active_job.queue_adapter = :sidekiq
+    # Use separate queue prefixes per environment.
+    config.active_job.queue_name_prefix = Rails.env
+
     # Send exceptions to sentry.io.
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_RAVEN_INGEST_URL']
       # Report all exceptions. Ignore Sentry's excluded defaults.
       config.excluded_exceptions = []
+      # Send the report asynchronously using ActiveJob.
+      config.async = lambda do |event|
+        ReportToSentryJob.perform_later(event)
+      end
     end
-
-    # Use Sidekiq as Active Job backend, for performing async tasks.
-    config.active_job.queue_adapter = :sidekiq
-    # Use separate queue prefixes per environment.
-    config.active_job.queue_name_prefix = Rails.env
   end
 end
