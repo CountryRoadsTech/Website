@@ -19,6 +19,9 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load in environment variables from .env files.
+Dotenv::Railtie.load
+
 module CountryRoadsTech
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
