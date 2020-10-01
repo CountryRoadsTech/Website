@@ -36,8 +36,12 @@ gem 'dotenv-rails', '~> 2.7'
 gem 'sentry-raven', '~> 3.1'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Pry is a runtime development console and IRB alternative.
+  gem 'pry', '~> 0.13'
+  # Pry Rails replaces Rail's console with a Pry console, and adds several Rails specific features to Pry.
+  gem 'pry-rails', '~> 0.3'
+  # Pry Byebug adds debugging features to Pry.
+  gem 'pry-byebug', '~> 3.9'
 end
 
 group :development do
