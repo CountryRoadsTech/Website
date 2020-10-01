@@ -47,6 +47,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Better Errors replaces Rail's default error page with an improved, interactive one.
+  gem 'better_errors', '~> 2.8'
+  # Binding of Caller is used by Better Errors to enable some of its more advanced features.
+  gem 'binding_of_caller', '~> 0.8'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
