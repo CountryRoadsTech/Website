@@ -49,6 +49,15 @@ module CountryRoadsTech
       config.async = lambda do |event|
         ReportToSentryJob.perform_later(event)
       end
+      config.breadcrumbs_logger = [:sentry_logger, :active_support_logger]
+      # Only report exceptions in the production environment.
+      config.environments = ["production"]
+      # Sanitize fields sent to sentry.io based on Rail's logger parameter sanitization configuration.
+      config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
+      # Do send POST request data.
+      config.processors -= [Raven::Processor::PostData]
+      # Do send cookies.
+      config.processors -= [Raven::Processor::Cookies]
     end
   end
 end
