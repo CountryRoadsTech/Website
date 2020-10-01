@@ -29,6 +29,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Dotenv is used to load in variables from .env files.
 gem 'dotenv-rails', '~> 2.7'
 
+# Sentry Raven reports exceptions to sentry.io.
+gem 'sentry-raven', '~> 3.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

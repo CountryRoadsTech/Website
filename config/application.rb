@@ -34,5 +34,12 @@ module CountryRoadsTech
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Send exceptions to sentry.io.
+    Raven.configure do |config|
+      config.dsn = ENV['SENTRY_RAVEN_INGEST_URL']
+      # Report all exceptions. Ignore Sentry's excluded defaults.
+      config.excluded_exceptions = []
+    end
   end
 end
