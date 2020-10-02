@@ -35,6 +35,9 @@ gem 'dotenv-rails', '~> 2.7'
 # Sentry Raven reports exceptions to sentry.io.
 gem 'sentry-raven', '~> 3.1'
 
+# Rack Attack is used to throttle and block spammy and potentially abusive clients.
+gem 'rack-attack', '~> 6.3'
+
 group :development, :test do
   # Pry is a runtime development console and IRB alternative.
   gem 'pry', '~> 0.13'
