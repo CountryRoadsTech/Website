@@ -44,6 +44,9 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3'
   # Pry Byebug adds debugging features to Pry.
   gem 'pry-byebug', '~> 3.9'
+
+  # RSpec Rails replace Rail's default test framework with RSpec.
+  gem 'rspec-rails', '~> 4.0'
 end
 
 group :development do
