@@ -106,5 +106,9 @@ end
 
 # Log all Rack Attack actions.
 ActiveSupport::Notifications.subscribe(/rack_attack/) do |name, start, finish, request_id, payload|
-  Rails.logger.info "Rack Attack: Name: #{name}, Start: #{start}, Finish: #{finish}, Request ID: #{request_id}, Payload ID: #{payload}"
+  message = "Rack Attack: Name: #{name}, Start: #{start}, Finish: #{finish}, Request ID: #{request_id}"
+  # Log the message.
+  # Rails.logger.info message
+  # Send the message to sentry.io.
+  Raven.capture_message(message.to_s)
 end
