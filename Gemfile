@@ -37,6 +37,9 @@ gem 'sentry-raven', '~> 3.1'
 # Rack Attack is used to throttle and block spammy and potentially abusive clients.
 gem 'rack-attack', '~> 6.3'
 
+# Devise is used to add user authentication.
+gem 'devise', '~> 4.7'
+
 group :development, :test do
   # Pry is a runtime development console and IRB alternative.
   gem 'pry', '~> 0.13'
