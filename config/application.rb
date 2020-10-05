@@ -48,7 +48,7 @@ module CountryRoadsTech
       config.excluded_exceptions = []
       # Send the report asynchronously using ActiveJob.
       config.async = lambda do |event|
-        ReportToSentryJob.perform_later(event)
+        ReportToSentryJob.perform_async(event)
       end
       config.breadcrumbs_logger = [:sentry_logger, :active_support_logger]
       # Only report exceptions in the production environment.

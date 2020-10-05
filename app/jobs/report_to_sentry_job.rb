@@ -1,5 +1,5 @@
-class ReportToSentryJob < ActiveJob::Base
-  queue_as :default
+class ReportToSentryJob
+  include Sidekiq::Worker
 
   def perform(event)
     Raven.send_event(event)
