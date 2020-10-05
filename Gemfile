@@ -67,5 +67,12 @@ group :development do
   gem 'better_errors-pry', '~> 1.0'
 end
 
+group :test do
+  # Capybara is used to simulate how a real user interacts with webpages and can run Javascript.
+  gem 'capybara', '~> 3.33'
+  # Selenium Webdriver is used by Capybara to run Javascript.
+  gem 'selenium-webdriver', '~> 3.142'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
