@@ -60,6 +60,10 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
+    better_errors-pry (1.0.3)
+      better_errors (~> 2.3, >= 2.3.0)
+      binding_of_caller
+      pry (>= 0.9)
     bindex (0.8.1)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
@@ -205,6 +209,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors (~> 2.8)
+  better_errors-pry (~> 1.0)
   binding_of_caller (~> 0.8)
   bootsnap (>= 1.4.2)
   dotenv-rails (~> 2.7)

@@ -59,6 +59,8 @@ group :development do
   gem 'better_errors', '~> 2.8'
   # Binding of Caller is used by Better Errors to enable some of its more advanced features.
   gem 'binding_of_caller', '~> 0.8'
+  # Better Errors Pry adds Pry support to Better Errors error pages.
+  gem 'better_errors-pry', '~> 1.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
