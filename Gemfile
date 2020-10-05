@@ -47,6 +47,8 @@ group :development, :test do
 
   # RSpec Rails replace Rail's default test framework with RSpec.
   gem 'rspec-rails', '~> 4.0'
+  #
+  gem 'factory_bot_rails', '~> 6.1'
 end
 
 group :development do
