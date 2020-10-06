@@ -34,6 +34,9 @@ gem 'meta-tags', '~> 2.13'
 # Dotenv is used to load in variables from .env files.
 gem 'dotenv-rails', '~> 2.7'
 
+# Slim Rails adds the Slim templating language to the application, which replaces HTML/ERB.
+gem 'slim-rails', '~> 3.2'
+
 # Sentry Raven reports exceptions to sentry.io.
 gem 'sentry-raven', '~> 3.1'
 
