@@ -112,6 +112,9 @@ group :development do
 
   # Annotate automatically adds a comment of the database schema to the top of relevant classes/files.
   gem 'annotate', '~> 3.1'
+
+  # Letter Opener is used to open sent emails in the browser directly, instead of sending them.
+  gem 'letter_opener', '~> 1.7'
 end
 
 group :test do
