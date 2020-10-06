@@ -20,3 +20,6 @@ import "controllers"
 
 // Import application stylesheets.
 import '../stylesheets/application.scss'
+
+// Import user analytic's Javascript.
+import ahoy from 'ahoy.js';
