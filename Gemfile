@@ -39,6 +39,9 @@ gem 'rack-attack', '~> 6.3'
 
 # Devise is used to add user authentication.
 gem 'devise', '~> 4.7'
+# Pundit is used to add user authorization.
+gem 'pundit', '~> 2.1'
+
 # Authtrail is used to track Devise user logins and login attempts.
 gem 'authtrail', '~> 0.2'
 
