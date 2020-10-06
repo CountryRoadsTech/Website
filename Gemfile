@@ -39,6 +39,8 @@ gem 'rack-attack', '~> 6.3'
 
 # Devise is used to add user authentication.
 gem 'devise', '~> 4.7'
+# Authtrail is used to track Devise user logins and login attempts.
+gem 'authtrail', '~> 0.2'
 
 group :development, :test do
   # Pry is a runtime development console and IRB alternative.
