@@ -59,7 +59,7 @@ gem 'pundit', '~> 2.1'
 
 # Authtrail is used to track Devise user logins and login attempts.
 gem 'authtrail', '~> 0.2'
-#
+# Ahoy Matey is used to provide local, first party user analytics.
 gem 'ahoy_matey', '~> 3.0'
 
 group :development, :test do
