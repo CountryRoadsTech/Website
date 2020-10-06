@@ -20,3 +20,6 @@ Style/Not:
 
 Rails/FilePath:
   Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
