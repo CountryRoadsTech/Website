@@ -70,6 +70,19 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
   # Faker is used to generate random, fake data.
   gem 'faker', '~> 2.14'
+
+  # Rubocop is a static code analyzer and linter for Ruby code.
+  gem 'rubocop', '~> 0.92', require: false
+  # Rubocop Rails adds Rubocop checks for Rails applications.
+  gem 'rubocop-rails', '~> 2.8', require: false
+  # Rubocop RSpec adds Rubocop checks for RSpec tests.
+  gem 'rubocop-rspec', '~> 1.43', require: false
+  # Rubocop Rake adds Rubocop checks for Rake tasks.
+  gem 'rubocop-rake', '~> 0.5', require: false
+  # Rubocop Performance adds Rubocop checks for performance concerns.
+  gem 'rubocop-performance', '~> 1.8', require: false
+  # Rubocop Thread Safety adds Rubocop checks for thread safety concerns.
+  gem 'rubocop-thread_safety', '~> 0.4', require: false
 end
 
 group :development do
