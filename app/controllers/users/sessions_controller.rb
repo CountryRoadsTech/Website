@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+
+  # Don't ensure user authorization was performed, as it is handled internally by Devise.
+  skip_after_action :verify_authorized
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Users::UnlocksController < Devise::UnlocksController
+
+  # Don't ensure user authorization was performed, as it is handled internally by Devise.
+  skip_after_action :verify_authorized
+
   # GET /resource/unlock/new
   # def new
   #   super
