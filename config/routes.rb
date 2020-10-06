@@ -7,5 +7,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
+  }, path: '', path_names: {
+    confirmation: 'confirmation',
+    password: 'password',
+    registration: 'accounts',
+    sign_up: 'sign_up',
+    sign_in: 'login',
+    sign_out: 'logout',
+    unlock: 'unlock'
   }
 end
