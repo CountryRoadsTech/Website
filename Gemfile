@@ -59,6 +59,8 @@ gem 'pundit', '~> 2.1'
 
 # Authtrail is used to track Devise user logins and login attempts.
 gem 'authtrail', '~> 0.2'
+#
+gem 'ahoy_matey', '~> 3.0'
 
 group :development, :test do
   # Pry is a runtime development console and IRB alternative.
