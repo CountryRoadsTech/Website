@@ -36,6 +36,7 @@ gem 'dotenv-rails', '~> 2.7'
 
 # Sentry Raven reports exceptions to sentry.io.
 gem 'sentry-raven', '~> 3.1'
+
 # Rack Mini Profiler adds a performance speed page to the top of every page, for the production environment only if the user is an admin.
 gem 'rack-mini-profiler', '~> 2.1'
 # Memory Profiler is used by Rack Min Profiler for memory profiling
@@ -83,6 +84,9 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.8', require: false
   # Rubocop Thread Safety adds Rubocop checks for thread safety concerns.
   gem 'rubocop-thread_safety', '~> 0.4', require: false
+
+  # Bullet is used to detect N+1 database queries.
+  gem 'bullet', '~> 6.1'
 end
 
 group :development do
