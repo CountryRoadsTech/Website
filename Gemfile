@@ -61,6 +61,8 @@ gem 'pundit', '~> 2.1'
 gem 'authtrail', '~> 0.2'
 # Ahoy Matey is used to provide local, first party user analytics.
 gem 'ahoy_matey', '~> 3.0'
+# Ahoy Email is used to provide local, first party email analytics.
+gem 'ahoy_email', '~> 1.1'
 
 group :development, :test do
   # Pry is a runtime development console and IRB alternative.

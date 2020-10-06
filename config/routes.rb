@@ -22,6 +22,7 @@
 #                       new_user_unlock GET    /unlock/new(.:format)                                                                    users/unlocks#new
 #                           user_unlock GET    /unlock(.:format)                                                                        users/unlocks#show
 #                                       POST   /unlock(.:format)                                                                        users/unlocks#create
+#                     ahoy_email_engine        /ahoy                                                                                    AhoyEmail::Engine
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -42,6 +43,10 @@
 #                    rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
 #             update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+#
+# Routes for AhoyEmail::Engine:
+#  open_message GET  /messages/:id/open(.:format)  ahoy/messages#open
+# click_message GET  /messages/:id/click(.:format) ahoy/messages#click
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do

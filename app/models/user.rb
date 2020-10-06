@@ -42,4 +42,7 @@ class User < ApplicationRecord
 
   # Track each visit for the user.
   has_many :visits, class_name: "Visit"
+
+  # Tracks each email sent to the user.
+  has_many :sent_emails, as: :user
 end
