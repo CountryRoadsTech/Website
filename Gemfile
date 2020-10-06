@@ -90,6 +90,9 @@ group :development, :test do
 
   # Bullet is used to detect N+1 database queries.
   gem 'bullet', '~> 6.1'
+
+  # Slim Lint adds a linter for the Slim templating language.
+  gem 'slim_lint', '~> 0.20'
 end
 
 group :development do
@@ -106,6 +109,9 @@ group :development do
   gem 'binding_of_caller', '~> 0.8'
   # Better Errors Pry adds Pry support to Better Errors error pages.
   gem 'better_errors-pry', '~> 1.0'
+
+  # Annotate automatically adds a comment of the database schema to the top of relevant classes/files.
+  gem 'annotate', '~> 3.1'
 end
 
 group :test do
