@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_sentry_raven_context
 
+  # Only show the Rack Mini Profiler badge in production environment if the user is an admin.
+  before_action :load_rack_mini_profiler
+
   private
 
   def user_not_allowed
@@ -21,6 +24,12 @@ class ApplicationController < ActionController::Base
   def set_sentry_raven_context
     Raven.user_context(id: current_user.try(:id))
     Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  end
+
+  def load_rack_mini_profiler
+    current_user.try(:admin?) do
+      Rack::MiniProfiler.authorize_request
+    end
   end
 
 end
