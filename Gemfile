@@ -28,6 +28,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Sidekiq is used as an Active Job backend, to perform async tasks.
 gem 'sidekiq', '~> 6.1'
 
+# Meta Tags is used to add search engine optimization meta tags.
+gem 'meta-tags', '~> 2.13'
+
 # Dotenv is used to load in variables from .env files.
 gem 'dotenv-rails', '~> 2.7'
 
