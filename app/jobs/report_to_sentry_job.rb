@@ -1,6 +1,4 @@
-class ReportToSentryJob
-  include Sidekiq::Worker
-
+class ReportToSentryJob < ApplicationJob
   def perform(event)
     Raven.send_event(event)
   end
