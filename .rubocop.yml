@@ -21,5 +21,17 @@ Style/Not:
 Rails/FilePath:
   Enabled: false
 
+Rails/CreateTableWithTimestamps:
+  Enabled: false
+
 Bundler/OrderedGems:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
   Enabled: false
