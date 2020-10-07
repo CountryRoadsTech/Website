@@ -37,6 +37,9 @@ gem 'dotenv-rails', '~> 2.7'
 # Slim Rails adds the Slim templating language to the application, which replaces HTML/ERB.
 gem 'slim-rails', '~> 3.2'
 
+# Paper Trail is used to track changes to models.
+gem 'paper_trail', '~> 11.0'
+
 # Friendly ID is used to replace the URL slug for models with something other than ID.
 gem 'friendly_id', '~> 5.4'
 

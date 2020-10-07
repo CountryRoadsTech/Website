@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_allowed
 
+  # Tracks which user made each change.
+  before_action :set_paper_trail_whodunnit
+
   before_action :set_sentry_raven_context
 
   # Only show the Rack Mini Profiler badge in production environment if the user is an admin.
