@@ -25,9 +25,7 @@ class Rack::Attack
   # Throttle all requests by IP (60rpm)
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle('req/ip', limit: 300, period: 5.minutes) do |req|
-    req.ip # unless req.path.start_with?('/assets')
-  end
+  throttle('req/ip', limit: 300, period: 5.minutes, &:ip)
 
   ### Prevent Brute-Force Login Attacks ###
 
@@ -42,9 +40,7 @@ class Rack::Attack
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:logins/ip:#{req.ip}"
   throttle('logins/ip', limit: 5, period: 20.seconds) do |req|
-    if req.path == '/login' && req.post?
-      req.ip
-    end
+    req.ip if req.path == '/login' && req.post?
   end
 
   # Throttle POST requests to /login by email param
@@ -88,7 +84,6 @@ class Rack::Attack
         req.path.include?('/etc/passwd') ||
         req.path.include?('wp-admin') ||
         req.path.include?('wp-login')
-
     end
   end
 
@@ -106,14 +101,12 @@ class Rack::Attack
 
   # Throttle requests to the analytics API.
   throttle('ahoy/ip', limit: 20, period: 1.minute) do |req|
-    if req.path.start_with?('/ahoy/')
-      req.ip
-    end
+    req.ip if req.path.start_with?('/ahoy/')
   end
 end
 
 # Log all Rack Attack actions.
-ActiveSupport::Notifications.subscribe(/rack_attack/) do |name, start, finish, request_id, payload|
+ActiveSupport::Notifications.subscribe(/rack_attack/) do |name, start, finish, request_id, _payload|
   message = "Rack Attack: Name: #{name}, Start: #{start}, Finish: #{finish}, Request ID: #{request_id}"
   # Log the message.
   Rails.logger.info message

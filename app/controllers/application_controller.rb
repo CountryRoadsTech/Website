@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_allowed
     flash[:error] = 'You are not allowed to perform this action.'
-    redirect_to(request.referrer || root_path)
+    redirect_to(request.referer || root_path)
   end
 
   def set_sentry_raven_context
