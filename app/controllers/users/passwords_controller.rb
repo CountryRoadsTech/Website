@@ -6,22 +6,22 @@ class Users::PasswordsController < Devise::PasswordsController
   # Don't ensure user authorization was performed, as it is handled internally by Devise.
   skip_after_action :verify_authorized
 
-  # GET /resource/password/new
+  # GET /password/new
   # def new
   #   super
   # end
 
-  # POST /resource/password
+  # POST /password
   # def create
   #   super
   # end
 
-  # GET /resource/password/edit?reset_password_token=abcdef
+  # GET /password/edit?reset_password_token=abcdef
   # def edit
   #   super
   # end
 
-  # PUT /resource/password
+  # PUT /password
   # def update
   #   super
   # end

@@ -6,17 +6,17 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # Don't ensure user authorization was performed, as it is handled internally by Devise.
   skip_after_action :verify_authorized
 
-  # GET /resource/confirmation/new
+  # GET /confirmation/new
   # def new
   #   super
   # end
 
-  # POST /resource/confirmation
+  # POST /confirmation
   # def create
   #   super
   # end
 
-  # GET /resource/confirmation?confirmation_token=abcdef
+  # GET /confirmation?confirmation_token=abcdef
   # def show
   #   super
   # end
