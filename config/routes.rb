@@ -22,6 +22,7 @@
 #                       new_user_unlock GET    /unlock/new(.:format)                                                                    users/unlocks#new
 #                           user_unlock GET    /unlock(.:format)                                                                        users/unlocks#show
 #                                       POST   /unlock(.:format)                                                                        users/unlocks#create
+#                           sidekiq_web        /sidekiq                                                                                 Sidekiq::Web
 #                     ahoy_email_engine        /ahoy                                                                                    AhoyEmail::Engine
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
@@ -48,6 +49,8 @@
 #  open_message GET  /messages/:id/open(.:format)  ahoy/messages#open
 # click_message GET  /messages/:id/click(.:format) ahoy/messages#click
 
+require 'sidekiq/web'
+
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   # Adds user authentication routes.
@@ -66,4 +69,9 @@ Rails.application.routes.draw do
     sign_out: 'logout',
     unlock: 'unlock'
   }
+
+  # Mount the sidekiq web UI, if the user is an admin.
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
