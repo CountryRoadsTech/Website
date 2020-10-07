@@ -60,6 +60,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # Required by Stimulus Reflex.
+  config.session_store :cache_store
+
   # Use Pry as the console on Better Errors error pages.
   BetterErrors.use_pry!
 

@@ -38,6 +38,8 @@ gem 'dotenv-rails', '~> 2.7'
 
 # Slim Rails adds the Slim templating language to the application, which replaces HTML/ERB.
 gem 'slim-rails', '~> 3.2'
+# Stimulus Reflex builds on top of Stimulus to add reactive components.
+gem 'stimulus_reflex', '~> 3.3'
 
 # Paper Trail is used to track changes to models.
 gem 'paper_trail', '~> 11.0'
