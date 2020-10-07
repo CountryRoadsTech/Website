@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This is the base mailer, that all other mailers in the application inherit from.
 class ApplicationMailer < ActionMailer::Base
   default from: 'from@example.com'
   layout 'mailer'

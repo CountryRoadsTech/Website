@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This is the base user authorization policy, that all other user authorization policies in the application inherit from
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -36,6 +37,7 @@ class ApplicationPolicy
     false
   end
 
+  # This is the default scope passed to all policies.
   class Scope
     attr_reader :user, :scope
 

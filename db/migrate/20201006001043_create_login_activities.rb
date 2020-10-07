@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This database migration tracks login activities, successful or not.
 class CreateLoginActivities < ActiveRecord::Migration[6.0]
   def change
     create_table :login_activities do |t|

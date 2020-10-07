@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This class contains configuration for Ahoy user analytics.
 class Ahoy::Store < Ahoy::DatabaseStore
   # Track user accept language, in addition to default data.
   def track_visit(data)

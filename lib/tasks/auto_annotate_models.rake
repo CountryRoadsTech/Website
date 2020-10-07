@@ -5,9 +5,9 @@
 # NOTE: to have a dev-mode tool do its thing in production.
 if Rails.env.development?
   require 'annotate'
+  desc 'Automatically adds a database schema comment to the top of relevant files on rake db:migrate.'
   task set_annotation_options: :environment do
-    # You can override any of these by setting an environment variable of the
-    # same name.
+    # You can override any of these by setting an environment variable of the same name.
     Annotate.set_defaults(
       'active_admin' => 'false',
       'additional_file_patterns' => [],

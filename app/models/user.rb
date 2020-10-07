@@ -40,11 +40,11 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable
 
   # Tracks each login for the user.
-  has_many :login_activities, as: :user
+  has_many :login_activities, as: :user, dependent: :destroy
 
   # Track each visit for the user.
-  has_many :visits, class_name: 'Visit'
+  has_many :visits, class_name: 'Visit', dependent: :destroy
 
   # Tracks each email sent to the user.
-  has_many :sent_emails, as: :user
+  has_many :sent_emails, as: :user, dependent: :destroy
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This email tracks sent emails, and when/if they are opened and when/if any links are clicked.
 class CreateSentEmails < ActiveRecord::Migration[6.0]
   def change
     create_table :sent_emails do |t|

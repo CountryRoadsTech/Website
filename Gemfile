@@ -50,7 +50,8 @@ gem 'friendly_id', '~> 5.4'
 # Sentry Raven reports exceptions to sentry.io.
 gem 'sentry-raven', '~> 3.1'
 
-# Rack Mini Profiler adds a performance speed page to the top of every page, for the production environment only if the user is an admin.
+# Rack Mini Profiler adds a performance speed page to the top of every page.
+# For development it is always visible, for production it is only visible if the user is an admin.
 gem 'rack-mini-profiler', '~> 2.1'
 # Memory Profiler is used by Rack Min Profiler for memory profiling
 gem 'memory_profiler', '~> 0.9'

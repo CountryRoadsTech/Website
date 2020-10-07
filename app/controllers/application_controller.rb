@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This is the base controller, that all other controllers in the application inherit from.
 class ApplicationController < ActionController::Base
   # Enables protection from cross-site request forgery (CSRF) attacks.
   protect_from_forgery with: :exception
