@@ -9,13 +9,13 @@
 #                         user_password PATCH  /password(.:format)                                                                      users/passwords#update
 #                                       PUT    /password(.:format)                                                                      users/passwords#update
 #                                       POST   /password(.:format)                                                                      users/passwords#create
-#              cancel_user_registration GET    /accounts/cancel(.:format)                                                               users/registrations#cancel
-#                 new_user_registration GET    /accounts/sign_up(.:format)                                                              users/registrations#new
-#                edit_user_registration GET    /accounts/edit(.:format)                                                                 users/registrations#edit
-#                     user_registration PATCH  /accounts(.:format)                                                                      users/registrations#update
-#                                       PUT    /accounts(.:format)                                                                      users/registrations#update
-#                                       DELETE /accounts(.:format)                                                                      users/registrations#destroy
-#                                       POST   /accounts(.:format)                                                                      users/registrations#create
+#              cancel_user_registration GET    /account/cancel(.:format)                                                                users/registrations#cancel
+#                 new_user_registration GET    /account/sign_up(.:format)                                                               users/registrations#new
+#                edit_user_registration GET    /account/edit(.:format)                                                                  users/registrations#edit
+#                     user_registration PATCH  /account(.:format)                                                                       users/registrations#update
+#                                       PUT    /account(.:format)                                                                       users/registrations#update
+#                                       DELETE /account(.:format)                                                                       users/registrations#destroy
+#                                       POST   /account(.:format)                                                                       users/registrations#create
 #                 new_user_confirmation GET    /confirmation/new(.:format)                                                              users/confirmations#new
 #                     user_confirmation GET    /confirmation(.:format)                                                                  users/confirmations#show
 #                                       POST   /confirmation(.:format)                                                                  users/confirmations#create
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   }, path: '', path_names: {
     confirmation: 'confirmation',
     password: 'password',
-    registration: 'accounts',
+    registration: 'account',
     sign_up: 'sign_up',
     sign_in: 'login',
     sign_out: 'logout',
