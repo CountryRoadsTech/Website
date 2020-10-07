@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This is the user authentication controller that handles user logins.
+# It inherits from Devise's default SessionsController.
 class Users::SessionsController < Devise::SessionsController
   # Don't ensure user authorization was performed, as it is handled internally by Devise.
   skip_after_action :verify_authorized

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This is the user authentication controller that handles unlocking a locked account.
+# It inherits from Devise's default UnlocksController.
 class Users::UnlocksController < Devise::UnlocksController
   # Don't ensure user authorization was performed, as it is handled internally by Devise.
   skip_after_action :verify_authorized

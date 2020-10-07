@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This is the user authentication controller that handles user's passwords.
+# It inherits from Devise's default PasswordsController.
 class Users::PasswordsController < Devise::PasswordsController
   # Don't ensure user authorization was performed, as it is handled internally by Devise.
   skip_after_action :verify_authorized
