@@ -63,7 +63,7 @@ PreCommit:
   BundleAudit:
     enabled: true
     description: 'Check for vulnerable versions of gems'
-    command: ['bundle', 'exec', '']
+    command: ['bundle', 'exec', 'bundle-audit', 'check', '--update']
 
   BundleCheck:
     enabled: true

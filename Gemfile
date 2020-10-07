@@ -95,6 +95,9 @@ group :development, :test do
   # Bullet is used to detect N+1 database queries.
   gem 'bullet', '~> 6.1'
 
+  # Bundler Audit is used to check for known, vulnerable versions of gems.
+  gem 'bundler-audit', '~> 0.7'
+
   # Slim Lint adds a linter for the Slim templating language.
   gem 'slim_lint', '~> 0.20'
 
