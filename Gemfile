@@ -95,6 +95,8 @@ group :development, :test do
   # Bullet is used to detect N+1 database queries.
   gem 'bullet', '~> 6.1'
 
+  # Brakeman uses static analysis to check for security vulnerabilities.
+  gem 'brakeman', '~> 4.10'
   # Bundler Audit is used to check for known, vulnerable versions of gems.
   gem 'bundler-audit', '~> 0.7'
   # Bundler Leak is used to check for known memory leaks in gems.
