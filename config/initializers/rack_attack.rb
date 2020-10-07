@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Rack::Attack
-
   ### Configure Cache ###
 
   # If you don't want to use Rails.cache (Rack::Attack's default), then

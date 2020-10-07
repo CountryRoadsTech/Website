@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-
   # Don't ensure user authorization was performed, as it is handled internally by Devise.
   skip_after_action :verify_authorized
 

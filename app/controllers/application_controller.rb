@@ -36,5 +36,4 @@ class ApplicationController < ActionController::Base
       Rack::MiniProfiler.authorize_request
     end
   end
-
 end
