@@ -40,6 +40,8 @@ gem 'dotenv-rails', '~> 2.7'
 gem 'slim-rails', '~> 3.2'
 # Stimulus Reflex builds on top of Stimulus to add reactive components.
 gem 'stimulus_reflex', '~> 3.3'
+# View Component is used to create view components that are reusable, testable, and encapsulated.
+gem 'view_component', '~> 2.19', require: 'view_component/engine'
 
 # Paper Trail is used to track changes to models.
 gem 'paper_trail', '~> 11.0'

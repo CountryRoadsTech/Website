@@ -99,7 +99,7 @@ PreCommit:
     description: 'Check for case-insensitivity conflicts'
 
   ForbiddenBranches:
-    enabled: true
+    enabled: false
     description: 'Check for commit to forbidden branch'
     branch_patterns: [ 'main' ]
 
