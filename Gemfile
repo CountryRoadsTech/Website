@@ -97,6 +97,9 @@ group :development, :test do
 
   # Slim Lint adds a linter for the Slim templating language.
   gem 'slim_lint', '~> 0.20'
+
+  # Overcommit is used to install and configure Git hooks.
+  gem 'overcommit', '~> 0.57'
 end
 
 group :development do

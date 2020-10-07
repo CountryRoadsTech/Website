@@ -1,0 +1,256 @@
+# Use this file to configure the Overcommit hooks you wish to use. This will
+# extend the default configuration defined in:
+# https://github.com/sds/overcommit/blob/master/config/default.yml
+#
+# At the topmost level of this YAML file is a key representing type of hook
+# being run (e.g. pre-commit, commit-msg, etc.). Within each type you can
+# customize each hook, such as whether to only run it on certain files (via
+# `include`), whether to only display output if it fails (via `quiet`), etc.
+#
+# For a complete list of hooks, see:
+# https://github.com/sds/overcommit/tree/master/lib/overcommit/hook
+#
+# For a complete list of options that you can use to customize hooks, see:
+# https://github.com/sds/overcommit#configuration
+#
+# Uncomment the following lines to make the configuration take effect.
+
+# Hooks that are run against every commit message after a user has written it.
+# These hooks are useful for enforcing policies on commit messages written for a
+# project.
+CommitMsg:
+  ALL:
+    quiet: false
+
+  CapitalizedSubject:
+    enabled: true
+    description: 'Check subject capitalization'
+
+  EmptyMessage:
+    enabled: true
+    description: 'Check for empty commit message'
+    quiet: false
+
+# Hooks that are run after `git commit` is executed, before the commit message
+# editor is displayed. These hooks are ideal for syntax checkers, linters, and
+# other checks that you want to run before you allow a commit object to be
+# created.
+PreCommit:
+  ALL:
+    problem_on_unmodified_line: report
+    quiet: false
+
+  AuthorEmail:
+    enabled: true
+    description: 'Check author email'
+    requires_files: false
+    required: true
+    quiet: true
+    pattern: '^[^@]+@.*$'
+
+  AuthorName:
+    enabled: true
+    description: 'Check for author name'
+    requires_files: false
+    required: true
+    quiet: true
+
+  BrokenSymlinks:
+    enabled: true
+    description: 'Check for broken symlinks'
+    quiet: true
+
+  BundleAudit:
+    enabled: true
+    description: 'Check for vulnerable versions of gems'
+    command: ['bundle', 'exec', '']
+
+  BundleCheck:
+    enabled: true
+    description: 'Check Gemfile dependencies'
+    required_executable: 'bundle'
+    flags: [ 'check' ]
+    install_command: 'gem install bundler'
+    include:
+      - 'Gemfile'
+      - 'Gemfile.lock'
+
+  Brakeman:
+    enabled: true
+    description: 'Check for security vulnerabilities'
+    required_executable: 'brakeman'
+    flags: [ '--exit-on-warn', '--quiet', '--summary' ]
+    install_command: 'gem install brakeman'
+
+  BundleOutdated:
+    enabled: true
+    description: 'List installed gems with newer versions available'
+    required_executable: 'bundle'
+    flags: [ 'outdated', '--strict', '--parseable' ]
+    install_command: 'gem install bundler'
+
+  CaseConflicts:
+    enabled: true
+    description: 'Check for case-insensitivity conflicts'
+
+  ForbiddenBranches:
+    enabled: true
+    description: 'Check for commit to forbidden branch'
+    branch_patterns: [ 'main' ]
+
+  RSpec:
+    enabled: true
+    description: 'Run RSpec test suite'
+    required_executable: 'rspec'
+
+  RailsSchemaUpToDate:
+    enabled: true
+    description: 'Check if database schema is up to date'
+    include:
+      - 'db/migrate/*.rb'
+      - 'db/schema.rb'
+      - 'db/structure.sql'
+
+  RuboCop:
+    enabled: true
+    description: 'Analyze with RuboCop'
+    required_executable: 'rubocop'
+    flags: [ '--display-cop-names' ]
+    install_command: 'gem install rubocop'
+    include:
+      - '**/*.gemspec'
+      - '**/*.rake'
+      - '**/*.rb'
+      - '**/*.ru'
+      - '**/Gemfile'
+      - '**/Rakefile'
+
+  RubySyntax:
+    enabled: true
+    description: 'Check ruby syntax'
+    required_executable: 'ruby'
+    command: [
+        'ruby',
+        '-e',
+        'ARGV.each { |applicable_file| ruby_c_output = `ruby -c #{applicable_file}`; puts ruby_c_output unless $?.success? }'
+    ]
+    include:
+      - '**/*.gemspec'
+      - '**/*.rb'
+
+  ScssLint:
+    enabled: true
+    description: 'Analyze with scss-lint'
+    required_library: 'json'
+    required_executable: 'scss-lint'
+    flags: [ '--format', 'JSON' ]
+    install_command: 'gem install scss_lint'
+    include: '**/*.scss'
+
+  TravisLint:
+    enabled: true
+    description: 'Check Travis CI configuration'
+    required_executable: 'travis'
+    flags: [ 'lint' ]
+    install_command: 'gem install travis'
+    include: '.travis.yml'
+
+  LineEndings:
+    description: 'Check line endings'
+    enabled: true
+    eol: "\n"
+
+  YarnCheck:
+    enabled: true
+    description: 'Check yarn.lock dependencies'
+    required_executable: 'yarn'
+    flags: [ 'check', '--silent', '--no-progress', '--non-interactive' ]
+    install_command: 'npm install --global yarn'
+    include:
+      - 'package.json'
+      - 'yarn.lock'
+
+# Hooks that run after HEAD changes or a file is explicitly checked out.
+PostCheckout:
+  ALL:
+    required: false
+    quiet: false
+    skip_file_checkout: true
+
+  BundleInstall:
+    enabled: true
+    description: 'Install Bundler dependencies'
+    requires_files: true
+    required_executable: 'bundle'
+    install_command: 'gem install bundler'
+    flags: ['install']
+    include:
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '*.gemspec'
+
+  YarnInstall:
+    enabled: true
+    description: 'Install Yarn dependencies'
+    requires_files: true
+    required_executable: 'yarn'
+    flags: [ 'install' ]
+    include:
+      - 'package.json'
+      - 'yarn.lock'
+
+# Hooks that run after `git merge` executes successfully (no merge conflicts).
+PostMerge:
+  ALL:
+    requires_files: false
+    quiet: false
+
+  BundleInstall:
+    enabled: true
+    description: 'Install Bundler dependencies'
+    requires_files: true
+    required_executable: 'bundle'
+    install_command: 'gem install bundler'
+    flags: ['install']
+    include:
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '*.gemspec'
+
+  YarnInstall:
+    enabled: true
+    description: 'Install Yarn dependencies'
+    requires_files: true
+    required_executable: 'yarn'
+    flags: [ 'install' ]
+    include:
+      - 'package.json'
+      - 'yarn.lock'
+
+# Hooks that run after a commit is modified by an amend or rebase.
+PostRewrite:
+  ALL:
+    requires_files: false
+    quiet: false
+
+  BundleInstall:
+    enabled: true
+    description: 'Install Bundler dependencies'
+    requires_files: true
+    required_executable: 'bundle'
+    install_command: 'gem install bundler'
+    flags: ['install']
+    include:
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '*.gemspec'
+
+  YarnInstall:
+    enabled: true
+    description: 'Install Yarn dependencies'
+    requires_files: true
+    required_executable: 'yarn'
+    flags: [ 'install' ]
+    include:
+      - 'package.json'
+      - 'yarn.lock'
