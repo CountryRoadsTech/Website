@@ -18,6 +18,9 @@ Style/AndOr:
 Style/Not:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Rails/FilePath:
   Enabled: false
 
