@@ -97,6 +97,8 @@ group :development, :test do
 
   # Bundler Audit is used to check for known, vulnerable versions of gems.
   gem 'bundler-audit', '~> 0.7'
+  # Bundler Leak is used to check for known memory leaks in gems.
+  gem 'bundler-leak', '~> 0.2'
 
   # Slim Lint adds a linter for the Slim templating language.
   gem 'slim_lint', '~> 0.20'

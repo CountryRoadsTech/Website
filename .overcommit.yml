@@ -65,6 +65,11 @@ PreCommit:
     description: 'Check for vulnerable versions of gems'
     command: ['bundle', 'exec', 'bundle-audit', 'check', '--update']
 
+  BundleLeak:
+    enabled: true
+    description: 'Check for memory leaks in gems'
+    command: [ 'bundle', 'leak', 'check', '--update' ]
+
   BundleCheck:
     enabled: true
     description: 'Check Gemfile dependencies'
