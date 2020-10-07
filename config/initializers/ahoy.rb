@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ahoy::Store < Ahoy::DatabaseStore
   # Track user accept language, in addition to default data.
   def track_visit(data)

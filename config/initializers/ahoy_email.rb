@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 AhoyEmail.message_model = -> { SentEmail }
 
 AhoyEmail.api = true
