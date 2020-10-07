@@ -43,7 +43,7 @@ class User < ApplicationRecord
   has_many :login_activities, as: :user
 
   # Track each visit for the user.
-  has_many :visits, class_name: "Visit"
+  has_many :visits, class_name: 'Visit'
 
   # Tracks each email sent to the user.
   has_many :sent_emails, as: :user

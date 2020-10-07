@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_allowed
-    flash[:error] = "You are not allowed to perform this action."
+    flash[:error] = 'You are not allowed to perform this action.'
     redirect_to(request.referrer || root_path)
   end
 

@@ -3,7 +3,7 @@
 class Ahoy::Store < Ahoy::DatabaseStore
   # Track user accept language, in addition to default data.
   def track_visit(data)
-    data[:accept_language] = request.headers["Accept-Language"]
+    data[:accept_language] = request.headers['Accept-Language']
     super(data)
   end
 
