@@ -24,6 +24,9 @@ import "controllers"
 // Import application stylesheets.
 import '../stylesheets/application.scss'
 
+// Include View Component's sidecar assets.
+import '../source/components'
+
 // Import user analytic's Javascript.
 import ahoy from 'ahoy.js';
 
