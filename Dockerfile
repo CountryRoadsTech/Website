@@ -29,13 +29,16 @@ RUN apk add --update --no-cache \
 RUN mkdir /CountryRoadsTech
 WORKDIR /CountryRoadsTech
 
-COPY . /CountryRoadsTech
+# Copy over the Ruby and Javascript dependency files as a separate step, so they can be cached if they are unmodified.
+COPY Gemfile Gemfile.lock package.json yarn.lock /CountryRoadsTech/
 
 RUN gem install bundler
 
-RUN bundle check || bundle install
+RUN bundle install
 
 RUN yarn install --check-files
+
+COPY . /CountryRoadsTech/
 
 # Remove a potentially preexisting server.pid file for the Rails server.
 RUN rm -f /CountryRoadsTech/tmp/pids/server.pid

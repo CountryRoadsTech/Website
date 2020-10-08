@@ -63,6 +63,9 @@ Rails.application.configure do
   # Required by Stimulus Reflex.
   config.session_store :cache_store
 
+  # Disable yarn integrity check as it incorrectly fails within Docker containers.
+  config.webpacker.check_yarn_integrity = false
+
   # Use Pry as the console on Better Errors error pages.
   BetterErrors.use_pry!
 
