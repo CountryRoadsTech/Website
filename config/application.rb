@@ -38,7 +38,7 @@ module CountryRoadsTech
     config.active_job.queue_adapter = :sidekiq
 
     # Use Redis as a cache store.
-    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_HOST'] }
 
     # Send exceptions to sentry.io.
     Raven.configure do |config|
