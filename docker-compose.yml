@@ -7,6 +7,8 @@ services:
       - database
       - redis
       - sidekiq
+      - elasticsearch
+      - kibana
     volumes:
       - .:/CountryRoadsTech
       - node_modules:/CountryRoadsTech/node_modules
@@ -44,6 +46,21 @@ services:
     env_file: .env
     command: bundle exec sidekiq -C config/sidekiq.yml
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.9.2
+    volumes:
+      - ./tmp/elasticsearch_data:/usr/share/elasticsearch/data
+    env_file: .env
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.9.2
+    ports:
+      - "5601:5601"
+
 volumes:
   database_data:
   node_modules:
+  elasticsearch_data:

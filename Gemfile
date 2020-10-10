@@ -30,6 +30,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Sidekiq is used as an Active Job backend, to perform async tasks.
 gem 'sidekiq', '~> 6.1'
 
+# Elasticsearch Model adds Active Record integration for Elasticsearch.
+gem 'elasticsearch-model', '~> 7.1'
+# Elasticsearch Rails adds Ruby on Rails integration for Elasticsearch.
+gem 'elasticsearch-rails', '~> 7.1'
+
 # Meta Tags is used to add search engine optimization meta tags.
 gem 'meta-tags', '~> 2.13'
 
