@@ -59,5 +59,8 @@ module CountryRoadsTech
       # Do send cookies.
       config.processors -= [Raven::Processor::Cookies]
     end
+
+    # Include Elasticsearch information in logs.
+    require 'elasticsearch/rails/instrumentation'
   end
 end
