@@ -22,4 +22,6 @@
 #
 class SentEmail < ApplicationRecord
   belongs_to :user, optional: true
+
+  include Elasticsearchable
 end

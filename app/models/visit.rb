@@ -40,4 +40,6 @@
 class Visit < ApplicationRecord
   has_many :events, class_name: 'Event', dependent: :destroy
   belongs_to :user, optional: true
+
+  include Elasticsearchable
 end

@@ -23,4 +23,6 @@ class Event < ApplicationRecord
 
   belongs_to :visit
   belongs_to :user, optional: true
+
+  include Elasticsearchable
 end

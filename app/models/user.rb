@@ -47,4 +47,6 @@ class User < ApplicationRecord
 
   # Tracks each email sent to the user.
   has_many :sent_emails, as: :user, dependent: :destroy
+
+  include Elasticsearchable
 end
