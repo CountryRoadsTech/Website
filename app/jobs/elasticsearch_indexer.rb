@@ -6,14 +6,11 @@ class ElasticsearchIndexer < ApplicationJob
   Logger = Sidekiq.logger.level == Logger::DEBUG ? Sidekiq.logger : nil
   Client = Elasticsearch::Client.new host: ENV['ELASTICSEARCH_HOST'], logger: Logger
 
-  def perform(operation, record, record_id)
+  def perform(operation, record_name, record_id, record_body=nil)
     logger.debug [operation, "ID: #{record_id}"]
-    record_name = record.class.to_s
-
     case operation.to_s
     when /index/
-      record = find(record_id)
-      Client.index(index: record_name.pluralize, type: record_name, id: record.id, body: __elasticsearch__.as_indexed_json)
+      Client.index(index: record_name.pluralize, type: record_name, id: record_id, body: record_body)
     when /delete/
       begin
         Client.delete(index: record_name.pluralize, type: record_name, id: record_id)

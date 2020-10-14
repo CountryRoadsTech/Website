@@ -9,7 +9,11 @@ module Elasticsearchable
     include Elasticsearch::Model::Callbacks
 
     # Configure the callbacks to perform asynchronously.
-    after_save    { ElasticsearchIndexer.perform_async(:index, self.id) }
-    after_destroy { ElasticsearchIndexer.perform_async(:delete, self.id) }
+    after_save do |model|
+      ElasticsearchIndexer.perform_async(:index, model.class.to_s.downcase, model.id, record_body = model.__elasticsearch__.as_indexed_json)
+    end
+    after_destroy do |model|
+      ElasticsearchIndexer.perform_async(:delete, model, model.id)
+    end
   end
 end
