@@ -10,5 +10,11 @@ class PagesController < ApplicationController
 
   def admin
     authorize :pages, :admin?
+
+    @users = User.all
+    @visits = Visit.all
+    @events = Event.all
+    @sent_emails = SentEmail.all
+    @login_activities = LoginActivity.all
   end
 end
