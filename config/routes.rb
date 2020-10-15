@@ -74,6 +74,19 @@ Rails.application.routes.draw do
 
   # Mount the sidekiq web UI, if the user is an admin.
   authenticate :user, ->(user) { user.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => '/admin/sidekiq'
   end
+
+  # Adds routes for static pages, not backed by a database model.
+  controller :pages do
+    # /home
+    get :home
+    # /about
+    get :about
+    # /admin
+    get :admin
+  end
+
+  # Sets the websites root page, /, to /home.
+  root 'pages#home'
 end
