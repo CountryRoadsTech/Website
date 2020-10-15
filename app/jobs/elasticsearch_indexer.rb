@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ElasticsearchIndexer < ApplicationJob
-  sidekiq_options queue: 'elasticsearch', retry: false
+  sidekiq_options queue: 'elasticsearch', retry: true
 
   Logger = Sidekiq.logger.level == Logger::DEBUG ? Sidekiq.logger : nil
   Client = Elasticsearch::Client.new host: ENV['ELASTICSEARCH_HOST'], logger: Logger
@@ -17,7 +17,7 @@ class ElasticsearchIndexer < ApplicationJob
       rescue Elasticsearch::Transport::Transport::Errors::NotFound
         logger.debug "Model not found with ID: #{record_id}"
       end
-    else raise ArgumentError, "Unknown Elasticsearch operation '#{operation}'"
+    else raise ArgumentError, "Unknown Elasticsearch operation: '#{operation}'"
     end
   end
 end
