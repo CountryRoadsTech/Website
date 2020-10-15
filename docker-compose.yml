@@ -57,6 +57,8 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:7.9.2
+    depends_on:
+      - elasticsearch
     ports:
       - "5601:5601"
 
