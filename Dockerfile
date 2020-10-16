@@ -29,13 +29,12 @@ RUN apk add --update --no-cache \
 RUN mkdir /CountryRoadsTech
 WORKDIR /CountryRoadsTech
 
-# Copy over the Ruby and Javascript dependency files as a separate step, so they can be cached if they are unmodified.
-COPY Gemfile Gemfile.lock package.json yarn.lock /CountryRoadsTech/
+# Copy over the Ruby and Javascript dependency files as separate steps, so they can be cached if they are unmodified.
+COPY Gemfile Gemfile.lock /CountryRoadsTech/
+COPY package.json yarn.lock /CountryRoadsTech/
 
 RUN gem install bundler
-
 RUN bundle install
-
 RUN yarn install --check-files
 
 COPY . /CountryRoadsTech/
