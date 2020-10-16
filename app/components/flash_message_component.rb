@@ -4,6 +4,13 @@ class FlashMessageComponent < ApplicationComponent
     @message = prepare_message(message)
   end
 
+  def before_render
+    super
+
+    @info_icon = helpers.icon('info-circle')
+    @dismiss_icon = helpers.icon('x-circle')
+  end
+
   private
 
   # Some built-in flash messages send their data as a String, not a Hash.
