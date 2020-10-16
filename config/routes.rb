@@ -24,7 +24,11 @@
 #                       new_user_unlock GET    /unlock/new(.:format)                                                                    users/unlocks#new
 #                           user_unlock GET    /unlock(.:format)                                                                        users/unlocks#show
 #                                       POST   /unlock(.:format)                                                                        users/unlocks#create
-#                           sidekiq_web        /sidekiq                                                                                 Sidekiq::Web
+#                           sidekiq_web        /admin/sidekiq                                                                           Sidekiq::Web
+#                                  home GET    /home(.:format)                                                                          pages#home
+#                                 about GET    /about(.:format)                                                                         pages#about
+#                                 admin GET    /admin(.:format)                                                                         pages#admin
+#                                  root GET    /                                                                                        pages#home
 #                     ahoy_email_engine        /ahoy                                                                                    AhoyEmail::Engine
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
