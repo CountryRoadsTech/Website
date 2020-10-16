@@ -1,11 +1,170 @@
-= link_to 'Sidekiq Dashboard', '/admin/sidekiq'
+br
+= link_to 'Sidekiq Dashboard', '/admin/sidekiq', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button'
+br
+br
+= link_to 'Kibana Dashboard', 'http://localhost:5601', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button'
 
-h1 #{@users.count} User(s):
+p class='text-4xl' #{@users.count} User(s):
+table class='table-auto border'
+  thead
+    tr
+      th class='px-4 py-2' ID
+      th class='px-4 py-2' Email
+      th class='px-4 py-2' Created At
+      th class='px-4 py-2' Admin?
+  tbody
+    - @users.each do |user|
+      tr
+        td class='border px-4 py-2' = user.id
+        td class='border px-4 py-2' = user.email
+        td class='border px-4 py-2' = user.created_at
+        td class='border px-4 py-2' = user.admin?
 
-h1 #{@visits.count} Visits(s):
+p class='text-4xl' #{@visits.count} Visits(s):
+table class='table-auto border'
+  thead
+    tr
+      th class='px-4 py-2' ID
+      th class='px-4 py-2' Started At
+      th class='px-4 py-2' User ID
+      th class='px-4 py-2' IP
+      th class='px-4 py-2' User Agent
+      th class='px-4 py-2' Referrer
+      th class='px-4 py-2' Referring Domain
+      th class='px-4 py-2' Landing Page
+      th class='px-4 py-2' Browser
+      th class='px-4 py-2' OS
+      th class='px-4 py-2' Device Type
+      th class='px-4 py-2' Country
+      th class='px-4 py-2' Region
+      th class='px-4 py-2' City
+      th class='px-4 py-2' Latitude
+      th class='px-4 py-2' Longitude
+      th class='px-4 py-2' UTM Source
+      th class='px-4 py-2' UTM Medium
+      th class='px-4 py-2' UTM Term
+      th class='px-4 py-2' UTM Content
+      th class='px-4 py-2' UTM Campaign
+      th class='px-4 py-2' App Version
+      th class='px-4 py-2' OS Version
+      th class='px-4 py-2' Platform
+      th class='px-4 py-2' Accept Language
+  tbody
+    - @visits.each do |visit|
+      tr
+        td class='border px-4 py-2' = visit.id
+        td class='border px-4 py-2' = visit.started_at
+        td class='border px-4 py-2' = visit.user_id
+        td class='border px-4 py-2' = visit.ip
+        td class='border px-4 py-2' = visit.user_agent
+        td class='border px-4 py-2' = visit.referrer
+        td class='border px-4 py-2' = visit.referring_domain
+        td class='border px-4 py-2' = visit.landing_page
+        td class='border px-4 py-2' = visit.browser
+        td class='border px-4 py-2' = visit.os
+        td class='border px-4 py-2' = visit.device_type
+        td class='border px-4 py-2' = visit.country
+        td class='border px-4 py-2' = visit.region
+        td class='border px-4 py-2' = visit.city
+        td class='border px-4 py-2' = visit.latitude
+        td class='border px-4 py-2' = visit.longitude
+        td class='border px-4 py-2' = visit.utm_source
+        td class='border px-4 py-2' = visit.utm_medium
+        td class='border px-4 py-2' = visit.utm_term
+        td class='border px-4 py-2' = visit.utm_content
+        td class='border px-4 py-2' = visit.utm_campaign
+        td class='border px-4 py-2' = visit.app_version
+        td class='border px-4 py-2' = visit.os_version
+        td class='border px-4 py-2' = visit.platform
+        td class='border px-4 py-2' = visit.accept_language
 
-h1 #{@events.count} Events(s):
+p class='text-4xl' #{@events.count} Events(s):
+table class='table-auto border'
+  thead
+    tr
+      th class='px-4 py-2' ID
+      th class='px-4 py-2' Time
+      th class='px-4 py-2' Visit ID
+      th class='px-4 py-2' User ID
+      th class='px-4 py-2' Name
+      th class='px-4 py-2' Properties
+  tbody
+    - @events.each do |event|
+      tr
+        td class='border px-4 py-2' = visit.id
+        td class='border px-4 py-2' = visit.time
+        td class='border px-4 py-2' = visit.visit_id
+        td class='border px-4 py-2' = visit.name
+        td class='border px-4 py-2' = visit.properties
 
-h1 #{@sent_emails.count} Sent Email(s):
+p class='text-4xl' #{@sent_emails.count} Sent Email(s):
+table class='table-auto border'
+  thead
+    tr
+      th class='px-4 py-2' ID
+      th class='px-4 py-2' Sent At
+      th class='px-4 py-2' Opened At
+      th class='px-4 py-2' Clicked At
+      th class='px-4 py-2' User ID
+      th class='px-4 py-2' User Type
+      th class='px-4 py-2' Mailer
+      th class='px-4 py-2' To
+      th class='px-4 py-2' Subject
+      th class='px-4 py-2' Token
+  tbody
+    - @sent_emails.each do |sent_email|
+      tr
+        td class='border px-4 py-2' = sent_email.id
+        td class='border px-4 py-2' = sent_email.sent_at
+        td class='border px-4 py-2' = sent_email.opened_at
+        td class='border px-4 py-2' = sent_email.clicked_at
+        td class='border px-4 py-2' = sent_email.user_id
+        td class='border px-4 py-2' = sent_email.user_type
+        td class='border px-4 py-2' = sent_email.mailer
+        td class='border px-4 py-2' = sent_email.to
+        td class='border px-4 py-2' = sent_email.subject
+        td class='border px-4 py-2' = sent_email.token
 
-h1 #{@login_activities.count} Login Activity(s):
+p class='text-4xl' #{@login_activities.count} Login Activity(s):
+table class='table-auto border'
+  thead
+    tr
+      th class='px-4 py-2' ID
+      th class='px-4 py-2' Created At
+      th class='px-4 py-2' Scope
+      th class='px-4 py-2' Strategy
+      th class='px-4 py-2' Identity
+      th class='px-4 py-2' Success
+      th class='px-4 py-2' Failure Reason
+      th class='px-4 py-2' User Type
+      th class='px-4 py-2' User ID
+      th class='px-4 py-2' Context
+      th class='px-4 py-2' IP
+      th class='px-4 py-2' User Agent
+      th class='px-4 py-2' Referrer
+      th class='px-4 py-2' City
+      th class='px-4 py-2' Region
+      th class='px-4 py-2' Country
+      th class='px-4 py-2' Latitude
+      th class='px-4 py-2' Longitude
+  tbody
+    - @login_activities.each do |login_activity|
+      tr
+        td class='border px-4 py-2' = login_activity.id
+        td class='border px-4 py-2' = login_activity.created_at
+        td class='border px-4 py-2' = login_activity.scope
+        td class='border px-4 py-2' = login_activity.strategy
+        td class='border px-4 py-2' = login_activity.identity
+        td class='border px-4 py-2' = login_activity.success
+        td class='border px-4 py-2' = login_activity.failure_reason
+        td class='border px-4 py-2' = login_activity.user_type
+        td class='border px-4 py-2' = login_activity.user_id
+        td class='border px-4 py-2' = login_activity.context
+        td class='border px-4 py-2' = login_activity.ip
+        td class='border px-4 py-2' = login_activity.user_agent
+        td class='border px-4 py-2' = login_activity.referrer
+        td class='border px-4 py-2' = login_activity.city
+        td class='border px-4 py-2' = login_activity.region
+        td class='border px-4 py-2' = login_activity.country
+        td class='border px-4 py-2' = login_activity.latitude
+        td class='border px-4 py-2' = login_activity.longitude
