@@ -51,6 +51,7 @@ test:
   database: CountryRoadsTech_test
 
   <% if ENV.fetch('TEST_DATABASE_PASSWORD') %>
+  username: postgres
   password: <%= ENV.fetch('TEST_DATABASE_PASSWORD') %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
