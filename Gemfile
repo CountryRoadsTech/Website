@@ -29,6 +29,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
   # Factory Bot replaces Rail's default test fixtures with test factories.
   gem 'factory_bot_rails', '~> 6.1'
+  # Faker is used to generated fake, but realistic looking data for testing and development.
+  gem 'faker', '~> 2.16'
 end
 
 group :development do
