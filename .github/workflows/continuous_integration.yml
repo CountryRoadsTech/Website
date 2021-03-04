@@ -25,15 +25,14 @@ jobs:
           ruby-version: 3.0.x
           bundler-cache: true
       - name: Setup Node and Yarn
-        uses: actions/setup-node@v2
+        uses: borales/actions-yarn@v2.0.0
         with:
-          node-version: '14'
-        run: yarn install
+          cmd: install
       - name: Setup Database
         run: bundle exec rails db:prepare
-      - name: Style Check
+      - name: Run Style Check
         run: bundle exec rubocop
-      - name: Tests
+      - name: Run Tests
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
