@@ -58,9 +58,9 @@ development:
 test:
   <<: *default
   database: CountryRoadsTech_test
-  
+
   <% if ENV.fetch('DATABASE_URL') %>
-  database_url: <%= ENV.fetch('DATABASE_URL') %>
+  url: <%= ENV.fetch('DATABASE_URL') %>
   <% end %>
 
 
