@@ -21,18 +21,18 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+development:
+  <<: *default
+  database: CountryRoadsTech_development
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  username: <%= Rails.application.credentials.database[:username] %>
+  #username: <%= Rails.application.credentials.database[:username] %>
 
   # The password associated with the postgres role (username).
-  password: <%= Rails.application.credentials.database[:password] %>
-
-development:
-  <<: *default
-  database: CountryRoadsTech_development
+  #password: <%= Rails.application.credentials.database[:password] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -58,11 +58,6 @@ development:
 test:
   <<: *default
   database: CountryRoadsTech_test
-
-  <% if ENV.fetch('DATABASE_URL') %>
-  url: <%= ENV.fetch('DATABASE_URL') %>
-  <% end %>
-
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
