@@ -3,6 +3,8 @@
 # The User model that can be signed in/out, may have pages, may be an admin, etc.
 # This controller specifies application-specific overides of devise's user authentication handling of passwords.
 class Users::PasswordsController < Devise::PasswordsController
+  skip_after_action :verify_authorized # Never perform user authorization during authentication!
+
   # GET /resource/password/new
   # def new
   #   super

@@ -7,22 +7,29 @@ class PagesController < ApplicationController
   # GET /pages or /pages.json
   def index
     @pages = Page.all
+    authorize @pages
   end
 
   # GET /pages/1 or /pages/1.json
-  def show; end
+  def show
+    authorize @page
+  end
 
   # GET /pages/new
   def new
     @page = Page.new
+    authorize @page
   end
 
   # GET /pages/1/edit
-  def edit; end
+  def edit
+    authorize @page
+  end
 
   # POST /pages or /pages.json
   def create
     @page = Page.new(page_params)
+    authorize @page
     @page.user = current_user unless current_user.nil?
 
     respond_to do |format|
@@ -38,6 +45,8 @@ class PagesController < ApplicationController
 
   # PATCH/PUT /pages/1 or /pages/1.json
   def update
+    authorize @page
+
     respond_to do |format|
       if @page.update(page_params)
         format.html { redirect_to @page, notice: 'Page was successfully updated.' }
@@ -51,7 +60,9 @@ class PagesController < ApplicationController
 
   # DELETE /pages/1 or /pages/1.json
   def destroy
+    authorize @page
     @page.destroy
+
     respond_to do |format|
       format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
       format.json { head :no_content }
