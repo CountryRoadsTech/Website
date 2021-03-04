@@ -1,0 +1,42 @@
+<%= form_with(model: page) do |form| %>
+  <% if page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+        <% page.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitle %>
+    <%= form.text_area :subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :published_at %>
+    <%= form.datetime_select :published_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
