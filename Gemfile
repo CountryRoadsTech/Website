@@ -35,6 +35,17 @@ group :development, :test do
   gem 'capybara', '~> 3.35'
   # Selenium Webdriver is used by Capybara as its webdriver.
   gem 'selenium-webdriver', '~> 3.142'
+
+  # Rubocop is this project's code style and linter enforcer.
+  gem 'rubocop', '~> 1.11'
+  # Rubocop Rails adds Rail's specific checks to Rubocop.
+  gem 'rubocop-rails', '~> 2.9'
+  # Rubocop RSpec adds RSpec specific checks to Rubocop.
+  gem 'rubocop-rspec', '~> 2.2'
+  # Rubocop Rake adds Rake specific checks to Rubocop.
+  gem 'rubocop-rake', '~> 0.5'
+  # Rubocop Performance adds performance specific checks to Rubocop.
+  gem 'rubocop-performance', '~> 1.10'
 end
 
 group :development do
