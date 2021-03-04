@@ -8,6 +8,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 Rails.start()
-ActiveStorage.start()
+ActiveStorage.start() // Enable direct upload of form file attachments.
 
-import "controllers"
+import "controllers" // Import all of StimulusJS's controllers.
+
+import "../stylesheets/application.scss" // Import all of the site's styles.
