@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controls which users are allowed to perform which actions on the Page model.
 class PagePolicy < ApplicationPolicy
   # Anyone can view the list of all pages.
   def index?
