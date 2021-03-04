@@ -35,7 +35,7 @@ jobs:
         run: yarn install
       - name: Setup test database
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          TEST_DATABASE_PASSWORD: postgres
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bundle exec rails db:prepare
@@ -43,7 +43,7 @@ jobs:
         run: bundle exec rubocop
       - name: Run tests
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          TEST_DATABASE_PASSWORD: postgres
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
