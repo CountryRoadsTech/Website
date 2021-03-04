@@ -41,6 +41,8 @@ jobs:
         run: bundle exec rails db:prepare
       - name: Run style check
         run: bundle exec rubocop
+      - name: Run static security check
+        run: bundle exec brakeman
       - name: Run tests
         env:
           TEST_DATABASE_PASSWORD: postgres

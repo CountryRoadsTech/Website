@@ -26,6 +26,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Friendly ID allows changing which model's attribute is used in the model's URL.
 gem 'friendly_id', '~> 5.4'
 
+# Devise adds user authentication.
+gem 'devise', '~> 4.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -51,6 +54,9 @@ group :development, :test do
   gem 'rubocop-rake', '~> 0.5'
   # Rubocop Performance adds performance specific checks to Rubocop.
   gem 'rubocop-performance', '~> 1.10'
+
+  # Brakeman is a static code analyzer that detects security vulnerabilities.
+  gem 'brakeman', '~> 5.0'
 end
 
 group :development do
