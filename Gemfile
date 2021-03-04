@@ -31,6 +31,10 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
   # Faker is used to generated fake, but realistic looking data for testing and development.
   gem 'faker', '~> 2.16'
+  # Capybara is used to create integration tests but simulating how the end user interacts with the website.
+  gem 'capybara', '~> 3.35'
+  # Selenium Webdriver is used by Capybara as its webdriver.
+  gem 'selenium-webdriver', '~> 3.142'
 end
 
 group :development do
