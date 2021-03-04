@@ -13,3 +13,6 @@ ActiveStorage.start() // Enable direct upload of form file attachments.
 import "controllers" // Import all of StimulusJS's controllers.
 
 import "../stylesheets/application.scss" // Import all of the site's styles.
+
+require("trix") // Enables the Trix rich text editor.
+require("@rails/actiontext") // Enables the rich text editor and viewing rich text content.
