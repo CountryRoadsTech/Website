@@ -50,7 +50,7 @@ test:
   <<: *default
   database: CountryRoadsTech_test
 
-  <% if ENV.fetch('TEST_DATABASE_PASSWORD') %>
+  <% if ENV.has_key?('TEST_DATABASE_PASSWORD') %>
   username: postgres
   password: <%= ENV.fetch('TEST_DATABASE_PASSWORD') %>
 
