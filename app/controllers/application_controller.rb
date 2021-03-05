@@ -9,10 +9,17 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized # Ensures user authorization was performed in every controller action.
 
   after_action :log_action
+  around_action :set_responsible_user, only: [:create, :update]
 
   protected
 
+  # Log each request as an Event.
   def log_action
     ahoy.track 'Ran Action', request.path_parameters
+  end
+
+  # Sets which user created/updated a model.
+  def set_responsible_user(&block)
+    Logidze.with_responsible(current_user&.id, &block)
   end
 end
