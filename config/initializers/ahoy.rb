@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Configures Ahoy to use the model's called Visit and Event, not Ahoy's defaults.
 class Ahoy::Store < Ahoy::DatabaseStore
   def visit_model
     Visit

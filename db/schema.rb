@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_001447) do
+ActiveRecord::Schema.define(version: 2021_03_05_003937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,20 @@ ActiveRecord::Schema.define(version: 2021_03_05_001447) do
     t.index ["slug"], name: "index_pages_on_slug", unique: true
     t.index ["title"], name: "index_pages_on_title", unique: true
     t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
+  create_table "sent_emails", force: :cascade do |t|
+    t.string "user_type"
+    t.bigint "user_id"
+    t.text "to"
+    t.string "mailer"
+    t.text "subject"
+    t.string "token"
+    t.datetime "opened_at"
+    t.datetime "clicked_at"
+    t.datetime "sent_at"
+    t.index ["token"], name: "index_sent_emails_on_token"
+    t.index ["user_type", "user_id"], name: "index_sent_emails_on_user"
   end
 
   create_table "users", force: :cascade do |t|

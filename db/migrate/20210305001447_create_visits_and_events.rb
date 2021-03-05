@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Tracks user visits and events across the site.
 class CreateVisitsAndEvents < ActiveRecord::Migration[6.1]
   def change
     create_table :visits do |t|
