@@ -277,6 +277,8 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    simple_calendar (2.4.1)
+      rails (>= 3.0)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -350,6 +352,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.2)
   selenium-webdriver (~> 3.142)
   sidekiq (~> 6.1)
+  simple_calendar (~> 2.4)
   spring
   turbo-rails (~> 0.5)
   tzinfo-data

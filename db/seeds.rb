@@ -36,7 +36,8 @@ NUMBER_OF_SEED_CALENDARS.times.each do
 
   (2..(rand(MAX_NUMBER_OF_RANDOM_SEED_EVENTS_PER_CALENDAR) + 2)).each do
     calendar_event = CalendarEvent.new(user: user, calendar: calendar, name: Faker::Lorem.sentence,
-                                       description: Faker::Lorem.paragraph)
+                                       description: Faker::Lorem.paragraph,
+                                       duration: (Faker::Time.backward(days: 5)..Faker::Time.forward(days: 5)))
     calendar_event.save!
   end
 

@@ -8,7 +8,7 @@ class CreateCalendarEvents < ActiveRecord::Migration[6.1]
 
       t.text :name, null: false
       t.text :slug, null: false
-      t.daterange :duration
+      t.daterange :duration, null: false
 
       t.timestamps
     end

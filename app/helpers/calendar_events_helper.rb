@@ -5,7 +5,7 @@
 # Table name: calendar_events
 #
 #  id          :bigint           not null, primary key
-#  duration    :daterange
+#  duration    :daterange        not null
 #  name        :text             not null
 #  slug        :text             not null
 #  created_at  :datetime         not null

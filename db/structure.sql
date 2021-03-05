@@ -471,7 +471,7 @@ CREATE TABLE public.calendar_events (
     calendar_id bigint NOT NULL,
     name text NOT NULL,
     slug text NOT NULL,
-    duration daterange,
+    duration daterange NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );

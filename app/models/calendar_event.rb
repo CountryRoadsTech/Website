@@ -5,7 +5,7 @@
 # Table name: calendar_events
 #
 #  id          :bigint           not null, primary key
-#  duration    :daterange
+#  duration    :daterange        not null
 #  name        :text             not null
 #  slug        :text             not null
 #  created_at  :datetime         not null
@@ -32,7 +32,7 @@ class CalendarEvent < ApplicationRecord
   has_rich_text :description
   has_many_attached :attachments
 
-  validates :name, :user, :calendar, presence: true
+  validates :name, :user, :calendar, :duration, presence: true
 
   has_logidze # Track and store changes to this model.
 
@@ -43,4 +43,12 @@ class CalendarEvent < ApplicationRecord
   after_create_commit { broadcast_prepend_to 'events' }
   after_update_commit { broadcast_replace_to 'events' }
   after_destroy_commit { broadcast_remove_to 'events' }
+
+  def start_time
+    self.duration.begin
+  end
+
+  def end_time
+    self.duration.end
+  end
 end

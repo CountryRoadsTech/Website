@@ -1,16 +1,19 @@
-<%= turbo_frame_tag dom_id(calendar) do %>
-  <p>
-    <strong>User:</strong>
-    <%= calendar.user.email %>
-  </p>
+<p>
+  <strong>User:</strong>
+  <%= calendar.user.email %>
+</p>
 
-  <p>
-    <strong>Calendar events:</strong>
-    <%= calendar.calendar_events %>
-  </p>
+<p>
+  <strong>Name:</strong>
+  <%= calendar.name %>
+</p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= calendar.name %>
-  </p>
+<%= month_calendar(events: calendar.calendar_events) do |date, events| %>
+  <%= date %>
+
+  <% events.each do |event| %>
+    <div>
+      <%= event.name %>
+    </div>
+  <% end %>
 <% end %>
