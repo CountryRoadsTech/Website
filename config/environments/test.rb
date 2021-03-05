@@ -59,4 +59,7 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Don't throttle during tests. All requests are good requests as they are coming from local tests.
+  Rack::Attack.enabled = false
 end

@@ -20,7 +20,6 @@
 #  index_sent_emails_on_token  (token)
 #  index_sent_emails_on_user   (user_type,user_id)
 #
-# Tracks emails sent to users and if and when they clicked a link.
 class SentEmail < ApplicationRecord
   self.table_name = 'sent_emails'
 

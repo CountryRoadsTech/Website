@@ -14,7 +14,7 @@ NUMBER_OF_SEED_USERS = 10
 NUMBER_OF_SEED_PAGES = 100
 
 NUMBER_OF_SEED_USERS.times.each do
-  password = Faker::String.random(length: 8..128)
+  password = Faker::String.random(length: 12..128)
   user = User.new(email: Faker::Internet.unique.email, password: password, password_confirmation: password)
   user.skip_confirmation!
   user.save!

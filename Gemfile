@@ -46,6 +46,9 @@ gem 'ahoy_email', '~> 1.1'
 # Authtrail tracks successful and unsuccessful login attempts.
 gem 'authtrail', '~> 0.3'
 
+# Rack Attack throttles and blocks spammy and abusive clients.
+gem 'rack-attack', '~> 6.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
