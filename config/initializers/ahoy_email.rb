@@ -14,3 +14,5 @@ class EmailSubscriber
 end
 
 AhoyEmail.subscribers << EmailSubscriber.new
+
+AhoyEmail.message_model = -> { SentEmail } # Tell Ahoy that we are using a different model name.

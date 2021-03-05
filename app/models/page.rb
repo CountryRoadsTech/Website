@@ -28,11 +28,16 @@ class Page < ApplicationRecord
 
   has_rich_text :content
 
-  has_associated_audits # Track and store every change to this model.
+  audited # Track and store every change to this model.
 
   validates :title, uniqueness: true
-  validates :title, :user, presence: true
+  validates :title, :user, :content, presence: true
 
   extend FriendlyId # View pages at URLs based on their title not ID.
   friendly_id :title, use: :slugged
+
+  # Use Hotwire to send live updates (via Action Cable) to the user's browser.
+  after_create_commit { broadcast_prepend_to 'pages' }
+  after_update_commit { broadcast_replace_to 'pages' }
+  after_destroy_commit { broadcast_remove_to 'pages' }
 end

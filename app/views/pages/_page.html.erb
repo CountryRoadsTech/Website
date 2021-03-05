@@ -1,0 +1,23 @@
+<%= turbo_frame_tag dom_id(page) do %>
+  <p>
+    <strong>User:</strong>
+    <%= page.user.email %>
+  </p>
+
+  <p>
+    <strong>Published at:</strong>
+    <%= page.published_at %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= page.title %>
+  </p>
+
+  <p>
+    <strong>Subtitle:</strong>
+    <%= page.subtitle %>
+  </p>
+
+  <%= page.content %>
+<% end %>

@@ -1,26 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @page.user_id %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
-
-<p>
-  <strong>Subtitle:</strong>
-  <%= @page.subtitle %>
-</p>
-
-<%= @page.content %>
-
-<p>
-  <strong>Published at:</strong>
-  <%= @page.published_at %>
-</p>
+<%= turbo_frame_tag dom_id(@page) do %>
+  <%= render @page %>
+<% end %>
 
 <%= link_to 'Edit', edit_page_path(@page) %> |
 <%= link_to 'Back', pages_path %>

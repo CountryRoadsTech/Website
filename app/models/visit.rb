@@ -36,7 +36,7 @@
 class Visit < ApplicationRecord
   self.table_name = 'visits'
 
-  has_many :events, class_name: 'Event', inverse_of: :visit, dependent: :destroy
+  has_many :events, inverse_of: :visit, dependent: :destroy
   belongs_to :user, optional: true, inverse_of: :visits
 
   # Raise an error if a N+1 database query occurs.

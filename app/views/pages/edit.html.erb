@@ -1,6 +1,8 @@
 <h1>Editing Page</h1>
 
-<%= render 'form', page: @page %>
+<%= turbo_frame_tag dom_id(@page) do %>
+  <%= render 'form', page: @page %>
+<% end %>
 
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+<%= link_to 'Cancel', @page %> |
+<%= link_to 'Back', :back %>
