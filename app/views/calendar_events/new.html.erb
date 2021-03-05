@@ -1,0 +1,7 @@
+<h1>New Calendar Event</h1>
+
+<%= turbo_frame_tag 'calendar_event_form' do %>
+  <%= render 'form', calendar_event: @calendar_event %>
+<% end %>
+
+<%= link_to 'Back', :back %>

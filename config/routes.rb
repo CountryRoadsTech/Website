@@ -2,8 +2,9 @@
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  get 'dashboard/index'
-  get 'admin/index'
+
+  resources :calendar_events # Creates RESTful routes for the calendar event model.
+
   # Adds routes for user authentication:
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  get '/dashboard', to: 'dashboard#index' # Adds an informational dashboard (for admin users only).
+  get 'dashboard/index' # Adds an informational dashboard (for admin users only).
 
   resources :pages # Creates RESTful routes for the page model.
 

@@ -1,0 +1,8 @@
+<h1>Editing Calendar Event</h1>
+
+<%= turbo_frame_tag dom_id(@calendar_event) do %>
+  <%= render 'form', calendar_event: @calendar_event %>
+<% end %>
+
+<%= link_to 'Cancel', @calendar_event %> |
+<%= link_to 'Back', :back %>

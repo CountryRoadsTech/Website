@@ -6,8 +6,8 @@ class CreatePages < ActiveRecord::Migration[6.1]
     create_table :pages do |t|
       t.belongs_to :user, null: false, foreign_key: true
       t.text :title, null: false
-      t.text :subtitle, default: ''
       t.text :slug, null: false
+      t.text :subtitle, default: ''
       t.datetime :published_at
 
       t.timestamps

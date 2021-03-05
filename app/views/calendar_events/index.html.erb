@@ -1,0 +1,6 @@
+<h1>Calendar Events</h1>
+
+<%= turbo_stream_from 'calendar_events' %>
+<%= turbo_frame_tag 'calendar_events' do %>
+  <%= render @calendar_events %>
+<% end %>

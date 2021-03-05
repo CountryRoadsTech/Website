@@ -1,0 +1,18 @@
+<%= turbo_frame_tag dom_id(calendar_event) do %>
+  <p>
+    <strong>User:</strong>
+    <%= calendar_event.user_id %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= calendar_event.name %>
+  </p>
+
+  <p>
+    <strong>Duration:</strong>
+    <%= calendar_event.duration %>
+  </p>
+
+  <%= calendar_event.description %>
+<% end %>

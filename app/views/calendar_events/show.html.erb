@@ -1,0 +1,6 @@
+<%= turbo_frame_tag dom_id(@calendar_event) do %>
+  <%= render @calendar_event %>
+<% end %>
+
+<%= link_to 'Edit', edit_calendar_event_path(@calendar_event) %> |
+<%= link_to 'Back', :back %>
