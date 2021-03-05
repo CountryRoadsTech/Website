@@ -51,6 +51,9 @@ gem 'authtrail', '~> 0.3'
 # Logidze tracks and stores changes to database models.
 gem 'logidze', '~> 1.0'
 
+# Barnes is used by Heroku to enable advanced metrics.
+gem 'barnes', '~> 0.0.9'
+
 # Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
 gem 'turbo-rails', '~> 0.5'
 
