@@ -51,6 +51,9 @@ gem 'authtrail', '~> 0.3'
 # Audited tracks all changes to models.
 gem 'audited', '~> 4.10'
 
+# Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
+gem 'turbo-rails', '~> 0.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
