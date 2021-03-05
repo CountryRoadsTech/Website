@@ -31,6 +31,9 @@ gem 'devise', '~> 4.7'
 # Pundit adds users authorization.
 gem 'pundit', '~> 2.1'
 
+# Sidekiq is used to process async, background jobs.
+gem 'sidekiq', '~> 6.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -73,4 +76,9 @@ group :development do
 
   # Annotate automatically adds database schema information to the top of relevant Ruby classes during rake db:migrate.
   gem 'annotate', '~> 3.1'
+
+  # Better Errors replaces Rail's default error pages.
+  gem 'better_errors', '~> 2.9'
+  # Binding of Caller is used by Better Errors.
+  gem 'binding_of_caller', '~> 1.0'
 end
