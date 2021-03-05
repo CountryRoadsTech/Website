@@ -48,6 +48,8 @@ gem 'ahoy_matey', '~> 3.2'
 gem 'ahoy_email', '~> 1.1'
 # Authtrail tracks successful and unsuccessful login attempts.
 gem 'authtrail', '~> 0.3'
+# Audited tracks all changes to models.
+gem 'audited', '~> 4.10'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

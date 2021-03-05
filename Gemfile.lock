@@ -76,6 +76,8 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
+    audited (4.10.0)
+      activerecord (>= 4.2, < 6.2)
     authtrail (0.3.1)
       activerecord (>= 5.2)
       geocoder
@@ -311,6 +313,7 @@ DEPENDENCIES
   ahoy_email (~> 1.1)
   ahoy_matey (~> 3.2)
   annotate (~> 3.1)
+  audited (~> 4.10)
   authtrail (~> 0.3)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
