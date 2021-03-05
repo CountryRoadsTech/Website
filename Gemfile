@@ -39,15 +39,15 @@ gem 'connection_pool', '~> 2.2'
 # Hiredis is a high speed connection library for Redis.
 gem 'hiredis', '~> 0.6'
 
+# Rack Attack throttles and blocks spammy and abusive clients.
+gem 'rack-attack', '~> 6.5'
+
 # Ahoy Matey adds local, first-party user analytics.
 gem 'ahoy_matey', '~> 3.2'
 # Ahoy Email adds local, first-party email analytics.
 gem 'ahoy_email', '~> 1.1'
 # Authtrail tracks successful and unsuccessful login attempts.
 gem 'authtrail', '~> 0.3'
-
-# Rack Attack throttles and blocks spammy and abusive clients.
-gem 'rack-attack', '~> 6.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
