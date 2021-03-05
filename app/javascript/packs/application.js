@@ -22,5 +22,7 @@ import 'bootstrap'
 
 // Enables Bootstrap's tooltips.
 document.addEventListener("turbo:load", () => {
-    $('[data-toggle="tooltip"]').tooltip()
+    if (document.querySelector('[data-toggle="tooltip"]') != null) {
+        document.querySelector('[data-toggle="tooltip"]').tooltip()
+    }
 })
