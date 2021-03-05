@@ -1,0 +1,22 @@
+<h1>Admin Dashboard</h1>
+
+<h2>Pages</h2>
+<%= turbo_stream_from 'pages' %>
+<%= turbo_frame_tag 'pages' do %>
+  <%= render @pages %>
+<% end %>
+
+<h2>Users</h2>
+<!%= render @users %>
+
+<h2>Visits</h2>
+<!%= render @visits %>
+
+<h2>Events</h2>
+<!%= render @events %>
+
+<h2>Sent Emails</h2>
+<!%= render @sent_emails %>
+
+<h2>Login Activities</h2>
+<!%= render @login_activities %>
