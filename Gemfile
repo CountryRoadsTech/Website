@@ -34,6 +34,11 @@ gem 'pundit', '~> 2.1'
 # Sidekiq is used to process async, background jobs.
 gem 'sidekiq', '~> 6.1'
 
+# Connection Pool is used by Redis to take advantage of connection pooling.
+gem 'connection_pool', '~> 2.2'
+# Hiredis is a high speed connection library for Redis.
+gem 'hiredis', '~> 0.6'
+
 # Ahoy Matey adds local, first-party user analytics.
 gem 'ahoy_matey', '~> 3.2'
 # Ahoy Email adds local, first-party email analytics.

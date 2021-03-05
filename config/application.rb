@@ -35,10 +35,13 @@ module CountryRoadsTech
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
+    # Don't generate system test files. Capybara is used instead of Rail's default.
     config.generators.system_tests = nil
 
-    # Use sidekiq to perform async, background jobs.
+    # Use Sidekiq to perform async, background jobs.
     config.active_job.queue_adapter = :sidekiq
+
+    # Use Redis to perform caching.
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'], pool_size: 5, pool_timeout: 5 }
   end
 end
