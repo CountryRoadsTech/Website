@@ -32,8 +32,6 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
-#
-# The User model that can be signed in/out, may have pages, may be an admin, etc.
 class User < ApplicationRecord
   # Include devise authentication modules:
   devise :database_authenticatable, :registerable,
@@ -42,5 +40,6 @@ class User < ApplicationRecord
 
   has_many :pages, inverse_of: :user, dependent: :destroy
 
-  has_many :visits, class_name: 'Visit'
+  has_many :visits, class_name: 'Visit', inverse_of: :user, dependent: :destroy
+  has_many :events, class_name: 'Event', inverse_of: :user, dependent: :destroy
 end

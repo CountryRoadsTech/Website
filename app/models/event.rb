@@ -23,6 +23,6 @@ class Event < ApplicationRecord
 
   self.table_name = 'events'
 
-  belongs_to :visit
-  belongs_to :user, optional: true
+  belongs_to :visit, inverse_of: :events
+  belongs_to :user, optional: true, inverse_of: :events
 end

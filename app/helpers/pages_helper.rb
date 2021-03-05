@@ -23,6 +23,5 @@
 #
 #  fk_rails_84a58494eb  (user_id => users.id)
 #
-# The Page model is used to display static, rich text pages on the site.
 module PagesHelper
 end

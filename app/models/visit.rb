@@ -36,6 +36,6 @@
 class Visit < ApplicationRecord
   self.table_name = 'visits'
 
-  has_many :events, class_name: 'Event'
-  belongs_to :user, optional: true
+  has_many :events, class_name: 'Event', inverse_of: :visit, dependent: :destroy
+  belongs_to :user, optional: true, inverse_of: :visits
 end
