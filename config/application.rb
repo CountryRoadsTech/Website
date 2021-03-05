@@ -43,5 +43,9 @@ module CountryRoadsTech
 
     # Use Redis to perform caching.
     config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'], pool_size: 5, pool_timeout: 5 }
+
+    # Set the time zone.
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.beginning_of_week = :monday
   end
 end
