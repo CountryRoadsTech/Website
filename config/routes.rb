@@ -2,6 +2,7 @@
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  resources :calendars # Creates RESTful routes for the calendar event model.
   resources :calendar_events # Creates RESTful routes for the calendar event model.
 
   # Adds routes for user authentication:

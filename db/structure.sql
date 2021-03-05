@@ -468,6 +468,7 @@ CREATE TABLE public.ar_internal_metadata (
 CREATE TABLE public.calendar_events (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
+    calendar_id bigint NOT NULL,
     name text NOT NULL,
     slug text NOT NULL,
     duration daterange,
@@ -493,6 +494,38 @@ CREATE SEQUENCE public.calendar_events_id_seq
 --
 
 ALTER SEQUENCE public.calendar_events_id_seq OWNED BY public.calendar_events.id;
+
+
+--
+-- Name: calendars; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.calendars (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    name text NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: calendars_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.calendars_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: calendars_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.calendars_id_seq OWNED BY public.calendars.id;
 
 
 --
@@ -823,6 +856,13 @@ ALTER TABLE ONLY public.calendar_events ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: calendars id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.calendars ALTER COLUMN id SET DEFAULT nextval('public.calendars_id_seq'::regclass);
+
+
+--
 -- Name: events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -917,6 +957,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.calendar_events
     ADD CONSTRAINT calendar_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: calendars calendars_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.calendars
+    ADD CONSTRAINT calendars_pkey PRIMARY KEY (id);
 
 
 --
@@ -1019,6 +1067,13 @@ CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.ac
 
 
 --
+-- Name: index_calendar_events_on_calendar_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calendar_events_on_calendar_id ON public.calendar_events USING btree (calendar_id);
+
+
+--
 -- Name: index_calendar_events_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1037,6 +1092,20 @@ CREATE UNIQUE INDEX index_calendar_events_on_slug ON public.calendar_events USIN
 --
 
 CREATE INDEX index_calendar_events_on_user_id ON public.calendar_events USING btree (user_id);
+
+
+--
+-- Name: index_calendars_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calendars_on_name ON public.calendars USING btree (name);
+
+
+--
+-- Name: index_calendars_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calendars_on_user_id ON public.calendars USING btree (user_id);
 
 
 --
@@ -1201,6 +1270,14 @@ CREATE TRIGGER logidze_on_users BEFORE INSERT OR UPDATE ON public.users FOR EACH
 
 
 --
+-- Name: calendar_events fk_rails_0011c39cc3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.calendar_events
+    ADD CONSTRAINT fk_rails_0011c39cc3 FOREIGN KEY (calendar_id) REFERENCES public.calendars(id);
+
+
+--
 -- Name: pages fk_rails_84a58494eb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1233,6 +1310,14 @@ ALTER TABLE ONLY public.active_storage_attachments
 
 
 --
+-- Name: calendars fk_rails_d574754a30; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.calendars
+    ADD CONSTRAINT fk_rails_d574754a30 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1251,6 +1336,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210305170912'),
 ('20210305171042'),
 ('20210305171046'),
-('20210305181531');
+('20210305181531'),
+('20210305185843');
 
 

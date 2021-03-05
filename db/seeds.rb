@@ -12,7 +12,8 @@ require 'faker'
 
 NUMBER_OF_SEED_USERS = 10
 NUMBER_OF_SEED_PAGES = 100
-NUMBER_OF_SEED_CALENDAR_EVENTS = 250
+NUMBER_OF_SEED_CALENDARS = 5
+MAX_NUMBER_OF_RANDOM_SEED_EVENTS_PER_CALENDAR = 50
 
 NUMBER_OF_SEED_USERS.times.each do
   password = Faker::String.random(length: 12..128)
@@ -28,8 +29,16 @@ NUMBER_OF_SEED_PAGES.times.each do
   article.save!
 end
 
-NUMBER_OF_SEED_CALENDAR_EVENTS.times.each do
+NUMBER_OF_SEED_CALENDARS.times.each do
   user = User.find((rand(NUMBER_OF_SEED_USERS) + 1))
-  calendar_event = CalendarEvent.new(user: user, name: Faker::Lorem.sentence, description: Faker::Lorem.paragraph)
-  calendar_event.save!
+  calendar = Calendar.new(user: user, name: Faker::Lorem.sentence)
+  calendar.save!
+
+  (2..(rand(MAX_NUMBER_OF_RANDOM_SEED_EVENTS_PER_CALENDAR) + 2)).each do
+    calendar_event = CalendarEvent.new(user: user, calendar: calendar, name: Faker::Lorem.sentence,
+                                       description: Faker::Lorem.paragraph)
+    calendar_event.save!
+  end
+
+  calendar.save!
 end
