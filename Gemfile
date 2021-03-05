@@ -96,4 +96,7 @@ group :development do
   gem 'better_errors', '~> 2.9'
   # Binding of Caller is used by Better Errors.
   gem 'binding_of_caller', '~> 1.0'
+
+  # Letter Opener is used to open emails sent by the application directly in a new tab of the browser.
+  gem 'letter_opener', '~> 1.7'
 end
