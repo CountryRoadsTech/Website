@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLogidzeToPages < ActiveRecord::Migration[5.0]
   def change
     add_column :pages, :log_data, :jsonb
@@ -16,7 +18,7 @@ class AddLogidzeToPages < ActiveRecord::Migration[5.0]
       end
 
       dir.down do
-        execute "DROP TRIGGER IF EXISTS logidze_on_pages on pages;"
+        execute 'DROP TRIGGER IF EXISTS logidze_on_pages on pages;'
       end
     end
   end

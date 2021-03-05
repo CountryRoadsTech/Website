@@ -30,29 +30,30 @@ class PagesController < ApplicationController
   # GET /pages or /pages.json
   def index
     @pages = Page.all
-    authorize @pages
+    authorize @pages # Ensure the user is allowed to perform this action.
+    @pages = @pages.then(&paginate) # Paginate the results.
   end
 
   # GET /pages/1 or /pages/1.json
   def show
-    authorize @page
+    authorize @page # Ensure the user is allowed to perform this action.
   end
 
   # GET /pages/new
   def new
     @page = Page.new
-    authorize @page
+    authorize @page # Ensure the user is allowed to perform this action.
   end
 
   # GET /pages/1/edit
   def edit
-    authorize @page
+    authorize @page # Ensure the user is allowed to perform this action.
   end
 
   # POST /pages or /pages.json
   def create
     @page = Page.new(page_params)
-    authorize @page
+    authorize @page # Ensure the user is allowed to perform this action.
     @page.user = current_user unless current_user.nil?
 
     respond_to do |format|
@@ -71,7 +72,7 @@ class PagesController < ApplicationController
 
   # PATCH/PUT /pages/1 or /pages/1.json
   def update
-    authorize @page
+    authorize @page # Ensure the user is allowed to perform this action.
 
     respond_to do |format|
       if @page.update(page_params)
@@ -86,7 +87,7 @@ class PagesController < ApplicationController
 
   # DELETE /pages/1 or /pages/1.json
   def destroy
-    authorize @page
+    authorize @page # Ensure the user is allowed to perform this action.
     @page.destroy
 
     respond_to do |format|

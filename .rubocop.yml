@@ -36,3 +36,6 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Enabled: false
+
+Rails/SquishedSQLHeredocs:
+  Enabled: false
