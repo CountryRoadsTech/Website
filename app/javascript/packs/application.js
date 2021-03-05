@@ -17,3 +17,10 @@ import "../stylesheets/application.scss" // Import all of the site's styles.
 
 require("trix") // Enables the Trix rich text editor.
 require("@rails/actiontext") // Enables the rich text editor and viewing rich text content.
+
+import 'bootstrap'
+
+// Enables Bootstrap's tooltips.
+document.addEventListener("turbo:load", () => {
+    $('[data-toggle="tooltip"]').tooltip()
+})
