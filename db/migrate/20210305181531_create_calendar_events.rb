@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCalendarEvents < ActiveRecord::Migration[6.1]
   def change
     create_table :calendar_events do |t|

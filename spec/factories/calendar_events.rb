@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: calendar_events
@@ -23,7 +25,7 @@
 FactoryBot.define do
   factory :calendar_event do
     user { nil }
-    name { "MyText" }
-    duration { "" }
+    name { 'MyText' }
+    duration { '' }
   end
 end

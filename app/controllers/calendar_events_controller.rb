@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: calendar_events
@@ -21,7 +23,7 @@
 #  fk_rails_930e3c0bf4  (user_id => users.id)
 #
 class CalendarEventsController < ApplicationController
-  before_action :set_calendar_event, only: %i[ show edit update destroy ]
+  before_action :set_calendar_event, only: %i[show edit update destroy]
 
   # GET /calendar_events or /calendar_events.json
   def index
@@ -54,12 +56,13 @@ class CalendarEventsController < ApplicationController
 
     respond_to do |format|
       if @calendar_event.save
-        format.html { redirect_to @calendar_event, notice: "Calendar event was successfully created." }
+        format.html { redirect_to @calendar_event, notice: 'Calendar event was successfully created.' }
         format.json { render :show, status: :created, location: @calendar_event }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@calendar_event, partial: 'calendar_events/form', locals: { calendar_event: @calendar_event })
+          render turbo_stream: turbo_stream.replace(@calendar_event, partial: 'calendar_events/form',
+                                                                     locals: { calendar_event: @calendar_event })
         end
         format.json { render json: @calendar_event.errors, status: :unprocessable_entity }
       end
@@ -72,7 +75,7 @@ class CalendarEventsController < ApplicationController
 
     respond_to do |format|
       if @calendar_event.update(calendar_event_params)
-        format.html { redirect_to @calendar_event, notice: "Calendar event was successfully updated." }
+        format.html { redirect_to @calendar_event, notice: 'Calendar event was successfully updated.' }
         format.json { render :show, status: :ok, location: @calendar_event }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -87,7 +90,7 @@ class CalendarEventsController < ApplicationController
 
     @calendar_event.destroy
     respond_to do |format|
-      format.html { redirect_to calendar_events_url, notice: "Calendar event was successfully destroyed." }
+      format.html { redirect_to calendar_events_url, notice: 'Calendar event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
