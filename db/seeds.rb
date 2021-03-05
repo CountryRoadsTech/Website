@@ -12,6 +12,7 @@ require 'faker'
 
 NUMBER_OF_SEED_USERS = 10
 NUMBER_OF_SEED_PAGES = 100
+NUMBER_OF_SEED_CALENDAR_EVENTS = 250
 
 NUMBER_OF_SEED_USERS.times.each do
   password = Faker::String.random(length: 12..128)
@@ -25,4 +26,10 @@ NUMBER_OF_SEED_PAGES.times.each do
   article = Page.new(user: user, title: Faker::Lorem.unique.sentence, subtitle: Faker::Lorem.sentence,
                      content: Faker::Lorem.paragraph)
   article.save!
+end
+
+NUMBER_OF_SEED_CALENDAR_EVENTS.times.each do
+  user = User.find((rand(NUMBER_OF_SEED_USERS) + 1))
+  calendar_event = CalendarEvent.new(user: user, name: Faker::Lorem.sentence, description: Faker::Lorem.paragraph)
+  calendar_event.save!
 end
