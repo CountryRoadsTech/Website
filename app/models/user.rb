@@ -45,8 +45,6 @@ class User < ApplicationRecord
   has_many :sent_emails, class_name: 'SentEmail', as: :user, inverse_of: :user, dependent: :destroy
   has_many :login_activities, class_name: 'LoginActivity', as: :user, inverse_of: :user, dependent: :destroy
 
-  audited # Track and store every change to this model.
-
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true
 end

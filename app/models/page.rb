@@ -28,8 +28,6 @@ class Page < ApplicationRecord
 
   has_rich_text :content
 
-  audited # Track and store every change to this model.
-
   validates :title, uniqueness: true
   validates :title, :user, :content, presence: true
 

@@ -48,8 +48,6 @@ gem 'ahoy_matey', '~> 3.2'
 gem 'ahoy_email', '~> 1.1'
 # Authtrail tracks successful and unsuccessful login attempts.
 gem 'authtrail', '~> 0.3'
-# Audited tracks all changes to models.
-gem 'audited', '~> 4.10'
 
 # Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
 gem 'turbo-rails', '~> 0.5'
