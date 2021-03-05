@@ -43,4 +43,5 @@ class User < ApplicationRecord
   has_many :visits, class_name: 'Visit', inverse_of: :user, dependent: :destroy
   has_many :events, class_name: 'Event', inverse_of: :user, dependent: :destroy
   has_many :sent_emails, class_name: 'SentEmail', as: :user, inverse_of: :user, dependent: :destroy
+  has_many :login_activities, class_name: 'LoginActivity', as: :user, inverse_of: :user, dependent: :destroy
 end

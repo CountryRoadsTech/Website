@@ -38,6 +38,8 @@ gem 'sidekiq', '~> 6.1'
 gem 'ahoy_matey', '~> 3.2'
 # Ahoy Email adds local, first-party email analytics.
 gem 'ahoy_email', '~> 1.1'
+# Authtrail tracks successful and unsuccessful login attempts.
+gem 'authtrail', '~> 0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

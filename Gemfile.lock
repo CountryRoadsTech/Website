@@ -76,6 +76,11 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
+    authtrail (0.3.1)
+      activerecord (>= 5.2)
+      geocoder
+      railties (>= 5.2)
+      warden
     bcrypt (3.1.16)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
@@ -299,6 +304,7 @@ DEPENDENCIES
   ahoy_email (~> 1.1)
   ahoy_matey (~> 3.2)
   annotate (~> 3.1)
+  authtrail (~> 0.3)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
   bootsnap (>= 1.4.4)
