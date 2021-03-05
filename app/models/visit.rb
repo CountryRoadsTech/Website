@@ -38,4 +38,7 @@ class Visit < ApplicationRecord
 
   has_many :events, class_name: 'Event', inverse_of: :visit, dependent: :destroy
   belongs_to :user, optional: true, inverse_of: :visits
+
+  # Raise an error if a N+1 database query occurs.
+  self.strict_loading_by_default = true
 end

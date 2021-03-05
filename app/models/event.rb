@@ -25,4 +25,7 @@ class Event < ApplicationRecord
 
   belongs_to :visit, inverse_of: :events
   belongs_to :user, optional: true, inverse_of: :events
+
+  # Raise an error if a N+1 database query occurs.
+  self.strict_loading_by_default = true
 end

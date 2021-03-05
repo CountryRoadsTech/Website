@@ -31,4 +31,7 @@
 #
 class LoginActivity < ApplicationRecord
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :login_activities
+
+  # Raise an error if a N+1 database query occurs.
+  self.strict_loading_by_default = true
 end

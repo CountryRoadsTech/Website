@@ -24,4 +24,7 @@ class SentEmail < ApplicationRecord
   self.table_name = 'sent_emails'
 
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :sent_emails
+
+  # Raise an error if a N+1 database query occurs.
+  self.strict_loading_by_default = true
 end
