@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Used to store changes to models.
 class InstallAudited < ActiveRecord::Migration[6.1]
   def self.up
     create_table :audits, force: true do |t|
