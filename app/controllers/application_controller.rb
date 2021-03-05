@@ -7,4 +7,12 @@ class ApplicationController < ActionController::Base
 
   include Pundit # Enables user authorization.
   after_action :verify_authorized # Ensures user authorization was performed in every controller action.
+
+  after_action :log_action
+
+  protected
+
+  def log_action
+    ahoy.track 'Ran Action', request.path_parameters
+  end
 end

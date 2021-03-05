@@ -34,6 +34,9 @@ gem 'pundit', '~> 2.1'
 # Sidekiq is used to process async, background jobs.
 gem 'sidekiq', '~> 6.1'
 
+# Ahoy Matey adds local, first-party user analytics.
+gem 'ahoy_matey', '~> 3.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
