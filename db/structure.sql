@@ -473,7 +473,8 @@ CREATE TABLE public.calendar_events (
     slug text NOT NULL,
     duration daterange NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    log_data jsonb
 );
 
 
@@ -505,7 +506,8 @@ CREATE TABLE public.calendars (
     user_id bigint NOT NULL,
     name text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    log_data jsonb
 );
 
 
@@ -1256,6 +1258,20 @@ CREATE UNIQUE INDEX index_visits_on_visit_token ON public.visits USING btree (vi
 
 
 --
+-- Name: calendar_events logidze_on_calendar_events; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER logidze_on_calendar_events BEFORE INSERT OR UPDATE ON public.calendar_events FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION public.logidze_logger('null', 'updated_at');
+
+
+--
+-- Name: calendars logidze_on_calendars; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER logidze_on_calendars BEFORE INSERT OR UPDATE ON public.calendars FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION public.logidze_logger('null', 'updated_at');
+
+
+--
 -- Name: pages logidze_on_pages; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1337,6 +1353,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210305171042'),
 ('20210305171046'),
 ('20210305181531'),
-('20210305185843');
+('20210305185843'),
+('20210306012436'),
+('20210306012440');
 
 

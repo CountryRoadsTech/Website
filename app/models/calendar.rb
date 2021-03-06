@@ -5,6 +5,7 @@
 # Table name: calendars
 #
 #  id         :bigint           not null, primary key
+#  log_data   :jsonb
 #  name       :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
