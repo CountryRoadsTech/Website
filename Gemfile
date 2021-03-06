@@ -53,6 +53,8 @@ gem 'logidze', '~> 1.0'
 
 # Barnes is used by Heroku to enable advanced metrics.
 gem 'barnes', '~> 0.0.9'
+# New Relic is used to provide monitoring of the application in production.
+gem 'newrelic_rpm', '~> 6.15'
 
 # Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
 gem 'turbo-rails', '~> 0.5'
