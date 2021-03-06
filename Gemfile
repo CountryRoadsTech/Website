@@ -64,6 +64,10 @@ gem 'simple_calendar', '~> 2.4'
 
 # Spreadsheet Architect is used to export models and their relationships to CSV, XLSX, and ODS.
 gem 'spreadsheet_architect', '~> 4.1'
+# Active Record Import is used to efficiently import CSV and XLSX files.
+gem 'activerecord-import', '~> 1.0'
+# Ruby Zip is used to zip and unzip files.
+gem 'rubyzip', '~> 2.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
