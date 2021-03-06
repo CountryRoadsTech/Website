@@ -597,6 +597,40 @@ ALTER SEQUENCE public.friendly_id_slugs_id_seq OWNED BY public.friendly_id_slugs
 
 
 --
+-- Name: links; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.links (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    url text NOT NULL,
+    slug text NOT NULL,
+    number_of_times_used integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.links_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.links_id_seq OWNED BY public.links.id;
+
+
+--
 -- Name: login_activities; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -879,6 +913,13 @@ ALTER TABLE ONLY public.friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: links id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.links ALTER COLUMN id SET DEFAULT nextval('public.links_id_seq'::regclass);
+
+
+--
 -- Name: login_activities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -983,6 +1024,14 @@ ALTER TABLE ONLY public.events
 
 ALTER TABLE ONLY public.friendly_id_slugs
     ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: links links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.links
+    ADD CONSTRAINT links_pkey PRIMARY KEY (id);
 
 
 --
@@ -1160,6 +1209,20 @@ CREATE INDEX index_friendly_id_slugs_on_sluggable_type_and_sluggable_id ON publi
 
 
 --
+-- Name: index_links_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_links_on_slug ON public.links USING btree (slug);
+
+
+--
+-- Name: index_links_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_links_on_user_id ON public.links USING btree (user_id);
+
+
+--
 -- Name: index_login_activities_on_identity; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1294,6 +1357,14 @@ ALTER TABLE ONLY public.calendar_events
 
 
 --
+-- Name: links fk_rails_005e9b2a6a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.links
+    ADD CONSTRAINT fk_rails_005e9b2a6a FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: pages fk_rails_84a58494eb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1355,6 +1426,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210305181531'),
 ('20210305185843'),
 ('20210306012436'),
-('20210306012440');
+('20210306012440'),
+('20210306221745');
 
 

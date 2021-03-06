@@ -2,6 +2,9 @@
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  get '/l/:slug', to: 'links#short', as: :short # Sets up the link shortener at /l/
+
+  resources :links # Creates RESTful routes for the link model.
   resources :calendars # Creates RESTful routes for the calendar event model.
   resources :calendar_events # Creates RESTful routes for the calendar event model.
 

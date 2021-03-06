@@ -45,6 +45,7 @@ class User < ApplicationRecord
   has_many :pages, inverse_of: :user, dependent: :destroy
   has_many :calendars, inverse_of: :user, dependent: :destroy
   has_many :calendar_events, inverse_of: :user, dependent: :destroy
+  has_many :links, inverse_of: :user, dependent: :destroy
 
   has_many :visits, class_name: 'Visit', inverse_of: :user, dependent: :destroy
   has_many :events, class_name: 'Event', inverse_of: :user, dependent: :destroy

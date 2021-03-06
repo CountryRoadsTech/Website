@@ -2,12 +2,12 @@
 
 # Controls which users are allowed to perform which actions on the CalendarEvent model.
 class CalendarPolicy < ApplicationPolicy
-  # Anyone can view the list of all calendar.
+  # Anyone can view the list of all calendars.
   def index?
     true
   end
 
-  # Anyone can view an calendar.
+  # Anyone can view a calendar.
   def show?
     true
   end
