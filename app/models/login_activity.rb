@@ -34,4 +34,31 @@ class LoginActivity < ApplicationRecord
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['Created At', :created_at],
+      ['User', :user.email],
+      ['IP', :ip],
+      ['Latitude', :latitude],
+      ['Longitude', :longitude],
+      ['City', :city],
+      ['Region', :region],
+      ['Country', :country],
+      ['Context', :context],
+      ['Failure Reason', :failure_reason],
+      ['Identity', :identity],
+      ['Referrer', :referrer],
+      ['Scope', :scope],
+      ['Strategy', :strategy],
+      ['Success?', :success],
+      ['User Agent', :user_agent],
+      ['User Type', :user_type]
+    ]
+  end
 end

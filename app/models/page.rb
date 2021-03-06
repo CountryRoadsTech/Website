@@ -41,4 +41,31 @@ class Page < ApplicationRecord
   after_create_commit { broadcast_prepend_to 'pages' }
   after_update_commit { broadcast_replace_to 'pages' }
   after_destroy_commit { broadcast_remove_to 'pages' }
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['Created At', :created_at],
+      ['Published At', :published_at],
+      ['IP', :ip],
+      ['Latitude', :latitude],
+      ['Longitude', :longitude],
+      ['City', :city],
+      ['Region', :region],
+      ['Country', :country],
+      ['Context', :context],
+      ['Failure Reason', :failure_reason],
+      ['Identity', :identity],
+      ['Referrer', :referrer],
+      ['Scope', :scope],
+      ['Strategy', :strategy],
+      ['Success?', :success],
+      ['User Agent', :user_agent],
+      ['User Type', :user_type]
+    ]
+  end
 end

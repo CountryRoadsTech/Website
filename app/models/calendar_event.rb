@@ -52,4 +52,20 @@ class CalendarEvent < ApplicationRecord
   def end_time
     self.duration.end
   end
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['Name', :name],
+      ['Starts At', :starts_at],
+      ['Ends At', :ends_at],
+      ['Duration', :duration],
+      ['Calendar', :calendar.name],
+      ['User', :user.email]
+    ]
+  end
 end

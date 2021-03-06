@@ -32,4 +32,18 @@ class Calendar < ApplicationRecord
   #after_create_commit { broadcast_prepend_to 'calendars' }
   #after_update_commit { broadcast_replace_to 'calendars' }
   #after_destroy_commit { broadcast_remove_to 'calendars' }
+
+  # Adds the .to_xlsx, .to_ods, .to_csv methods
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['Created At', :created_at],
+      ['Name', :name],
+      ['Number of Events', :calendar_events.count],
+      ['User', :user]
+    ]
+  end
 end

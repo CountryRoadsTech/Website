@@ -41,4 +41,38 @@ class Visit < ApplicationRecord
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['Started At', :started_at],
+      ['User', :user.email],
+      ['IP', :ip],
+      ['Latitude', :latitude],
+      ['Longitude', :longitude],
+      ['City', :city],
+      ['Region', :region],
+      ['Country', :country],
+      ['Browser', :browser],
+      ['OS', :os],
+      ['Landing Page', :landing_page],
+      ['Referrer', :referrer],
+      ['Referring Domain', :referring_domain],
+      ['User Agent', :user_agent],
+      ['Success?', :success],
+      ['User Agent', :user_agent],
+      ['UTM Campaign', :utm_campaign],
+      ['UTM Content', :utm_content],
+      ['UTM Medium', :utm_medium],
+      ['UTM Source', :utm_source],
+      ['UTM Term', :utm_term]
+    ]
+  end
 end

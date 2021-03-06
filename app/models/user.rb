@@ -53,4 +53,24 @@ class User < ApplicationRecord
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['Created At', :created_at],
+      ['Admin?', :admin?],
+      ['Email', :email],
+      ['Email Confirmed?', :confirmed_at.nil?],
+      ['Number of Successful Sign Ins', :sign_in_count],
+      ['Number of Calendars', :calendars.count],
+      ['Number of Calendar Events', :calendar_events.count],
+      ['Number of Visits', :visits.count],
+      ['Number of Events', :events.count],
+      ['Number of Emails Sent To User', :sent_emails.count]
+    ]
+  end
 end

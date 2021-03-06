@@ -27,4 +27,19 @@ class SentEmail < ApplicationRecord
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true
+
+  # Adds the .to_xlsx, .to_ods, .to_csv
+  include SpreadsheetArchitect
+
+  # Column format is: [Header, Cell Data / Method (if symbol) to Call on each Instance, (optional) Cell Type]
+  def spreadsheet_columns
+    [
+      ['ID', :id],
+      ['To', :to],
+      ['Subject', :subject],
+      ['Mailer', :mailer],
+      ['Sent At', :sent_at],
+      ['Clicked At', :clicked_at]
+    ]
+  end
 end

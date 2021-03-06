@@ -62,6 +62,9 @@ gem 'turbo-rails', '~> 0.5'
 # Simple Calendar is used to render calendars in views.
 gem 'simple_calendar', '~> 2.4'
 
+# Spreadsheet Architect is used to export models and their relationships to CSV, XLSX, and ODS.
+gem 'spreadsheet_architect', '~> 4.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
