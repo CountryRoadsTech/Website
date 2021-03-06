@@ -55,6 +55,8 @@ gem 'logidze', '~> 1.0'
 gem 'barnes', '~> 0.0.9'
 # New Relic is used to provide monitoring of the application in production.
 gem 'newrelic_rpm', '~> 6.15'
+# Honey Badger is used to report errors in production.
+gem 'honeybadger', '~> 4.7'
 
 # Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
 gem 'turbo-rails', '~> 0.5'
