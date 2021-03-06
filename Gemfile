@@ -41,8 +41,6 @@ gem 'hiredis', '~> 0.6'
 
 # Rack Attack throttles and blocks spammy and abusive clients.
 gem 'rack-attack', '~> 6.5'
-# Rack Protection adds protections from many common attack to Rack applications.
-gem 'rack-protection', '~> 2.1'
 
 # Ahoy Matey adds local, first-party user analytics.
 gem 'ahoy_matey', '~> 3.2'
