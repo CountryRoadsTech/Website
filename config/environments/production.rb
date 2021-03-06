@@ -119,6 +119,4 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-
-  config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'], pool_size: 30, pool_timeout: 5 }
 end
