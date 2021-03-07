@@ -46,11 +46,11 @@ class CalendarEvent < ApplicationRecord
   after_destroy_commit { broadcast_remove_to 'events' }
 
   def start_time
-    self.duration.begin
+    duration.begin
   end
 
   def end_time
-    self.duration.end
+    duration.end
   end
 
   # Adds the .to_xlsx, .to_ods, .to_csv

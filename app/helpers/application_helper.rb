@@ -9,7 +9,7 @@ module ApplicationHelper
     svg = doc.at_css('svg')
 
     # Apply any of Bootstrap's classes, if provided.
-    svg['class'] += ' ' + options[:class] if options[:class].present?
+    svg['class'] += " #{options[:class]}" if options[:class].present?
 
     doc.to_html.html_safe
   end

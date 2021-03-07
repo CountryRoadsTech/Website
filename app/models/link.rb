@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: links
@@ -23,6 +25,6 @@ class Link < ApplicationRecord
   belongs_to :user, inverse_of: :links
 
   validates :user, :url, :slug, presence: true
-  validates_uniqueness_of :slug
-  validates :url, format: URI::regexp(%w[http https])
+  validates :slug, uniqueness: true
+  validates :url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
 end

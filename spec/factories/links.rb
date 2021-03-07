@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: links
@@ -22,8 +24,8 @@
 FactoryBot.define do
   factory :link do
     user { nil }
-    url { "MyText" }
-    slug { "MyText" }
+    url { 'MyText' }
+    slug { 'MyText' }
     number_of_times_used { 1 }
   end
 end

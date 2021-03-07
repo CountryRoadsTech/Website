@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: links
@@ -20,7 +22,7 @@
 #  fk_rails_005e9b2a6a  (user_id => users.id)
 #
 class LinksController < ApplicationController
-  before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :set_link, only: %i[show edit update destroy]
   before_action :skip_authorization, only: :short
 
   # GET /links or /links.json
@@ -31,7 +33,7 @@ class LinksController < ApplicationController
 
   # GET /l/:slug
   def short
-    @link = Link.find_by_slug(params[:slug])
+    @link = Link.find_by(slug: params[:slug])
     render 'public/404', status: :not_found if @link.nil?
     @link.increment!(:number_of_times_used)
     redirect_to @link.url
@@ -61,7 +63,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: "Link was successfully created." }
+        format.html { redirect_to @link, notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -76,7 +78,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to @link, notice: "Link was successfully updated." }
+        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -91,7 +93,7 @@ class LinksController < ApplicationController
     authorize @link # Ensure the user is allowed to perform this action.
 
     respond_to do |format|
-      format.html { redirect_to links_url, notice: "Link was successfully destroyed." }
+      format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
