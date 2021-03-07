@@ -64,7 +64,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ahoy_email (1.1.0)
+    ahoy_email (1.1.1)
       actionmailer (>= 5)
       addressable (>= 2.3.2)
       nokogiri
