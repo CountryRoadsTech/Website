@@ -90,6 +90,5 @@ end
 
 # Log all rack attack throttles and blocks.
 ActiveSupport::Notifications.subscribe(/rack_attack/) do |name, start, finish, request_id, payload|
-  ahoy.track 'Request throttled/blocked', payload[:request], name, start, finish, request_id
   logger.info "Request throttled/blocked: #{payload[:request]}, #{name}, #{start}, #{finish}, #{request_id}"
 end
