@@ -5,7 +5,7 @@
   <hr>
   <%= month_calendar(events: calendar.calendar_events) do |date, events| %>
     <b><%= date.strftime("%-d") %></b>
-    <% Holidays.on(date, :ca, :us, :informal).each do |holiday| %>
+    <% Holidays.on(date, :ca, :us, :informal, :observed).each do |holiday| %>
       <div><%= holiday[:name] %></div>
     <% end %>
     <hr>
