@@ -65,6 +65,8 @@ gem 'turbo-rails', '~> 0.5'
 
 # Simple Calendar is used to render calendars in views.
 gem 'simple_calendar', '~> 2.4'
+# Holidays is used to get a list of holidays for a given region.
+gem 'holidays', '~> 8.4'
 
 # Spreadsheet Architect is used to export models and their relationships to CSV, XLSX, and ODS.
 gem 'spreadsheet_architect', '~> 4.1'
