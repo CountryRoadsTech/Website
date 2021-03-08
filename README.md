@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+TODO: Add Github CI build status (as a badge)
+TODO: Add link to Rubocop Style Guide (as a badge)
