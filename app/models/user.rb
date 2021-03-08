@@ -61,7 +61,7 @@ class User < ApplicationRecord
   def password_complexity
     return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).$/
 
-    errors.add :password, 'Password must include: 1 uppercase, 1 lowercase, 1 number, and 1 special character'
+    errors.add :password, 'must include: 1 uppercase, 1 lowercase, 1 number, and 1 special character'
   end
 
   # Adds the .to_xlsx, .to_ods, .to_csv
