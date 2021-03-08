@@ -19,11 +19,11 @@ class CalendarEventPolicy < ApplicationPolicy
 
   # Only the events creator or admin users can update an event.
   def update?
-    (record.user.id == user.id) or user.try(:admin?)
+    (record.user&.id == user&.id) or user&.admin?
   end
 
   # Only the events creator or admin users can destroy an event.
   def destroy?
-    (record.user.id == user.id) or user.try(:admin?)
+    (record.user&.id == user&.id) or user&.admin?
   end
 end

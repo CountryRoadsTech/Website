@@ -14,16 +14,16 @@ class PagePolicy < ApplicationPolicy
 
   # Only admin users can create a page.
   def create?
-    user.try(:admin?)
+    user&.admin?
   end
 
   # Only admin users can update a page.
   def update?
-    user.try(:admin?)
+    user&.admin?
   end
 
   # Only admin users can destroy a page.
   def destroy?
-    user.try(:admin?)
+    user&.admin?
   end
 end

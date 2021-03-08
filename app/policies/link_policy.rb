@@ -19,11 +19,11 @@ class LinkPolicy < ApplicationPolicy
 
   # Only the link's creator or admin users can update a link.
   def update?
-    (record.user.id == user.id) or user.try(:admin?)
+    (record.user&.id == user&.id) or user&.admin?
   end
 
   # Only the link's creator or admin users can destroy a link.
   def destroy?
-    (record.user.id == user.id) or user.try(:admin?)
+    (record.user&.id == user&.id) or user&.admin?
   end
 end

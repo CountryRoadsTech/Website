@@ -19,11 +19,11 @@ class CalendarPolicy < ApplicationPolicy
 
   # Only the calendar's creator or admin users can update a calendar.
   def update?
-    (record.user.id == user.id) or user.try(:admin?)
+    (record.user&.id == user&.id) or user&.admin?
   end
 
   # Only the calendar's creator or admin users can destroy a calendar.
   def destroy?
-    (record.user.id == user.id) or user.try(:admin?)
+    (record.user&.id == user&.id) or user&.admin?
   end
 end

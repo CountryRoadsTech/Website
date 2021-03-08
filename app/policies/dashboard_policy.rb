@@ -4,6 +4,6 @@
 DashboardPolicy = Struct.new(:user, :dashboard) do
   # Only admin users can view the dashboard.
   def index?
-    user.try(:admin?)
+    user&.admin?
   end
 end
