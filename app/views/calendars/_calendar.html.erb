@@ -9,11 +9,11 @@
 </p>
 
 <%= month_calendar(events: calendar.calendar_events) do |date, events| %>
-  <%= date %>
+  <b><%= date.strftime("%-d") %></b>
 
   <% events.each do |event| %>
     <div>
-      <%= event.name %>
+      <%= event.name.truncate(30) %>
     </div>
   <% end %>
 <% end %>
