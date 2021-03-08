@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
   after_action :log_action
   around_action :set_responsible_user, only: [:create, :update]
 
+  # Don't crash if the user is not authorized to perform an action.
+  rescue_from Pundit::NotAuthorizedError, with: :rescue_from_user_not_authorized
+
   protected
 
   # Log each request as an Event.
@@ -23,5 +26,16 @@ class ApplicationController < ActionController::Base
   # Sets which user created/updated a model.
   def set_responsible_user(&block)
     Logidze.with_responsible(current_user&.id, &block)
+  end
+
+  # Handle what happens if the user is not authorized to perform an action.
+  def rescue_from_user_not_authorized
+    if current_user
+      flash[:alert] = 'You are not allowed to perform this action.'
+      redirect_to(request.referer || root_path)
+    else
+      authenticate_user!
+    end
+
   end
 end
