@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@calendar) do %>
+  <% if policy(@calendar).update? %>
+    <%= link_to 'Edit', edit_calendar_path(@calendar) %>
+  <% end %>
   <%= render @calendar %>
 <% end %>
-
-<%= link_to 'Edit', edit_calendar_path(@calendar) %> |
-<%= link_to 'Back', :back %>

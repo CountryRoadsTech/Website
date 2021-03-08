@@ -2,7 +2,5 @@
 
 <%= turbo_frame_tag dom_id(@calendar) do %>
   <%= render 'form', calendar: @calendar %>
+  <%= link_to 'Cancel', @calendar %>
 <% end %>
-
-<%= link_to 'Cancel', @calendar %> |
-<%= link_to 'Back', :back %>
