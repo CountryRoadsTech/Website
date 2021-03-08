@@ -23,7 +23,7 @@ NUMBER_OF_SEED_USERS.times.each do
 end
 
 # Create an admin seed user.
-user = User.new(email: 'email@website.com', password: 'passwordpassword', password_confirmation: 'passwordpassword')
+user = User.new(email: 'email@website.com', password: 'Passwordpassword1*', password_confirmation: 'Passwordpassword1*')
 user.skip_confirmation!
 user.admin = true
 user.save!

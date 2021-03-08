@@ -56,6 +56,14 @@ class User < ApplicationRecord
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true
 
+  validate :password_complexity
+
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).$/
+
+    errors.add :password, 'Password must include: 1 uppercase, 1 lowercase, 1 number, and 1 special character'
+  end
+
   # Adds the .to_xlsx, .to_ods, .to_csv
   include SpreadsheetArchitect
 
