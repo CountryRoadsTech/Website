@@ -22,6 +22,12 @@ NUMBER_OF_SEED_USERS.times.each do
   user.save!
 end
 
+# Create an admin seed user.
+user = User.new(email: 'email@website.com', password: 'passwordpassword', password_confirmation: 'passwordpassword')
+user.skip_confirmation!
+user.admin = true
+user.save!
+
 NUMBER_OF_SEED_PAGES.times.each do
   user = User.find((rand(NUMBER_OF_SEED_USERS) + 1))
   article = Page.new(user: user, title: Faker::Lorem.unique.sentence, subtitle: Faker::Lorem.sentence,
