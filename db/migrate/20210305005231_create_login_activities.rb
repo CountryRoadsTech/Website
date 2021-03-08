@@ -11,15 +11,18 @@ class CreateLoginActivities < ActiveRecord::Migration[6.1]
       t.string :failure_reason
       t.references :user, polymorphic: true
       t.string :context
-      t.string :ip, index: true
-      t.text :user_agent
+      t.text :ip_ciphertext
+      t.text :ip_bidx
+      t.text :user_agent_ciphertext
       t.text :referrer
-      t.string :city
-      t.string :region
-      t.string :country
-      t.float :latitude
-      t.float :longitude
+      t.text :city_ciphertext
+      t.text :region_ciphertext
+      t.text :country_ciphertext
+      t.text :latitude_ciphertext
+      t.text :longitude_ciphertext
       t.datetime :created_at
     end
+
+    add_index :login_activities, :ip_bidx
   end
 end

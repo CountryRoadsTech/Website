@@ -4,29 +4,30 @@
 #
 # Table name: visits
 #
-#  id               :bigint           not null, primary key
-#  browser          :string
-#  city             :string
-#  country          :string
-#  device_type      :string
-#  ip               :string
-#  landing_page     :text
-#  latitude         :float
-#  longitude        :float
-#  os               :string
-#  referrer         :text
-#  referring_domain :string
-#  region           :string
-#  started_at       :datetime
-#  user_agent       :text
-#  utm_campaign     :string
-#  utm_content      :string
-#  utm_medium       :string
-#  utm_source       :string
-#  utm_term         :string
-#  visit_token      :string
-#  visitor_token    :string
-#  user_id          :bigint
+#  id                    :bigint           not null, primary key
+#  browser               :string
+#  city_ciphertext       :text
+#  country_ciphertext    :text
+#  device_type           :string
+#  ip                    :string
+#  ip_ciphertext         :text
+#  landing_page          :text
+#  latitude_ciphertext   :text
+#  longitude_ciphertext  :text
+#  os                    :string
+#  referrer              :text
+#  referring_domain      :string
+#  region_ciphertext     :text
+#  started_at            :datetime
+#  user_agent_ciphertext :text
+#  utm_campaign          :string
+#  utm_content           :string
+#  utm_medium            :string
+#  utm_source            :string
+#  utm_term              :string
+#  visit_token           :string
+#  visitor_token         :string
+#  user_id               :bigint
 #
 # Indexes
 #
@@ -38,6 +39,10 @@ class Visit < ApplicationRecord
 
   has_many :events, inverse_of: :visit, dependent: :destroy
   belongs_to :user, optional: true, inverse_of: :visits
+
+  # Encrypt some of the more sensitive database field.
+  encrypts :city, :context, :country, :ip, :region, :user_agent
+  encrypts :latitude, :longitude, type: :float
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true

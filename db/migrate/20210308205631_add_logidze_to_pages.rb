@@ -1,14 +1,12 @@
-# frozen_string_literal: true
-
-class AddLogidzeToUsers < ActiveRecord::Migration[5.0]
+class AddLogidzeToPages < ActiveRecord::Migration[5.0]
   def change
-    add_column :users, :log_data, :jsonb
+    add_column :pages, :log_data, :jsonb
 
     reversible do |dir|
       dir.up do
         execute <<~SQL
-          CREATE TRIGGER logidze_on_users
-          BEFORE UPDATE OR INSERT ON users FOR EACH ROW
+          CREATE TRIGGER logidze_on_pages
+          BEFORE UPDATE OR INSERT ON pages FOR EACH ROW
           WHEN (coalesce(current_setting('logidze.disabled', true), '') <> 'on')
           -- Parameters: history_size_limit (integer), timestamp_column (text), filtered_columns (text[]),
           -- include_columns (boolean), debounce_time_ms (integer)
@@ -18,7 +16,7 @@ class AddLogidzeToUsers < ActiveRecord::Migration[5.0]
       end
 
       dir.down do
-        execute 'DROP TRIGGER IF EXISTS logidze_on_users on users;'
+        execute "DROP TRIGGER IF EXISTS logidze_on_pages on pages;"
       end
     end
   end

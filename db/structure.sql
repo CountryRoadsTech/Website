@@ -607,7 +607,8 @@ CREATE TABLE public.links (
     slug text NOT NULL,
     number_of_times_used integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    log_data jsonb
 );
 
 
@@ -644,14 +645,15 @@ CREATE TABLE public.login_activities (
     user_type character varying,
     user_id bigint,
     context character varying,
-    ip character varying,
-    user_agent text,
+    ip_ciphertext text,
+    ip_bidx text,
+    user_agent_ciphertext text,
     referrer text,
-    city character varying,
-    region character varying,
-    country character varying,
-    latitude double precision,
-    longitude double precision,
+    city_ciphertext text,
+    region_ciphertext text,
+    country_ciphertext text,
+    latitude_ciphertext text,
+    longitude_ciphertext text,
     created_at timestamp without time zone
 );
 
@@ -728,9 +730,9 @@ CREATE TABLE public.sent_emails (
     id bigint NOT NULL,
     user_type character varying,
     user_id bigint,
-    "to" text,
+    to_ciphertext text,
     mailer character varying,
-    subject text,
+    subject_ciphertext text,
     token character varying,
     opened_at timestamp without time zone,
     clicked_at timestamp without time zone,
@@ -763,7 +765,8 @@ ALTER SEQUENCE public.sent_emails_id_seq OWNED BY public.sent_emails.id;
 
 CREATE TABLE public.users (
     id bigint NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
+    email_ciphertext text,
+    email_bidx character varying,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -771,12 +774,12 @@ CREATE TABLE public.users (
     sign_in_count integer DEFAULT 0 NOT NULL,
     current_sign_in_at timestamp without time zone,
     last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying,
-    last_sign_in_ip character varying,
+    current_sign_in_ip_ciphertext text,
+    last_sign_in_ip_ciphertext text,
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
-    unconfirmed_email character varying,
+    unconfirmed_email_ciphertext text,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
     locked_at timestamp without time zone,
@@ -816,18 +819,19 @@ CREATE TABLE public.visits (
     visitor_token character varying,
     user_id bigint,
     ip character varying,
-    user_agent text,
+    ip_ciphertext text,
+    user_agent_ciphertext text,
     referrer text,
     referring_domain character varying,
     landing_page text,
     browser character varying,
     os character varying,
     device_type character varying,
-    country character varying,
-    region character varying,
-    city character varying,
-    latitude double precision,
-    longitude double precision,
+    country_ciphertext text,
+    region_ciphertext text,
+    city_ciphertext text,
+    latitude_ciphertext text,
+    longitude_ciphertext text,
     utm_source character varying,
     utm_medium character varying,
     utm_term character varying,
@@ -1230,10 +1234,10 @@ CREATE INDEX index_login_activities_on_identity ON public.login_activities USING
 
 
 --
--- Name: index_login_activities_on_ip; Type: INDEX; Schema: public; Owner: -
+-- Name: index_login_activities_on_ip_bidx; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_login_activities_on_ip ON public.login_activities USING btree (ip);
+CREATE INDEX index_login_activities_on_ip_bidx ON public.login_activities USING btree (ip_bidx);
 
 
 --
@@ -1286,10 +1290,10 @@ CREATE UNIQUE INDEX index_users_on_confirmation_token ON public.users USING btre
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_email_bidx; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email_bidx ON public.users USING btree (email_bidx);
 
 
 --
@@ -1335,6 +1339,13 @@ CREATE TRIGGER logidze_on_calendars BEFORE INSERT OR UPDATE ON public.calendars 
 
 
 --
+-- Name: links logidze_on_links; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER logidze_on_links BEFORE INSERT OR UPDATE ON public.links FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION public.logidze_logger('null', 'updated_at');
+
+
+--
 -- Name: pages logidze_on_pages; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1345,7 +1356,7 @@ CREATE TRIGGER logidze_on_pages BEFORE INSERT OR UPDATE ON public.pages FOR EACH
 -- Name: users logidze_on_users; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER logidze_on_users BEFORE INSERT OR UPDATE ON public.users FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION public.logidze_logger('null', 'updated_at');
+CREATE TRIGGER logidze_on_users BEFORE INSERT OR UPDATE ON public.users FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION public.logidze_logger('null', 'updated_at', '{email,unconfirmed_at,last_sign_in_ip,current_sign_in_ip}');
 
 
 --
@@ -1421,12 +1432,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210305005231'),
 ('20210305170911'),
 ('20210305170912'),
-('20210305171042'),
-('20210305171046'),
 ('20210305181531'),
 ('20210305185843'),
-('20210306012436'),
-('20210306012440'),
-('20210306221745');
+('20210306221745'),
+('20210308205515'),
+('20210308205631'),
+('20210308205638'),
+('20210308205643'),
+('20210308205648');
 
 

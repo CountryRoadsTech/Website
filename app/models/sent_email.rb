@@ -4,16 +4,16 @@
 #
 # Table name: sent_emails
 #
-#  id         :bigint           not null, primary key
-#  clicked_at :datetime
-#  mailer     :string
-#  opened_at  :datetime
-#  sent_at    :datetime
-#  subject    :text
-#  to         :text
-#  token      :string
-#  user_type  :string
-#  user_id    :bigint
+#  id                 :bigint           not null, primary key
+#  clicked_at         :datetime
+#  mailer             :string
+#  opened_at          :datetime
+#  sent_at            :datetime
+#  subject_ciphertext :text
+#  to_ciphertext      :text
+#  token              :string
+#  user_type          :string
+#  user_id            :bigint
 #
 # Indexes
 #
@@ -24,6 +24,10 @@ class SentEmail < ApplicationRecord
   self.table_name = 'sent_emails'
 
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :sent_emails
+
+  # Encrypt some of the more sensitive database field.
+  encrypts :subject, :to
+  encrypts :opened_at, :clicked_at, type: :datetime
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true

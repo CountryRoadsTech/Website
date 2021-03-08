@@ -5,9 +5,9 @@ class CreateSentEmails < ActiveRecord::Migration[6.1]
   def change
     create_table :sent_emails do |t|
       t.references :user, polymorphic: true
-      t.text :to
+      t.text :to_ciphertext
       t.string :mailer
-      t.text :subject
+      t.text :subject_ciphertext
 
       t.string :token
       t.timestamp :opened_at

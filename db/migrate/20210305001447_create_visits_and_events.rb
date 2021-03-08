@@ -10,7 +10,8 @@ class CreateVisitsAndEvents < ActiveRecord::Migration[6.1]
       t.references :user
 
       t.string :ip
-      t.text :user_agent
+      t.text :ip_ciphertext
+      t.text :user_agent_ciphertext
       t.text :referrer
       t.string :referring_domain
       t.text :landing_page
@@ -19,11 +20,11 @@ class CreateVisitsAndEvents < ActiveRecord::Migration[6.1]
       t.string :device_type
 
       # Location
-      t.string :country
-      t.string :region
-      t.string :city
-      t.float :latitude
-      t.float :longitude
+      t.text :country_ciphertext
+      t.text :region_ciphertext
+      t.text :city_ciphertext
+      t.text :latitude_ciphertext
+      t.text :longitude_ciphertext
 
       # UTM Parameters
       t.string :utm_source

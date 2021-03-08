@@ -4,33 +4,34 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
-#  admin                  :boolean          default(FALSE)
-#  confirmation_sent_at   :datetime
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  current_sign_in_at     :datetime
-#  current_sign_in_ip     :string
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  failed_attempts        :integer          default(0), not null
-#  last_sign_in_at        :datetime
-#  last_sign_in_ip        :string
-#  locked_at              :datetime
-#  log_data               :jsonb
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  sign_in_count          :integer          default(0), not null
-#  unconfirmed_email      :string
-#  unlock_token           :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  id                            :bigint           not null, primary key
+#  admin                         :boolean          default(FALSE)
+#  confirmation_sent_at          :datetime
+#  confirmation_token            :string
+#  confirmed_at                  :datetime
+#  current_sign_in_at            :datetime
+#  current_sign_in_ip_ciphertext :text
+#  email_bidx                    :string
+#  email_ciphertext              :text
+#  encrypted_password            :string           default(""), not null
+#  failed_attempts               :integer          default(0), not null
+#  last_sign_in_at               :datetime
+#  last_sign_in_ip_ciphertext    :text
+#  locked_at                     :datetime
+#  log_data                      :jsonb
+#  remember_created_at           :datetime
+#  reset_password_sent_at        :datetime
+#  reset_password_token          :string
+#  sign_in_count                 :integer          default(0), not null
+#  unconfirmed_email_ciphertext  :text
+#  unlock_token                  :string
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_email_bidx            (email_bidx) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
@@ -42,6 +43,10 @@ class User < ApplicationRecord
          :async
 
   has_logidze # Track and store changes to this model.
+
+  # Encrypt some of the more sensitive database field.
+  encrypts :email, :unconfirmed_email, :last_sign_in_ip, :current_sign_in_ip
+  blind_index :email, slow: true, expression: ->(v) { v.downcase }
 
   has_many :pages, inverse_of: :user, dependent: :destroy
   has_many :calendars, inverse_of: :user, dependent: :destroy
@@ -59,7 +64,7 @@ class User < ApplicationRecord
   validate :password_complexity
 
   def password_complexity
-    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).$/
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
 
     errors.add :password, 'must include: 1 uppercase, 1 lowercase, 1 number, and 1 special character'
   end
