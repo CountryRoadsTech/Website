@@ -1,18 +1,15 @@
 <%= turbo_frame_tag dom_id(calendar_event) do %>
-  <p>
-    <strong>User:</strong>
-    <%= calendar_event.user_id %>
-  </p>
+  <p><strong>Event:</strong> <%= calendar_event.name %></p>
+  <% unless calendar_event.description.blank? %>
+    <p><strong>Description:</strong> <%= calendar_event.description %></p>
+  <% end %>
 
-  <p>
-    <strong>Name:</strong>
-    <%= calendar_event.name %>
-  </p>
+  <% unless (calendar_event.user == calendar_event.calendar&.user) %>
+    <p>
+      <strong>Creator:</strong>
+      <%= calendar_event.user&.email %>
+    </p>
+  <% end %>
 
-  <p>
-    <strong>Duration:</strong>
-    <%= calendar_event.duration %>
-  </p>
-
-  <%= calendar_event.description %>
+  <strong><p><%= calendar_event.duration.begin.strftime("%l:%M %P") %> : <%= calendar_event.duration.end.strftime("%l:%M %P") %></p></strong>
 <% end %>
