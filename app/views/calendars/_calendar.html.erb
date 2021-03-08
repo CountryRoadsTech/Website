@@ -1,13 +1,7 @@
-<p>
-  <strong>User:</strong>
-  <%= calendar.user.email %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= calendar.name %>
-</p>
-
+<div class="d-flex justify-content-center">
+  <h1>Calendar: <%= calendar.name %></h1>
+</div>
+<hr>
 <%= month_calendar(events: calendar.calendar_events) do |date, events| %>
   <b><%= date.strftime("%-d") %></b>
 
