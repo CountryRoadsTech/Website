@@ -7,7 +7,7 @@
   <% unless (calendar_event.user == calendar_event.calendar&.user) %>
     <p>
       <strong>Creator:</strong>
-      <%= calendar_event.user&.email %>
+      <%= calendar_event.user&.name %>
     </p>
   <% end %>
 
