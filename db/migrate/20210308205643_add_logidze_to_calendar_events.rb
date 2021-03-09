@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLogidzeToCalendarEvents < ActiveRecord::Migration[5.0]
   def change
     add_column :calendar_events, :log_data, :jsonb
@@ -16,7 +18,7 @@ class AddLogidzeToCalendarEvents < ActiveRecord::Migration[5.0]
       end
 
       dir.down do
-        execute "DROP TRIGGER IF EXISTS logidze_on_calendar_events on calendar_events;"
+        execute 'DROP TRIGGER IF EXISTS logidze_on_calendar_events on calendar_events;'
       end
     end
   end

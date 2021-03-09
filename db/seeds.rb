@@ -15,17 +15,19 @@ NUMBER_OF_SEED_PAGES = 100
 NUMBER_OF_SEED_CALENDARS = 5
 MAX_NUMBER_OF_RANDOM_SEED_EVENTS_PER_CALENDAR = 50
 
-VALID_PASSWORD = "Passwordpassword1?" # Passwords must be between 12 and 128 characters, and include:
-                                      # 1 upper case, 1 lower case, 1 number, and 1 special character
+VALID_PASSWORD = 'Passwordpassword1?' # Passwords must be between 12 and 128 characters, and include:
+# 1 upper case, 1 lower case, 1 number, and 1 special character
 
 NUMBER_OF_SEED_USERS.times.each do
-  user = User.new(email: Faker::Internet.unique.email, name: Faker::Name.name, password: VALID_PASSWORD, password_confirmation: VALID_PASSWORD)
+  user = User.new(email: Faker::Internet.unique.email, name: Faker::Name.name, password: VALID_PASSWORD,
+                  password_confirmation: VALID_PASSWORD)
   user.skip_confirmation!
   user.save!
 end
 
 # Create an admin seed user.
-user = User.new(email: 'email@website.com', name: 'Addison Martin', password: 'Passwordpassword1*', password_confirmation: 'Passwordpassword1*')
+user = User.new(email: 'email@website.com', name: 'Addison Martin', password: 'Passwordpassword1*',
+                password_confirmation: 'Passwordpassword1*')
 user.skip_confirmation!
 user.admin = true
 user.save!

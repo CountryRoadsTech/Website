@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLogidzeToUsers < ActiveRecord::Migration[5.0]
   def change
     add_column :users, :log_data, :jsonb
@@ -16,7 +18,7 @@ class AddLogidzeToUsers < ActiveRecord::Migration[5.0]
       end
 
       dir.down do
-        execute "DROP TRIGGER IF EXISTS logidze_on_users on users;"
+        execute 'DROP TRIGGER IF EXISTS logidze_on_users on users;'
       end
     end
   end

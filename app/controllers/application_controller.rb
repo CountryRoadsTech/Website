@@ -36,6 +36,5 @@ class ApplicationController < ActionController::Base
     else
       authenticate_user!
     end
-
   end
 end
