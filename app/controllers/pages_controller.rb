@@ -31,7 +31,6 @@ class PagesController < ApplicationController
   def index
     @pages = Page.all
     authorize @pages # Ensure the user is allowed to perform this action.
-    @pages = @pages.then(&paginate) # Paginate the results.
   end
 
   # GET /pages/1 or /pages/1.json

@@ -33,7 +33,6 @@ class CalendarEventsController < ApplicationController
   def index
     @calendar_events = CalendarEvent.all
     authorize @calendar_events # Ensure the user is allowed to perform this action.
-    @calendar_events = @calendar_events.then(&paginate) # Paginate the results.
   end
 
   # GET /calendar_events/1 or /calendar_events/1.json
