@@ -34,7 +34,7 @@ class LoginActivity < ApplicationRecord
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :login_activities
 
   # Encrypt some of the more sensitive database field.
-  encrypts :city, :context, :country, :ip, :region, :user_agent
+  encrypts :city, :country, :ip, :region, :user_agent
   encrypts :latitude, :longitude, type: :float
   blind_index :ip, slow: true
 

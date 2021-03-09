@@ -19,6 +19,7 @@
 #  last_sign_in_ip_ciphertext    :text
 #  locked_at                     :datetime
 #  log_data                      :jsonb
+#  name                          :text             not null
 #  remember_created_at           :datetime
 #  reset_password_sent_at        :datetime
 #  reset_password_token          :string

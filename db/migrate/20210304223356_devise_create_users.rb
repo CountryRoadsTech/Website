@@ -35,6 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.datetime :locked_at
 
       t.boolean :admin, default: false
+      t.text :name, null: false
 
       t.timestamps null: false
     end

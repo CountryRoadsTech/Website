@@ -570,6 +570,7 @@ CREATE TABLE public.users (
     unlock_token character varying,
     locked_at timestamp without time zone,
     admin boolean DEFAULT false,
+    name text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     log_data jsonb
