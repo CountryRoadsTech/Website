@@ -26,3 +26,19 @@ document.addEventListener("turbo:load", () => {
         document.querySelector('[data-toggle="tooltip"]').tooltip()
     }
 })
+
+import flatpickr from "flatpickr";
+
+// Use Flatpickr for datetime form inputs.
+document.addEventListener("turbo:load", () => {
+    const flatpickr_options  = {
+        enableTime: true,
+        mode: "range",
+        altInput: true,
+        altFormat: "F j, Y H:i",
+        dateFormat: "Y-m-d H:i",
+        defaultDate: Date.now()
+    }
+
+    flatpickr("#calendar_event_duration", flatpickr_options)
+})
