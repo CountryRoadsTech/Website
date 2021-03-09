@@ -132,9 +132,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-async (1.0.0)
-      activejob (>= 5.0)
-      devise (>= 4.0)
     diff-lcs (1.4.4)
     dry-inflector (0.2.0)
     errbase (0.2.1)
@@ -367,7 +364,6 @@ DEPENDENCIES
   capybara (~> 3.35)
   connection_pool (~> 2.2)
   devise (~> 4.7)
-  devise-async (~> 1.0)
   factory_bot_rails (~> 6.1)
   faker (~> 2.16)
   friendly_id (~> 5.4)

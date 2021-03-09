@@ -28,8 +28,6 @@ gem 'friendly_id', '~> 5.4'
 
 # Devise adds user authentication.
 gem 'devise', '~> 4.7'
-# Devise Async enables configuring user authentication emails to be sent async with Active Job.
-gem 'devise-async', '~> 1.0'
 # Pundit adds users authorization.
 gem 'pundit', '~> 2.1'
 

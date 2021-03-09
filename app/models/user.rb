@@ -40,8 +40,7 @@ class User < ApplicationRecord
   # Include devise authentication modules:
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable,
-         :async
+         :confirmable, :lockable, :timeoutable, :trackable
 
   has_logidze # Track and store changes to this model.
 
