@@ -4,14 +4,14 @@
 #
 # Table name: links
 #
-#  id                   :bigint           not null, primary key
+#  id                   :uuid             not null, primary key
 #  log_data             :jsonb
 #  number_of_times_used :integer          default(0)
 #  slug                 :text             not null
 #  url                  :text             not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  user_id              :bigint           not null
+#  user_id              :uuid             not null
 #
 # Indexes
 #

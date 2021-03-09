@@ -4,7 +4,7 @@
 #
 # Table name: sent_emails
 #
-#  id                 :bigint           not null, primary key
+#  id                 :uuid             not null, primary key
 #  clicked_at         :datetime
 #  mailer             :string
 #  opened_at          :datetime
@@ -13,7 +13,7 @@
 #  to_ciphertext      :text
 #  token              :string
 #  user_type          :string
-#  user_id            :bigint
+#  user_id            :uuid
 #
 # Indexes
 #

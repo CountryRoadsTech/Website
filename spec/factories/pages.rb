@@ -4,7 +4,7 @@
 #
 # Table name: pages
 #
-#  id           :bigint           not null, primary key
+#  id           :uuid             not null, primary key
 #  log_data     :jsonb
 #  published_at :datetime
 #  slug         :text             not null
@@ -12,7 +12,7 @@
 #  title        :text             not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  user_id      :bigint           not null
+#  user_id      :uuid             not null
 #
 # Indexes
 #

@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id                            :bigint           not null, primary key
+#  id                            :uuid             not null, primary key
 #  admin                         :boolean          default(FALSE)
 #  confirmation_sent_at          :datetime
 #  confirmation_token            :string

@@ -4,7 +4,7 @@
 #
 # Table name: login_activities
 #
-#  id                    :bigint           not null, primary key
+#  id                    :uuid             not null, primary key
 #  city_ciphertext       :text
 #  context               :string
 #  country_ciphertext    :text
@@ -22,7 +22,7 @@
 #  user_agent_ciphertext :text
 #  user_type             :string
 #  created_at            :datetime
-#  user_id               :bigint
+#  user_id               :uuid
 #
 # Indexes
 #

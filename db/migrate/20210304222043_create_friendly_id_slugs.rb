@@ -10,7 +10,7 @@ MIGRATION_CLASS =
 # Used to view model's at URLs based on an attribute other than ID.
 class CreateFriendlyIdSlugs < MIGRATION_CLASS
   def change
-    create_table :friendly_id_slugs do |t|
+    create_table :friendly_id_slugs, id: :uuid do |t|
       t.string   :slug,           null: false
       t.integer  :sluggable_id,   null: false
       t.string   :sluggable_type, limit: 50

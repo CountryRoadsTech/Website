@@ -24,6 +24,20 @@ COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs
 
 
 --
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
 -- Name: logidze_compact_history(jsonb, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -321,33 +335,14 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.action_text_rich_texts (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying NOT NULL,
     body text,
     record_type character varying NOT NULL,
-    record_id bigint NOT NULL,
+    record_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
-
-
---
--- Name: action_text_rich_texts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.action_text_rich_texts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: action_text_rich_texts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.action_text_rich_texts_id_seq OWNED BY public.action_text_rich_texts.id;
 
 
 --
@@ -355,32 +350,13 @@ ALTER SEQUENCE public.action_text_rich_texts_id_seq OWNED BY public.action_text_
 --
 
 CREATE TABLE public.active_storage_attachments (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying NOT NULL,
     record_type character varying NOT NULL,
-    record_id bigint NOT NULL,
-    blob_id bigint NOT NULL,
+    record_id uuid NOT NULL,
+    blob_id uuid NOT NULL,
     created_at timestamp without time zone NOT NULL
 );
-
-
---
--- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.active_storage_attachments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.active_storage_attachments_id_seq OWNED BY public.active_storage_attachments.id;
 
 
 --
@@ -388,7 +364,7 @@ ALTER SEQUENCE public.active_storage_attachments_id_seq OWNED BY public.active_s
 --
 
 CREATE TABLE public.active_storage_blobs (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     key character varying NOT NULL,
     filename character varying NOT NULL,
     content_type character varying,
@@ -401,52 +377,14 @@ CREATE TABLE public.active_storage_blobs (
 
 
 --
--- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.active_storage_blobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.active_storage_blobs_id_seq OWNED BY public.active_storage_blobs.id;
-
-
---
 -- Name: active_storage_variant_records; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.active_storage_variant_records (
-    id bigint NOT NULL,
-    blob_id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    blob_id uuid NOT NULL,
     variation_digest character varying NOT NULL
 );
-
-
---
--- Name: active_storage_variant_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.active_storage_variant_records_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: active_storage_variant_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.active_storage_variant_records_id_seq OWNED BY public.active_storage_variant_records.id;
 
 
 --
@@ -466,9 +404,9 @@ CREATE TABLE public.ar_internal_metadata (
 --
 
 CREATE TABLE public.calendar_events (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    calendar_id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    user_id uuid NOT NULL,
+    calendar_id uuid NOT NULL,
     name text NOT NULL,
     slug text NOT NULL,
     duration daterange NOT NULL,
@@ -479,31 +417,12 @@ CREATE TABLE public.calendar_events (
 
 
 --
--- Name: calendar_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.calendar_events_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: calendar_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.calendar_events_id_seq OWNED BY public.calendar_events.id;
-
-
---
 -- Name: calendars; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.calendars (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    user_id uuid NOT NULL,
     name text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -512,32 +431,13 @@ CREATE TABLE public.calendars (
 
 
 --
--- Name: calendars_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.calendars_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: calendars_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.calendars_id_seq OWNED BY public.calendars.id;
-
-
---
 -- Name: events; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.events (
-    id bigint NOT NULL,
-    visit_id bigint,
-    user_id bigint,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    visit_id uuid,
+    user_id uuid,
     name character varying,
     properties jsonb,
     "time" timestamp without time zone
@@ -545,30 +445,11 @@ CREATE TABLE public.events (
 
 
 --
--- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.events_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
-
-
---
 -- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.friendly_id_slugs (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     slug character varying NOT NULL,
     sluggable_id integer NOT NULL,
     sluggable_type character varying(50),
@@ -578,31 +459,12 @@ CREATE TABLE public.friendly_id_slugs (
 
 
 --
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.friendly_id_slugs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.friendly_id_slugs_id_seq OWNED BY public.friendly_id_slugs.id;
-
-
---
 -- Name: links; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.links (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    user_id uuid NOT NULL,
     url text NOT NULL,
     slug text NOT NULL,
     number_of_times_used integer DEFAULT 0,
@@ -613,37 +475,18 @@ CREATE TABLE public.links (
 
 
 --
--- Name: links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.links_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.links_id_seq OWNED BY public.links.id;
-
-
---
 -- Name: login_activities; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.login_activities (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     scope character varying,
     strategy character varying,
     identity character varying,
     success boolean,
     failure_reason character varying,
     user_type character varying,
-    user_id bigint,
+    user_id uuid,
     context character varying,
     ip_ciphertext text,
     ip_bidx text,
@@ -659,31 +502,12 @@ CREATE TABLE public.login_activities (
 
 
 --
--- Name: login_activities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.login_activities_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: login_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.login_activities_id_seq OWNED BY public.login_activities.id;
-
-
---
 -- Name: pages; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.pages (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    user_id uuid NOT NULL,
     title text NOT NULL,
     slug text NOT NULL,
     subtitle text DEFAULT ''::text,
@@ -692,58 +516,6 @@ CREATE TABLE public.pages (
     updated_at timestamp(6) without time zone NOT NULL,
     log_data jsonb
 );
-
-
---
--- Name: pages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.pages_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.pages_id_seq OWNED BY public.pages.id;
-
-
---
--- Name: pg_search_documents; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.pg_search_documents (
-    id bigint NOT NULL,
-    content text,
-    searchable_type character varying,
-    searchable_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: pg_search_documents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.pg_search_documents_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pg_search_documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.pg_search_documents_id_seq OWNED BY public.pg_search_documents.id;
 
 
 --
@@ -760,9 +532,9 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE TABLE public.sent_emails (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     user_type character varying,
-    user_id bigint,
+    user_id uuid,
     to_ciphertext text,
     mailer character varying,
     subject_ciphertext text,
@@ -774,30 +546,11 @@ CREATE TABLE public.sent_emails (
 
 
 --
--- Name: sent_emails_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sent_emails_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sent_emails_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sent_emails_id_seq OWNED BY public.sent_emails.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.users (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     email_ciphertext text,
     email_bidx character varying,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
@@ -824,33 +577,14 @@ CREATE TABLE public.users (
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
 -- Name: visits; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.visits (
-    id bigint NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     visit_token character varying,
     visitor_token character varying,
-    user_id bigint,
+    user_id uuid,
     ip_ciphertext text,
     user_agent_ciphertext text,
     referrer text,
@@ -871,130 +605,6 @@ CREATE TABLE public.visits (
     utm_campaign character varying,
     started_at timestamp without time zone
 );
-
-
---
--- Name: visits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.visits_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: visits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.visits_id_seq OWNED BY public.visits.id;
-
-
---
--- Name: action_text_rich_texts id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.action_text_rich_texts ALTER COLUMN id SET DEFAULT nextval('public.action_text_rich_texts_id_seq'::regclass);
-
-
---
--- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('public.active_storage_attachments_id_seq'::regclass);
-
-
---
--- Name: active_storage_blobs id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
-
-
---
--- Name: active_storage_variant_records id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAULT nextval('public.active_storage_variant_records_id_seq'::regclass);
-
-
---
--- Name: calendar_events id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.calendar_events ALTER COLUMN id SET DEFAULT nextval('public.calendar_events_id_seq'::regclass);
-
-
---
--- Name: calendars id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.calendars ALTER COLUMN id SET DEFAULT nextval('public.calendars_id_seq'::regclass);
-
-
---
--- Name: events id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.events_id_seq'::regclass);
-
-
---
--- Name: friendly_id_slugs id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('public.friendly_id_slugs_id_seq'::regclass);
-
-
---
--- Name: links id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.links ALTER COLUMN id SET DEFAULT nextval('public.links_id_seq'::regclass);
-
-
---
--- Name: login_activities id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.login_activities ALTER COLUMN id SET DEFAULT nextval('public.login_activities_id_seq'::regclass);
-
-
---
--- Name: pages id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pages ALTER COLUMN id SET DEFAULT nextval('public.pages_id_seq'::regclass);
-
-
---
--- Name: pg_search_documents id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pg_search_documents ALTER COLUMN id SET DEFAULT nextval('public.pg_search_documents_id_seq'::regclass);
-
-
---
--- Name: sent_emails id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sent_emails ALTER COLUMN id SET DEFAULT nextval('public.sent_emails_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Name: visits id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.visits ALTER COLUMN id SET DEFAULT nextval('public.visits_id_seq'::regclass);
 
 
 --
@@ -1091,14 +701,6 @@ ALTER TABLE ONLY public.login_activities
 
 ALTER TABLE ONLY public.pages
     ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
-
-
---
--- Name: pg_search_documents pg_search_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pg_search_documents
-    ADD CONSTRAINT pg_search_documents_pkey PRIMARY KEY (id);
 
 
 --
@@ -1316,13 +918,6 @@ CREATE INDEX index_pages_on_user_id ON public.pages USING btree (user_id);
 
 
 --
--- Name: index_pg_search_documents_on_searchable; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_pg_search_documents_on_searchable ON public.pg_search_documents USING btree (searchable_type, searchable_id);
-
-
---
 -- Name: index_sent_emails_on_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1476,6 +1071,7 @@ ALTER TABLE ONLY public.calendars
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20210304005448'),
 ('20210304221054'),
 ('20210304221418'),
 ('20210304222043'),
@@ -1493,7 +1089,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210308205631'),
 ('20210308205638'),
 ('20210308205643'),
-('20210308205648'),
-('20210309002907');
+('20210308205648');
 
 

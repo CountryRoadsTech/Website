@@ -4,7 +4,7 @@
 #
 # Table name: visits
 #
-#  id                    :bigint           not null, primary key
+#  id                    :uuid             not null, primary key
 #  browser               :string
 #  city_ciphertext       :text
 #  country_ciphertext    :text
@@ -26,7 +26,7 @@
 #  utm_term              :string
 #  visit_token           :string
 #  visitor_token         :string
-#  user_id               :bigint
+#  user_id               :uuid
 #
 # Indexes
 #

@@ -4,15 +4,15 @@
 #
 # Table name: calendar_events
 #
-#  id          :bigint           not null, primary key
+#  id          :uuid             not null, primary key
 #  duration    :daterange        not null
 #  log_data    :jsonb
 #  name        :text             not null
 #  slug        :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  calendar_id :bigint           not null
-#  user_id     :bigint           not null
+#  calendar_id :uuid             not null
+#  user_id     :uuid             not null
 #
 # Indexes
 #

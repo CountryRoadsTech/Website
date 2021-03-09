@@ -4,12 +4,12 @@
 #
 # Table name: events
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  name       :string
 #  properties :jsonb
 #  time       :datetime
-#  user_id    :bigint
-#  visit_id   :bigint
+#  user_id    :uuid
+#  visit_id   :uuid
 #
 # Indexes
 #

@@ -3,11 +3,11 @@
 # Tracks user visits and events across the site.
 class CreateVisitsAndEvents < ActiveRecord::Migration[6.1]
   def change
-    create_table :visits do |t|
+    create_table :visits, id: :uuid do |t|
       t.string :visit_token
       t.string :visitor_token
 
-      t.references :user
+      t.references :user, type: :uuid
 
       t.text :ip_ciphertext
       t.text :user_agent_ciphertext
@@ -37,9 +37,9 @@ class CreateVisitsAndEvents < ActiveRecord::Migration[6.1]
 
     add_index :visits, :visit_token, unique: true
 
-    create_table :events do |t|
-      t.references :visit
-      t.references :user
+    create_table :events, id: :uuid do |t|
+      t.references :visit, type: :uuid
+      t.references :user, type: :uuid
 
       t.string :name
       t.jsonb :properties

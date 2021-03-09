@@ -31,14 +31,14 @@ user.admin = true
 user.save!
 
 NUMBER_OF_SEED_PAGES.times.each do
-  user = User.find((rand(NUMBER_OF_SEED_USERS) + 1))
+  user = User.order(Arel.sql('RANDOM()')).first
   article = Page.new(user: user, title: Faker::Lorem.unique.sentence, subtitle: Faker::Lorem.sentence,
                      content: Faker::Lorem.paragraph)
   article.save!
 end
 
 NUMBER_OF_SEED_CALENDARS.times.each do
-  user = User.find((rand(NUMBER_OF_SEED_USERS) + 1))
+  user = User.order(Arel.sql('RANDOM()')).first
   calendar = Calendar.new(user: user, name: Faker::Lorem.sentence)
   calendar.save!
 

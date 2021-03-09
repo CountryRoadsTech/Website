@@ -3,13 +3,13 @@
 # Tracks successful and unsuccessful login attempts.
 class CreateLoginActivities < ActiveRecord::Migration[6.1]
   def change
-    create_table :login_activities do |t|
+    create_table :login_activities, id: :uuid do |t|
       t.string :scope
       t.string :strategy
       t.string :identity, index: true
       t.boolean :success
       t.string :failure_reason
-      t.references :user, polymorphic: true
+      t.references :user, polymorphic: true, type: :uuid
       t.string :context
       t.text :ip_ciphertext
       t.text :ip_bidx
