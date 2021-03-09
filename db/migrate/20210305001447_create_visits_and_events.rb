@@ -9,7 +9,6 @@ class CreateVisitsAndEvents < ActiveRecord::Migration[6.1]
 
       t.references :user
 
-      t.string :ip
       t.text :ip_ciphertext
       t.text :user_agent_ciphertext
       t.text :referrer

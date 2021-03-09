@@ -9,7 +9,6 @@
 #  city_ciphertext       :text
 #  country_ciphertext    :text
 #  device_type           :string
-#  ip                    :string
 #  ip_ciphertext         :text
 #  landing_page          :text
 #  latitude_ciphertext   :text
