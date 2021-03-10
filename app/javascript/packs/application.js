@@ -37,7 +37,7 @@ document.addEventListener("turbo:load", () => {
         altInput: true,
         altFormat: "F j, Y H:i",
         dateFormat: "Y-m-d H:i",
-        defaultDate: Date.now()
+        defaultDate: "today"
     }
 
     flatpickr("#calendar_event_duration", flatpickr_options)
