@@ -57,6 +57,15 @@ class CalendarEventsController < ApplicationController
     authorize @calendar_event # Ensure the user is allowed to perform this action.
     @calendar_event.user = current_user unless current_user.nil?
 
+    # Convert the user passed in duration format to a Ruby range format.
+    duration = params[:calendar_event][:duration].split(' to ')
+    # Its possible the user only selected one datetime for an event, not a duration of time.
+    @calendar_event.duration = if duration.length == 1
+                                 (duration.first..duration.first)
+                               else
+                                 (duration.first..duration.second)
+                               end
+
     respond_to do |format|
       if @calendar_event.save
         format.html { redirect_to @calendar_event, notice: 'Calendar event was successfully created.' }
