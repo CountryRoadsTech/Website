@@ -35,7 +35,7 @@ class LinksController < ApplicationController
   # GET /l/:slug
   def short
     @link = Link.find_by(slug: params[:slug])
-    render 'public/404', status: :not_found if @link.nil?
+    render file: "#{Rails.root}/public/404.html", status: :not_found and return if @link.nil?
     @link.increment!(:number_of_times_used)
     redirect_to @link.url
   end
