@@ -2,13 +2,11 @@
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  mount Ahoy::Engine => '/analytics' # Mount ahoy user analytics at a route different from its default.
-
-  get '/l/:slug', to: 'links#short', as: :short # Sets up the link shortener at /l/
-
-  resources :links # Creates RESTful routes for the link model.
   resources :calendars # Creates RESTful routes for the calendar event model.
   resources :calendar_events # Creates RESTful routes for the calendar event model.
+
+  get '/l/:slug', to: 'links#short', as: :short # Sets up the link shortener at /l/
+  resources :links # Creates RESTful routes for the link model.
 
   # Adds routes for user authentication:
   devise_for :users, controllers: {
@@ -19,12 +17,12 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  get 'dashboard/index' # Adds an informational dashboard (for admin users only).
+  mount Ahoy::Engine => '/analytics' # Mount ahoy user analytics at a route different from its default.
 
   resources :pages # Creates RESTful routes for the page model.
+  get '/:id' => 'pages#show' # Enables viewing pages without needing to prepend pages/
 
-  root to: 'pages#index' # Sets the root URL, countryroads.tech/.
+  get 'dashboard/index' # Adds an informational dashboard (for admin users only).
 
-  # Enables viewing pages without needing to prepend pages/.
-  get '/:id' => 'pages#show' # This line must be the last line of this file to avoid conflicting with other routes.
+  root to: 'pages#index' # Sets the root URL, countryroads.tech/
 end
