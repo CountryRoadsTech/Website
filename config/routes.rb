@@ -2,6 +2,8 @@
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  mount Ahoy::Engine => '/analytics' # Mount ahoy user analytics at a route different from its default.
+
   get '/l/:slug', to: 'links#short', as: :short # Sets up the link shortener at /l/
 
   resources :links # Creates RESTful routes for the link model.
