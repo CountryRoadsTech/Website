@@ -100,6 +100,10 @@ class PagesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_page
     @page = Page.friendly.find(params[:id])
+
+    # If an old ID or a numeric ID was used to find the record, then the request path will not match the page's path
+    # Do a 301 permanent redirect that uses the current slug.
+    redirect_to @page, status: :moved_permanently if request.path != page_path(@page)
   end
 
   # Only allow a list of trusted parameters through.

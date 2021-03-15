@@ -451,7 +451,7 @@ CREATE TABLE public.events (
 CREATE TABLE public.friendly_id_slugs (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     slug character varying NOT NULL,
-    sluggable_id integer NOT NULL,
+    sluggable_id uuid NOT NULL,
     sluggable_type character varying(50),
     scope character varying,
     created_at timestamp without time zone

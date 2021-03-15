@@ -38,7 +38,7 @@ class CalendarEvent < ApplicationRecord
   has_logidze # Track and store changes to this model.
 
   extend FriendlyId # View events at URLs based on their name not ID.
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: :history
 
   # Use Hotwire to send live updates (via Action Cable) to the user's browser.
   after_create_commit { broadcast_prepend_to 'events' }
