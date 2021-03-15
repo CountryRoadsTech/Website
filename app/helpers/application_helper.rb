@@ -4,7 +4,13 @@
 module ApplicationHelper
   # Embeds Bootstrap SVG icons into HTML.
   def icon(icon, options = {})
-    file = File.read("node_modules/bootstrap-icons/icons/#{icon}.svg")
+    begin
+      file = File.read("node_modules/bootstrap-icons/icons/#{icon}.svg")
+    rescue Errno::ENOENT
+      Rails.logger.warn "Unknown icon cannot be created (name unknown): #{icon}"
+      return # Simply return nothing if the passed in icon does not exist.
+    end
+
     doc = Nokogiri::HTML::DocumentFragment.parse file
     svg = doc.at_css('svg')
 
