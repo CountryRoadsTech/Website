@@ -96,7 +96,11 @@ class CalendarsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_calendar
-    @calendar = Calendar.find(params[:id])
+    begin
+      @calendar = Calendar.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render file: "#{Rails.root}/public/404.html", status: :not_found and return
+    end
   end
 
   # Only allow a list of trusted parameters through.

@@ -111,7 +111,11 @@ class CalendarEventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_calendar_event
-    @calendar_event = CalendarEvent.friendly.find(params[:id])
+    begin
+      @calendar_event = CalendarEvent.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render file: "#{Rails.root}/public/404.html", status: :not_found and return
+    end
 
     # If an old ID or a numeric ID was used to find the record, then the request path will not match the calendar event's path
     # Do a 301 permanent redirect that uses the current slug.

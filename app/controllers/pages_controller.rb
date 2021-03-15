@@ -99,7 +99,11 @@ class PagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_page
-    @page = Page.friendly.find(params[:id])
+    begin
+      @page = Page.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render file: "#{Rails.root}/public/404.html", status: :not_found and return
+    end
 
     # If an old ID or a numeric ID was used to find the record, then the request path will not match the page's path
     # Do a 301 permanent redirect that uses the current slug.
