@@ -1,22 +1,24 @@
 <h1>Admin Dashboard</h1>
 
-<h2>Pages</h2>
-<%= turbo_stream_from 'pages' %>
-<%= turbo_frame_tag 'pages' do %>
-  <%= render @pages %>
-<% end %>
-
 <h2>Users</h2>
-<!%= render @users %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">UUID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Admin?</th>
+      <th scope="col">Email Confirmed?</th>
+    </tr>
+  </thead>
 
-<h2>Visits</h2>
-<!%= render @visits %>
-
-<h2>Events</h2>
-<!%= render @events %>
-
-<h2>Sent Emails</h2>
-<!%= render @sent_emails %>
-
-<h2>Login Activities</h2>
-<!%= render @login_activities %>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %><td>
+        <td><%= user.name %><td>
+        <td><%= user.admin? %><td>
+        <td><%= !user.confirmed_at.nil? %><td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
