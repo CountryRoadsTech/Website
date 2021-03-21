@@ -6,9 +6,12 @@ class DashboardController < ApplicationController
 
     @pages = Page.all
     @users = User.all
-    @visits = Visit.all
-    @events = Event.all
+    @visits = Visit.includes(:user).all
+    @events = Event.includes(:user, :visit).all
     @sent_emails = SentEmail.all
     @login_activities = LoginActivity.all
+    @calendars = Calendar.all
+    @calendar_events = CalendarEvent.all
+    @links = Link.all
   end
 end
