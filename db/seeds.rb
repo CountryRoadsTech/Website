@@ -9,6 +9,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+require 'open-uri'
 
 NUMBER_OF_SEED_USERS = 10
 NUMBER_OF_SEED_PAGES = 100
@@ -21,6 +22,9 @@ VALID_PASSWORD = 'Passwordpassword1?' # Passwords must be between 12 and 128 cha
 NUMBER_OF_SEED_USERS.times.each do
   user = User.new(email: Faker::Internet.unique.email, name: Faker::Name.name, password: VALID_PASSWORD,
                   password_confirmation: VALID_PASSWORD)
+  # Attach an avatar to randomly half of the seed users.
+  user.avatar.attach(io: URI.parse(Faker::Avatar.image(size: '100x100')).open, filename: 'avatar.png') if rand(2).zero?
+
   user.skip_confirmation!
   user.save!
 end
@@ -28,6 +32,7 @@ end
 # Create an admin seed user.
 user = User.new(email: 'email@website.com', name: 'Addison Martin', password: 'Passwordpassword1*',
                 password_confirmation: 'Passwordpassword1*')
+user.avatar.attach(io: URI.parse(Faker::Avatar.image(size: '100x100')).open, filename: 'avatar.png')
 user.skip_confirmation!
 user.admin = true
 user.save!
@@ -47,7 +52,7 @@ NUMBER_OF_SEED_CALENDARS.times.each do
   (2..(rand(MAX_NUMBER_OF_RANDOM_SEED_EVENTS_PER_CALENDAR) + 2)).each do
     calendar_event = CalendarEvent.new(user: user, calendar: calendar, name: Faker::Lorem.sentence,
                                        description: Faker::Lorem.paragraph,
-                                       duration: (Faker::Time.backward(days: 5)..Faker::Time.forward(days: 5)))
+                                       duration: (Faker::Time.backward(days: 5, format: :long)..Faker::Time.forward(days: 5, format: :long)))
     calendar_event.save!
   end
 

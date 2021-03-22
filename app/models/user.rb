@@ -51,6 +51,10 @@ class User < ApplicationRecord
   encrypts :email, :unconfirmed_email, :last_sign_in_ip, :current_sign_in_ip
   blind_index :email, slow: true, expression: ->(v) { v.downcase }
 
+  has_one_attached :avatar do |attachable|
+    attachable.variant(resize: '100x100!')
+  end
+
   has_many :pages, inverse_of: :user, dependent: :destroy
   has_many :calendars, inverse_of: :user, dependent: :destroy
   has_many :calendar_events, inverse_of: :user, dependent: :destroy
@@ -60,9 +64,6 @@ class User < ApplicationRecord
   has_many :events, class_name: 'Event', inverse_of: :user, dependent: :destroy
   has_many :sent_emails, class_name: 'SentEmail', as: :user, inverse_of: :user, dependent: :destroy
   has_many :login_activities, class_name: 'LoginActivity', as: :user, inverse_of: :user, dependent: :destroy
-
-  # Raise an error if a N+1 database query occurs.
-  self.strict_loading_by_default = true
 
   validates :name, presence: true
   validate :password_complexity

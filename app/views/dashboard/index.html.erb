@@ -41,6 +41,7 @@
   <thead>
     <tr>
       <th scope="col">UUID</th>
+      <th scope="col">Avatar</th>
       <th scope="col">Login As this User</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
@@ -57,6 +58,11 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.id %></td>
+        <% if user.avatar.attached? %>
+          <td><%= image_tag user.avatar, height: 100, width: 100, class: "rounded-circle" %></td>
+        <% else %>
+          <td>No Avatar Attached</td>
+        <% end %>
         <td><%= link_to 'Login As', masquerade_path(user), class: 'btn btn-primary' %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>

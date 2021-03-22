@@ -26,6 +26,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <em>You may choose to upload an avatar for your profile. If you choose not to, we will generate a random avatar for you.</em>
+    <%= f.file_field :avatar, direct_upload: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

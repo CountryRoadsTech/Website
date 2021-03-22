@@ -30,7 +30,7 @@ class SentEmail < ApplicationRecord
 
   # Encrypt some of the more sensitive database field.
   encrypts :subject, :to
-  encrypts :opened_at, :clicked_at, :sent_at, type: :datetime
+  encrypts :opened_at, :clicked_at, type: :datetime
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'faker' # Faker is used to generate an avatar for the user.
+require 'open-uri'
+
 # The User model that can be signed in/out, may have pages, may be an admin, etc.
-# This controller specifies application-specific overides of devise's user authentication handling of sign ups.
+# This controller specifies application-specific overrides of devise's user authentication handling of sign ups.
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_after_action :verify_authorized # Never perform user authorization during authentication!
   before_action :configure_sign_up_params, only: [:create]
@@ -13,9 +16,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      # Attach an avatar from robohash.org, if the user decided not to use their own.
+      unless resource.avatar.attached?
+        resource.avatar.attach(io: URI.parse(Faker::Avatar.image(size: '100x100')).open, filename: 'avatar.png')
+        resource.save!
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -45,12 +54,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar])
   end
 
   # The path used after sign up.

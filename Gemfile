@@ -83,6 +83,10 @@ gem 'lockbox', '~> 0.6'
 # Blind Index is used to search encrypted database fields.
 gem 'blind_index', '~> 2.2'
 
+# Faker is used to generated fake, but realistic looking data for testing and development.
+# Faker is used in production to let users select an avatar from robohash.org
+gem 'faker', '~> 2.16'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -91,8 +95,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
   # Factory Bot replaces Rail's default test fixtures with test factories.
   gem 'factory_bot_rails', '~> 6.1'
-  # Faker is used to generated fake, but realistic looking data for testing and development.
-  gem 'faker', '~> 2.16'
   # Capybara is used to create integration tests but simulating how the end user interacts with the website.
   gem 'capybara', '~> 3.35'
   # Selenium Webdriver is used by Capybara as its webdriver.
