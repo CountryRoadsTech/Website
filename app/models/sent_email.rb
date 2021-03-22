@@ -23,6 +23,9 @@
 class SentEmail < ApplicationRecord
   self.table_name = 'sent_emails'
 
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(sent_at: :desc) }
+
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :sent_emails
 
   # Encrypt some of the more sensitive database field.

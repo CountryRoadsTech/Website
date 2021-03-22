@@ -25,6 +25,9 @@
 #  fk_rails_84a58494eb  (user_id => users.id)
 #
 class Page < ApplicationRecord
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(created_at: :desc) }
+
   belongs_to :user, inverse_of: :pages
 
   has_rich_text :content

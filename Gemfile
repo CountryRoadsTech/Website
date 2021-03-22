@@ -23,9 +23,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Friendly ID allows changing which model's attribute is used in the model's URL.
-gem 'friendly_id', '~> 5.4'
-
 # Devise adds user authentication.
 gem 'devise', '~> 4.7'
 # Pundit adds users authorization.
@@ -55,6 +52,9 @@ gem 'logidze', '~> 1.0'
 gem 'newrelic_rpm', '~> 6.15'
 # Honey Badger is used to report errors in production.
 gem 'honeybadger', '~> 4.7'
+
+# Friendly ID allows changing which model's attribute is used in the model's URL.
+gem 'friendly_id', '~> 5.4'
 
 # Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
 gem 'turbo-rails', '~> 0.5'

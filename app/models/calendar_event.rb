@@ -27,6 +27,9 @@
 #  fk_rails_930e3c0bf4  (user_id => users.id)
 #
 class CalendarEvent < ApplicationRecord
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(created_at: :desc) }
+
   belongs_to :user, inverse_of: :calendar_events
   belongs_to :calendar, inverse_of: :calendar_events
 

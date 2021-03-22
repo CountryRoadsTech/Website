@@ -31,6 +31,9 @@
 #  index_login_activities_on_user      (user_type,user_id)
 #
 class LoginActivity < ApplicationRecord
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(created_at: :desc) }
+
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :login_activities
 
   # Encrypt some of the more sensitive database field.

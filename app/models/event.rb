@@ -23,6 +23,9 @@ class Event < ApplicationRecord
 
   self.table_name = 'events'
 
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(time: :desc) }
+
   belongs_to :visit, inverse_of: :events
   belongs_to :user, optional: true, inverse_of: :events
 

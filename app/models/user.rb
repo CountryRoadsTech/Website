@@ -42,6 +42,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(created_at: :desc) }
+
   has_logidze # Track and store changes to this model.
 
   # Encrypt some of the more sensitive database field.

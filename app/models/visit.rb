@@ -36,6 +36,9 @@
 class Visit < ApplicationRecord
   self.table_name = 'visits'
 
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(started_at: :desc) }
+
   has_many :events, inverse_of: :visit, dependent: :destroy
   belongs_to :user, optional: true, inverse_of: :visits
 

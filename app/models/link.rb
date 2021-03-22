@@ -23,6 +23,9 @@
 #  fk_rails_005e9b2a6a  (user_id => users.id)
 #
 class Link < ApplicationRecord
+  # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
+  default_scope { order(created_at: :desc) }
+
   belongs_to :user, inverse_of: :links
 
   validates :user, :url, :slug, presence: true
