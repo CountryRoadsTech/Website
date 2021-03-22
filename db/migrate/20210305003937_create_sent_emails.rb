@@ -10,10 +10,10 @@ class CreateSentEmails < ActiveRecord::Migration[6.1]
       t.text :subject_ciphertext
 
       t.string :token
-      t.timestamp :opened_at
-      t.timestamp :clicked_at
 
-      t.timestamp :sent_at
+      t.text :opened_at_ciphertext
+      t.text :clicked_at_ciphertext
+      t.datetime :sent_at
     end
 
     add_index :sent_emails, :token

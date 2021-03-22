@@ -4,31 +4,32 @@
 #
 # Table name: login_activities
 #
-#  id                    :uuid             not null, primary key
-#  city_ciphertext       :text
-#  context               :string
-#  country_ciphertext    :text
-#  failure_reason        :string
-#  identity              :string
-#  ip_bidx               :text
-#  ip_ciphertext         :text
-#  latitude_ciphertext   :text
-#  longitude_ciphertext  :text
-#  referrer              :text
-#  region_ciphertext     :text
-#  scope                 :string
-#  strategy              :string
-#  success               :boolean
-#  user_agent_ciphertext :text
-#  user_type             :string
-#  created_at            :datetime
-#  user_id               :uuid
+#  id                   :uuid             not null, primary key
+#  city_ciphertext      :text
+#  context              :string
+#  country_ciphertext   :text
+#  failure_reason       :string
+#  identity_bidx        :string
+#  identity_ciphertext  :text
+#  ip_bidx              :text
+#  ip_ciphertext        :text
+#  latitude_ciphertext  :text
+#  longitude_ciphertext :text
+#  referrer             :text
+#  region_ciphertext    :text
+#  scope                :string
+#  strategy             :string
+#  success              :boolean
+#  user_agent           :text
+#  user_type            :string
+#  created_at           :datetime
+#  user_id              :uuid
 #
 # Indexes
 #
-#  index_login_activities_on_identity  (identity)
-#  index_login_activities_on_ip_bidx   (ip_bidx)
-#  index_login_activities_on_user      (user_type,user_id)
+#  index_login_activities_on_identity_bidx  (identity_bidx)
+#  index_login_activities_on_ip_bidx        (ip_bidx)
+#  index_login_activities_on_user           (user_type,user_id)
 #
 class LoginActivity < ApplicationRecord
   # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
@@ -37,9 +38,10 @@ class LoginActivity < ApplicationRecord
   belongs_to :user, polymorphic: true, optional: true, inverse_of: :login_activities
 
   # Encrypt some of the more sensitive database field.
-  encrypts :city, :country, :ip, :region, :user_agent
+  encrypts :ip, :city, :region, :country, :identity
   encrypts :latitude, :longitude, type: :float
   blind_index :ip, slow: true
+  blind_index :identity, slow: true
 
   # Raise an error if a N+1 database query occurs.
   self.strict_loading_by_default = true

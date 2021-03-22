@@ -4,29 +4,29 @@
 #
 # Table name: visits
 #
-#  id                    :uuid             not null, primary key
-#  browser               :string
-#  city_ciphertext       :text
-#  country_ciphertext    :text
-#  device_type           :string
-#  ip_ciphertext         :text
-#  landing_page          :text
-#  latitude_ciphertext   :text
-#  longitude_ciphertext  :text
-#  os                    :string
-#  referrer              :text
-#  referring_domain      :string
-#  region_ciphertext     :text
-#  started_at            :datetime
-#  user_agent_ciphertext :text
-#  utm_campaign          :string
-#  utm_content           :string
-#  utm_medium            :string
-#  utm_source            :string
-#  utm_term              :string
-#  visit_token           :string
-#  visitor_token         :string
-#  user_id               :uuid
+#  id                   :uuid             not null, primary key
+#  browser              :string
+#  city_ciphertext      :text
+#  country_ciphertext   :text
+#  device_type          :string
+#  ip_ciphertext        :text
+#  landing_page         :text
+#  latitude_ciphertext  :text
+#  longitude_ciphertext :text
+#  os                   :string
+#  referrer             :text
+#  referring_domain     :string
+#  region_ciphertext    :text
+#  started_at           :datetime
+#  user_agent           :text
+#  utm_campaign         :string
+#  utm_content          :string
+#  utm_medium           :string
+#  utm_source           :string
+#  utm_term             :string
+#  visit_token          :string
+#  visitor_token        :string
+#  user_id              :uuid
 #
 # Indexes
 #
@@ -43,7 +43,7 @@ class Visit < ApplicationRecord
   belongs_to :user, optional: true, inverse_of: :visits
 
   # Encrypt some of the more sensitive database field.
-  encrypts :city, :context, :country, :ip, :region, :user_agent
+  encrypts :ip, :city, :region, :country
   encrypts :latitude, :longitude, type: :float
 
   # Raise an error if a N+1 database query occurs.
