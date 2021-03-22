@@ -5,7 +5,6 @@
 # Table name: calendars
 #
 #  id         :uuid             not null, primary key
-#  log_data   :jsonb
 #  name       :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -29,12 +28,12 @@ class Calendar < ApplicationRecord
 
   validates :name, presence: true
 
-  has_logidze # Track and store changes to this model
+  has_paper_trail # Track and store changes to this model
 
   # Use Hotwire to send live updates (via Action Cable) to the user's browser.
-  after_create_commit { broadcast_prepend_to 'calendars' }
-  after_update_commit { broadcast_replace_to 'calendars' }
-  after_destroy_commit { broadcast_remove_to 'calendars' }
+  #after_create_commit { broadcast_prepend_to 'calendars' }
+  #after_update_commit { broadcast_replace_to 'calendars' }
+  #after_destroy_commit { broadcast_remove_to 'calendars' }
 
   # Adds the .to_xlsx, .to_ods, .to_csv methods
   include SpreadsheetArchitect

@@ -45,8 +45,8 @@ gem 'ahoy_matey', '~> 3.2'
 gem 'ahoy_email', '~> 1.1'
 # Authtrail tracks successful and unsuccessful login attempts.
 gem 'authtrail', '~> 0.3'
-# Logidze tracks and stores changes to database models.
-gem 'logidze', '~> 1.0'
+# Paper Trail tracks and stores changes to database models.
+gem 'paper_trail', '~> 11.1'
 
 # New Relic is used to provide monitoring of the application in production.
 gem 'newrelic_rpm', '~> 6.15'

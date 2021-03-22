@@ -5,7 +5,6 @@
 # Table name: pages
 #
 #  id           :uuid             not null, primary key
-#  log_data     :jsonb
 #  published_at :datetime
 #  slug         :text             not null
 #  subtitle     :text             default("")

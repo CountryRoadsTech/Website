@@ -18,7 +18,6 @@
 #  last_sign_in_at               :datetime
 #  last_sign_in_ip_ciphertext    :text
 #  locked_at                     :datetime
-#  log_data                      :jsonb
 #  name                          :text             not null
 #  remember_created_at           :datetime
 #  reset_password_sent_at        :datetime
@@ -45,7 +44,7 @@ class User < ApplicationRecord
   # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
   default_scope { order(created_at: :desc) }
 
-  has_logidze # Track and store changes to this model.
+  has_paper_trail # Track and store changes to this model
 
   # Encrypt some of the more sensitive database field.
   encrypts :email, :unconfirmed_email, :last_sign_in_ip, :current_sign_in_ip

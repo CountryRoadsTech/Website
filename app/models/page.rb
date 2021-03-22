@@ -5,7 +5,6 @@
 # Table name: pages
 #
 #  id           :uuid             not null, primary key
-#  log_data     :jsonb
 #  published_at :datetime
 #  slug         :text             not null
 #  subtitle     :text             default("")
@@ -35,7 +34,7 @@ class Page < ApplicationRecord
   validates :title, uniqueness: true
   validates :title, :user, :content, presence: true
 
-  has_logidze # Track and store changes to this model.
+  has_paper_trail # Track and store changes to this model
 
   extend FriendlyId # View pages at URLs based on their title not ID.
   friendly_id :title, use: :history

@@ -47,8 +47,5 @@ module CountryRoadsTech
     # Set the time zone.
     config.time_zone = 'Eastern Time (US & Canada)'
     config.beginning_of_week = :monday
-
-    # The database schema must be dumped as SQL (not Ruby) because of Logidze.
-    config.active_record.schema_format = :sql
   end
 end

@@ -5,7 +5,6 @@
 # Table name: links
 #
 #  id                   :uuid             not null, primary key
-#  log_data             :jsonb
 #  number_of_times_used :integer          default(0)
 #  slug                 :text             not null
 #  url                  :text             not null
@@ -32,5 +31,5 @@ class Link < ApplicationRecord
   validates :slug, uniqueness: true
   validates :url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
 
-  has_logidze # Track changes to this model.
+  has_paper_trail # Track and store changes to this model
 end

@@ -5,7 +5,6 @@
 # Table name: links
 #
 #  id                   :uuid             not null, primary key
-#  log_data             :jsonb
 #  number_of_times_used :integer          default(0)
 #  slug                 :text             not null
 #  url                  :text             not null

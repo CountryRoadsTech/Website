@@ -12,6 +12,7 @@
     <th scope="col">Created By</th>
     <th scope="col">Created At</th>
     <th scope="col">Published?</th>
+    <th scope="col">Number of Versions</th>
   </tr>
   </thead>
 
@@ -25,6 +26,7 @@
       <td><%= page.user.try(:name) %></td>
       <td><%= page.created_at %></td>
       <td><%= !page.published_at.nil? %></td>
+      <td><%= page.versions.count %></td>
     </tr>
   <% end %>
   </tbody>
@@ -45,6 +47,7 @@
       <th scope="col">Number of Visits</th>
       <th scope="col">Number of Sent Emails</th>
       <th scope="col">Signed Up At</th>
+      <th scope="col">Number of Versions</th>
     </tr>
   </thead>
 
@@ -58,6 +61,7 @@
         <td><%= user.visits.count %></td>
         <td><%= user.sent_emails.count %></td>
         <td><%= user.created_at %></td>
+        <td><%= user.versions.count %></td>
       </tr>
     <% end %>
   </tbody>
@@ -164,6 +168,7 @@
       <td><%= event.id %></td>
       <td><%= event.visit.id %></td>
       <td><%= event.user.try(:name) %></td>
+      <td><%= event.name %></td>
       <td><%= event.properties %></td>
       <td><%= event.time %></td>
     </tr>
@@ -211,6 +216,7 @@
     <th scope="col">URL</th>
     <th scope="col">Slug</th>
     <th scope="col">Number of Times Used</th>
+    <th scope="col">Number of Versions</th>
   </tr>
   </thead>
 
@@ -222,6 +228,7 @@
       <td><%= link.url %></td>
       <td><%= link.slug %></td>
       <td><%= link.number_of_times_used %></td>
+      <td><%= link.versions.count %></td>
     </tr>
   <% end %>
   </tbody>
@@ -240,6 +247,7 @@
     <th scope="col">Created By</th>
     <th scope="col">Number of Events</th>
     <th scope="col">Created At</th>
+    <th scope="col">Number of Versions</th>
   </tr>
   </thead>
 
@@ -251,6 +259,7 @@
       <td><%= calendar.user.name %></td>
       <td><%= calendar.calendar_events.count %></td>
       <td><%= calendar.created_at %></td>
+      <td><%= calendar.versions.count %></td>
     </tr>
   <% end %>
   </tbody>
@@ -270,6 +279,7 @@
     <th scope="col">Created At</th>
     <th scope="col">Description</th>
     <th scope="col">Duration</th>
+    <th scope="col">Number of Versions</th>
   </tr>
   </thead>
 
@@ -282,6 +292,7 @@
       <td><%= calendar_event.created_at %></td>
       <td><%= calendar_event.description %></td>
       <td><%= calendar_event.duration %></td>
+      <td><%= calendar_event.versions.count %></td>
     </tr>
   <% end %>
   </tbody>

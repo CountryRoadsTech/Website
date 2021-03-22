@@ -6,7 +6,6 @@
 #
 #  id          :uuid             not null, primary key
 #  duration    :daterange        not null
-#  log_data    :jsonb
 #  name        :text             not null
 #  slug        :text             not null
 #  created_at  :datetime         not null
@@ -38,7 +37,7 @@ class CalendarEvent < ApplicationRecord
 
   validates :name, :user, :calendar, :duration, presence: true
 
-  has_logidze # Track and store changes to this model.
+  has_paper_trail # Track and store changes to this model
 
   extend FriendlyId # View events at URLs based on their name not ID.
   friendly_id :name, use: :history

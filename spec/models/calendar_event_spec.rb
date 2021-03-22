@@ -6,7 +6,6 @@
 #
 #  id          :uuid             not null, primary key
 #  duration    :daterange        not null
-#  log_data    :jsonb
 #  name        :text             not null
 #  slug        :text             not null
 #  created_at  :datetime         not null
