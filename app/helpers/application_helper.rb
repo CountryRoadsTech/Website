@@ -2,6 +2,8 @@
 
 # Helper methods here are available across the application (where model-specific helpers are available).
 module ApplicationHelper
+  include Pagy::Frontend # Enables pagination view helpers within all views.
+
   # Embeds Bootstrap SVG icons into HTML.
   def icon(icon, options = {})
     begin

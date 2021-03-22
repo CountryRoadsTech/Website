@@ -53,6 +53,11 @@ gem 'newrelic_rpm', '~> 6.15'
 # Honey Badger is used to report errors in production.
 gem 'honeybadger', '~> 4.7'
 
+# Pagy adds pagination to controllers as well as view helpers.
+gem 'pagy', '~> 4.1'
+# OJ is used by pagy to increase performance of Pagy's Javascript views.
+gem 'oj', '~> 3.11'
+
 # Friendly ID allows changing which model's attribute is used in the model's URL.
 gem 'friendly_id', '~> 5.4'
 

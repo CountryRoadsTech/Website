@@ -42,3 +42,6 @@ document.addEventListener("turbo:load", () => {
 
     flatpickr("#calendar_event_duration", flatpickr_options)
 })
+
+// Enables pagination's Javascript heleprs in views.
+import "../source/pagination.js.erb"

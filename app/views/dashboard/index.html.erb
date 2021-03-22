@@ -30,6 +30,9 @@
   </tbody>
 </table>
 
+<%== pagy_bootstrap_nav_js(@pages_pagination) %>
+<%== pagy_items_selector_js(@pages_pagination) %>
+
 <br>
 <h2>Users</h2>
 <table class="table table-dark table-striped table-hover table-sm">
@@ -114,7 +117,7 @@
   <% @visits.each do |visit| %>
     <tr>
       <td><%= visit.id %></td>
-      <td><%= visit.user.name %></td>
+      <td><%= visit.user.try(:name) %></td>
       <td><%= visit.user_agent %></td>
       <td><%= visit.referrer %></td>
       <td><%= visit.referring_domain %></td>

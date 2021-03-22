@@ -5,6 +5,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception # Enables cross-site request forgery (CSRF) attack protection.
 
+  include Pagy::Backend # Enables pagination within all controllers.
+
   include Pundit # Enables user authorization.
   after_action :verify_authorized # Ensures user authorization was performed in every controller action.
 
