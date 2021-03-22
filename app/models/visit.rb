@@ -46,9 +46,6 @@ class Visit < ApplicationRecord
   encrypts :ip, :city, :region, :country
   encrypts :latitude, :longitude, type: :float
 
-  # Raise an error if a N+1 database query occurs.
-  self.strict_loading_by_default = true
-
   # Adds the .to_xlsx, .to_ods, .to_csv
   include SpreadsheetArchitect
 

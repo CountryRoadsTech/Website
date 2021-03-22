@@ -25,6 +25,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Devise adds user authentication.
 gem 'devise', '~> 4.7'
+# Devise Masquerade allows admin users to sign in as other users.
+gem 'devise_masquerade', '~> 1.3'
 # Pundit adds users authorization.
 gem 'pundit', '~> 2.1'
 

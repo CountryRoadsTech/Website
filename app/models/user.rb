@@ -39,7 +39,8 @@ class User < ApplicationRecord
   # Include devise authentication modules:
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable
+         :confirmable, :lockable, :timeoutable,
+         :trackable, :masqueradable
 
   # Sets the default way these records are sorted. Because UUIDs are used, the default sort order does not work.
   default_scope { order(created_at: :desc) }

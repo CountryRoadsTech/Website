@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    unlocks: 'users/unlocks'
+    unlocks: 'users/unlocks',
+    masquerades: 'users/masquerades'
   }
 
   mount Ahoy::Engine => '/analytics' # Mount ahoy user analytics at a route different from its default.
