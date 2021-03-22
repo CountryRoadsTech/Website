@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   def index
     authorize :dashboard, :index? # Ensure the user is allowed to perform this action.
 
-    @pages = set_page_and_extract_portion_from Page.all
+    @pages = Page.all
     @users = User.all
     @visits = Visit.includes(:user).all
     @events = Event.includes(:user, :visit).all
