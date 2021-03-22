@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2021_03_22_174511) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
