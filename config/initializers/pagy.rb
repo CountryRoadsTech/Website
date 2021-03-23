@@ -66,7 +66,7 @@ require 'pagy/extras/bootstrap'
 
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/extras/navs#steps
-Pagy::VARS[:steps] = { 0 => [2, 3, 3, 2], 540 => [3, 5, 5, 3], 720 => [5, 7, 7,5 ] }
+Pagy::VARS[:steps] = { 0 => [2, 3, 3, 2], 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] }
 
 # Feature Extras
 
@@ -109,11 +109,11 @@ require 'pagy/extras/trim'
 
 # Instance variables
 # See https://ddnexus.github.io/pagy/api/pagy#instance-variables
-Pagy::VARS[:items] = 20                                   # default
+Pagy::VARS[:items] = 20 # default
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/api/pagy#other-variables
-Pagy::VARS[:size]       = [1,4,4,1]                       # default
+Pagy::VARS[:size]       = [1, 4, 4, 1] # default
 Pagy::VARS[:page_param] = :p
 # Pagy::VARS[:params]     = {}                              # default
 # Pagy::VARS[:anchor]     = '#anchor'                       # example

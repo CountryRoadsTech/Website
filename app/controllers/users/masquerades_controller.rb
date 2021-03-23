@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::MasqueradesController < Devise::MasqueradesController
   protected
 
@@ -6,7 +8,8 @@ class Users::MasqueradesController < Devise::MasqueradesController
   end
 
   def after_masquerade_path_for(resource)
-    flash[:alert] = "Successfully signed in as #{resource.name} (#{resource.email}). Press the back button on your browser to sign out of this user."
+    flash[:alert] =
+      "Successfully signed in as #{resource.name} (#{resource.email}). Press the back button on your browser to sign out of this user."
     super
   end
 

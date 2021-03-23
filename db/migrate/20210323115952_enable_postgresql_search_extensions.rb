@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EnablePostgresqlSearchExtensions < ActiveRecord::Migration[6.1]
   def up
     say_with_time("Enabling Postgresql's unaccent extensions for use with full search") do
