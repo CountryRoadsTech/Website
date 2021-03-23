@@ -66,6 +66,9 @@ gem 'friendly_id', '~> 5.4'
 # Turbo delivers HTML over the wire to provide live updates to the website without having to refresh the entire page.
 gem 'turbo-rails', '~> 0.5'
 
+# PG Search is used to access PostgreSQL's built-in full text search features.
+gem 'pg_search', '~> 2.3'
+
 # Simple Calendar is used to render calendars in views.
 gem 'simple_calendar', '~> 2.4'
 # Holidays is used to get a list of holidays for a given region.

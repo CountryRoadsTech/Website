@@ -44,6 +44,15 @@ class Page < ApplicationRecord
   after_update_commit { broadcast_replace_to 'pages' }
   after_destroy_commit { broadcast_remove_to 'pages' }
 
+  def published?
+    !published_at.nil?
+  end
+
+  include PgSearch::Model
+  multisearchable against: [:title, :subtitle, :content],
+                  additional_attributes: ->(model) { { user_id: model.user_id } },
+                  if: :published?
+
   # Adds the .to_xlsx, .to_ods, .to_csv
   include SpreadsheetArchitect
 

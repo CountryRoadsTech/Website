@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/:id' => 'pages#show' # Enables viewing pages without needing to prepend pages/
 
   get 'dashboard/index' # Adds an informational dashboard (for admin users only).
+  get 'search/index' # Adds the search controller for global, multisearch.
 
   root to: 'pages#index' # Sets the root URL, countryroads.tech/
 end

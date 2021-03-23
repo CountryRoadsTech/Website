@@ -32,4 +32,8 @@ class Link < ApplicationRecord
   validates :url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
 
   has_paper_trail # Track and store changes to this model
+
+  include PgSearch::Model
+  multisearchable against: [:url, :slug],
+                  additional_attributes: ->(model) { { user_id: model.user_id } }
 end

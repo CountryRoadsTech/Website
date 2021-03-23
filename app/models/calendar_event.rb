@@ -55,6 +55,10 @@ class CalendarEvent < ApplicationRecord
     duration.end
   end
 
+  include PgSearch::Model
+  multisearchable against: [:name, :description],
+                  additional_attributes: ->(model) { { user_id: model.user_id } }
+
   # Adds the .to_xlsx, .to_ods, .to_csv
   include SpreadsheetArchitect
 

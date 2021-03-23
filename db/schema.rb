@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_174511) do
+ActiveRecord::Schema.define(version: 2021_03_23_123721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "action_text_rich_texts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -147,6 +148,17 @@ ActiveRecord::Schema.define(version: 2021_03_22_174511) do
     t.index ["slug"], name: "index_pages_on_slug", unique: true
     t.index ["title"], name: "index_pages_on_title", unique: true
     t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
+    t.index ["user_id"], name: "index_pg_search_documents_on_user_id"
   end
 
   create_table "sent_emails", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

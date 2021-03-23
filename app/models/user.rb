@@ -74,6 +74,10 @@ class User < ApplicationRecord
     errors.add :password, 'must include: 1 uppercase, 1 lowercase, 1 number, and 1 special character'
   end
 
+  include PgSearch::Model
+  multisearchable against: :name,
+                  update_if: :name_changed?
+
   # Adds the .to_xlsx, .to_ods, .to_csv
   include SpreadsheetArchitect
 
