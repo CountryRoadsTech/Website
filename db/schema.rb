@@ -150,11 +150,11 @@ ActiveRecord::Schema.define(version: 2021_03_23_123721) do
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
-  create_table "pg_search_documents", force: :cascade do |t|
+  create_table "pg_search_documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id"
+    t.uuid "user_id"
     t.string "searchable_type"
-    t.bigint "searchable_id"
+    t.uuid "searchable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"

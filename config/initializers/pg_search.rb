@@ -7,8 +7,7 @@ PgSearch.multisearch_options = {
       any_word: true,
       highlight: {
         StartSel: '<mark>',
-        StopSel: '</mark>',
-        HighlightAll: true
+        StopSel: '</mark>'
       }
     }
   }

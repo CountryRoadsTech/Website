@@ -1,2 +1,13 @@
-<h1>Search#index</h1>
-<p>Find me in app/views/search/index.html.erb</p>
+<h1>Search Results</h1>
+
+<h2>Found <%= @results.count%> Results</h2>
+<% @results.each do |result| %>
+  <div class="card">
+    <div class="card-header">
+      <%= link_to 'View', result.searchable, class: 'btn btn-primary btn-rounded' unless result.searchable_type == 'User' %>
+    </div>
+    <div class="card-body">
+      <%== result.content %>
+    </div>
+  </div>
+<% end %>
