@@ -83,7 +83,7 @@ gem 'rubyzip', '~> 2.3'
 
 # Lockbox is used to encrypt data in the database.
 gem 'lockbox', '~> 0.6'
-# Blind Index is used to search encrypted database fields.
+# Blind Index is used to index encrypted database fields.
 gem 'blind_index', '~> 2.2'
 
 # Faker is used to generated fake, but realistic looking data for testing and development.
