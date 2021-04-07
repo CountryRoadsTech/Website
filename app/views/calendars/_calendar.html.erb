@@ -16,13 +16,13 @@
     <% end %>
     <hr>
 
-    <ul class="list-group list-group-flush list-group-numbered">
-    <% events.take(5).each do |event| %>
-      <%= link_to calendar_event_path(event), class: 'list-group-item list-group-item-action' do %>
-        <%= render event %>
+    <div class="col">
+      <% events.each do |event| %>
+        <div class="row">
+          <%= render event %>
+        </div>
       <% end %>
-    <% end %>
-    </ul>
+    </div>
 
   <% end %>
 

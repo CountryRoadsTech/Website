@@ -1,10 +1,25 @@
 <%= turbo_frame_tag dom_id(calendar_event) do %>
-  <strong>Event:</strong> <%= calendar_event.name %>
-
-  <% unless (calendar_event.user == calendar_event.calendar&.user) %>
-    <strong>Creator:</strong>
-    <%= calendar_event.user&.name %>
-  <% end %>
-
-  <strong><p><%= calendar_event.duration.begin.strftime("%l:%M %P") %>-<%= calendar_event.duration.end.strftime("%l:%M %P") %></p></strong>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= calendar_event.name %>
+      </h4>
+      <% unless (calendar_event.user == calendar_event.calendar&.user) %>
+        <h5 class="card-subtitle text-muted">
+          Created by <%= calendar_event.user&.name %>
+        </h5>
+      <% end %>
+      <p class="card-text">
+        <%= calendar_event.duration.begin.strftime("%l:%M %P") %>-<%= calendar_event.duration.end.strftime("%l:%M %P") %>
+      </p>
+      <%= link_to 'View', calendar_event_path(calendar_event), class: 'card-link' %>
+      <%= link_to 'Edit', edit_calendar_event_path(calendar_event), class: 'card-link' %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= icon('clock-fill') %>
+    <small class="text-muted">
+      Happening in <%= distance_of_time_in_words_to_now(calendar_event.start_time) %>
+    </small>
+  </div>
 <% end %>
