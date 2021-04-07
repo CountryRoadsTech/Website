@@ -20,4 +20,15 @@
 #  fk_rails_d574754a30  (user_id => users.id)
 #
 module CalendarsHelper
+
+  def get_holidays(date)
+    holidays = []
+
+    Holidays.on(date, :ca, :us, :informal, :observed).each do |holiday|
+      holidays << holiday[:name]
+    end
+
+    holidays.uniq
+  end
+
 end
